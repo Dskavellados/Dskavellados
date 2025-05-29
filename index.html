@@ -102,23 +102,102 @@
             width: 80%;
         }
 
-        /* Galería */
+        /* Galería - Carrusel */
         .galeria {
             width: 80%;
+            max-width: 800px; /* Ancho máximo para el carrusel */
             margin: auto;
-            overflow: hidden;
+            overflow: hidden; /* Oculta las imágenes que no están en la vista */
             position: relative;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Sombra para destacar el carrusel */
+            aspect-ratio: 16 / 9; /* Proporción de aspecto para el carrusel (ej: 16:9) */
+            background-color: #222; /* Fondo para cuando no hay imagen o carga */
         }
 
-        .galeria img {
+        .carousel-inner {
+            display: flex; /* Coloca las imágenes en fila */
+            width: calc(100% * 35); /* Ancho total para todas las imágenes (100% * número de imágenes) */
+            height: 100%;
+            transition: transform 0.8s ease-in-out; /* Transición suave para el desplazamiento */
+        }
+
+        .carousel-inner img {
+            flex-shrink: 0; /* Evita que las imágenes se encojan */
+            width: calc(100% / 35); /* Cada imagen ocupa 1/N del ancho del contenedor interno */
+            height: 100%;
+            object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
+            border-radius: 10px;
+            cursor: pointer; /* Indica que la imagen es clickeable para el modal */
+        }
+
+        /* Controles de navegación del carrusel */
+        .galeria .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 2em;
+            border-radius: 5px;
+            z-index: 10; /* Asegura que las flechas estén por encima de la imagen */
+            transition: background-color 0.3s ease;
+        }
+
+        .galeria .nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .galeria .prev {
+            left: 10px;
+        }
+
+        .galeria .next {
+            right: 10px;
+        }
+
+        /* Modal para la galería de imágenes */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Posición fija para cubrir toda la pantalla */
+            z-index: 1001; /* Por encima de todo lo demás */
+            left: 0;
+            top: 0;
             width: 100%;
-            height: auto;
-            display: none;
+            height: 100%;
+            overflow: auto; /* Habilita el scroll si la imagen es muy grande */
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente oscuro */
+            justify-content: center; /* Centra el contenido horizontalmente */
+            align-items: center; /* Centra el contenido verticalmente */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%; /* Ancho máximo para la imagen en el modal */
+            max-height: 90vh; /* Altura máxima para la imagen en el modal */
             border-radius: 10px;
         }
 
-        .galeria img.active {
-            display: block;
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         /* Videos */
@@ -128,7 +207,7 @@
         }
         .videos iframe {
             width: 100%;
-            height: 600px;
+            height: 400px; /* Altura ajustada para una mejor proporción en videos */
             border-radius: 10px;
             margin-bottom: 20px;
         }
@@ -184,9 +263,19 @@
             .galeria, .videos {
                 width: 90%;
             }
+            
+            .galeria {
+                /* En móvil, el carrusel puede ser un poco más pequeño */
+                max-width: 100%;
+                aspect-ratio: 4 / 3; /* Proporción de aspecto para móvil */
+            }
+
+            .galeria img {
+                height: 100%; /* La imagen ocupa todo el espacio del carrusel */
+            }
 
             .videos iframe {
-                height: 300px;
+                height: 300px; /* Shorter videos on mobile */
             }
 
             /* Mostrar botón de menú en pantallas pequeñas */
@@ -265,26 +354,59 @@
     <div class="separador"></div>
 
     <h2 id="musica">Nuestra Música</h2>
-    <!-- Nota: El iframe de Spotify con 'https://open.spotify.com/embed/artist/3sR2Xb0L6W3d8s2Z9n1X9V?utm_source=generator' no es una URL válida para incrustar contenido de Spotify.
-         Deberías usar un código de incrustación real de Spotify. Por ejemplo, ir a una canción/álbum en Spotify, hacer clic en "..." -> Compartir -> Insertar pista/álbum.
-         Aquí he puesto un placeholder. -->
-    <iframe src="https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmCcpeo" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/track/YOUR_SPOTIFY_TRACK_ID?utm_source=generator" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     <div class="separador"></div>
 
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
-        <img src="https://i.imgur.com/TRlOYd2.jpeg" class="active" alt="Imagen 1">
-        <img src="https://i.imgur.com/TRlOYd2.jpeg" alt="Imagen 2">
-        <img src="https://i.imgur.com/TRlOYd2.jpeg" alt="Imagen 3">
+        <div class="carousel-inner" id="carouselInner">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/1.jpg" alt="Dskavellados Imagen 1" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/2.jpg" alt="Dskavellados Imagen 2" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Dskavellados Imagen 3" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Dskavellados Imagen 9" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg" alt="Dskavellados Imagen 10" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/11.jpg" alt="Dskavellados Imagen 11" loading="lazy">
+            <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/12.jpg" alt="Dskavellados Imagen 12" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg" alt="Dskavellados Imagen 13" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/14.jpg" alt="Dskavellados Imagen 14" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/15.jpg" alt="Dskavellados Imagen 15" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/16.jpg" alt="Dskavellados Imagen 16" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/17.jpg" alt="Dskavellados Imagen 17" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg" alt="Dskavellados Imagen 18" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/19.jpg" alt="Dskavellados Imagen 19" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/20.jpg" alt="Dskavellados Imagen 20" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg" alt="Dskavellados Imagen 21" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/22.jpg" alt="Dskavellados Imagen 22" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/23.jpg" alt="Dskavellados Imagen 23" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Dskavellados Imagen 24" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/25.jpg" alt="Dskavellados Imagen 25" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/26.jpg" alt="Dskavellados Imagen 26" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/28.jpg" alt="Dskavellados Imagen 28" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/29.jpg" alt="Dskavellados Imagen 29" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/30.jpg" alt="Dskavellados Imagen 30" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg" alt="Dskavellados Imagen 31" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/32.jpg" alt="Dskavellados Imagen 32" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/33.jpg" alt="Dskavellados Imagen 33" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg" alt="Dskavellados Imagen 34" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/35.jpg" alt="Dskavellados Imagen 35" loading="lazy">
+        </div>
+        
+        <button class="nav-arrow prev" id="prevBtn">❮</button>
+        <button class="nav-arrow next" id="nextBtn">❯</button>
     </div>
     <div class="separador"></div>
 
     <h2 id="videos">Videos</h2>
     <div class="videos">
-        <!-- Nota: Asegúrate de que las URLs de TikTok y Facebook sean válidas para incrustación.
-             A veces las URLs directas de reels o videos no funcionan, y necesitas el código de incrustación de la plataforma. -->
         <iframe src="https://www.tiktok.com/embed/7478555800504519942" frameborder="0" allowfullscreen scrolling="no" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=560" width="100%" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
     <div class="separador"></div>
 
@@ -295,25 +417,16 @@
     <h2>Redes Sociales</h2>
     <div class="redes">
         <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
-        <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
-        <a href="https://www.tiktok.com/@dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok"></a>
+        <a href="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok"></a>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close-button">×</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <script>
-        // JavaScript para la galería de imágenes (ya lo tenías, lo mantengo)
-        let index = 0;
-        const images = document.querySelectorAll(".galeria img");
-        
-        if (images.length > 0) {
-            images[0].classList.add("active");
-
-            setInterval(() => {
-                images[index].classList.remove("active");
-                index = (index + 1) % images.length;
-                images[index].classList.add("active");
-            }, 3000); // Cambia la imagen cada 3 segundos
-        }
-
         // JavaScript para el menú de hamburguesa
         const btnMenu = document.getElementById('btn-menu');
         const navMenu = document.getElementById('nav-menu');
@@ -323,6 +436,88 @@
                 navMenu.classList.toggle('active'); // Alterna la clase 'active'
             });
         }
+
+        // JavaScript para la funcionalidad del carrusel de galería
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselInner = document.getElementById('carouselInner'); // Nuevo: el contenedor interno
+            const images = carouselInner.querySelectorAll('img'); // Ahora seleccionamos las imágenes dentro del inner
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+            let carouselInterval; // Variable para almacenar el ID del intervalo
+
+            // Función para actualizar la posición del carrusel
+            function updateCarousel() {
+                const offset = -currentIndex * 100; // Calcula el desplazamiento en porcentaje
+                carouselInner.style.transform = `translateX(${offset}%)`;
+            }
+
+            // Función para iniciar el carrusel automático
+            function startCarousel() {
+                // Limpiar cualquier intervalo existente para evitar duplicados
+                if (carouselInterval) {
+                    clearInterval(carouselInterval);
+                }
+                carouselInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel(); // Actualiza la posición del carrusel
+                }, 6000); // Cambia cada 6 segundos
+            }
+
+            // Inicializar el carrusel mostrando la primera imagen
+            if (images.length > 0 && carouselInner) { // Asegurarse de que carouselInner exista
+                updateCarousel(); // Mostrar la primera imagen
+                startCarousel(); // Iniciar el carrusel automático
+
+                // Funcionalidad de los botones de navegación
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateCarousel(); // Actualiza la posición
+                        startCarousel(); // Reiniciar el carrusel automático al interactuar
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateCarousel(); // Actualiza la posición
+                        startCarousel(); // Reiniciar el carrusel automático al interactuar
+                    });
+                }
+            }
+
+            // JavaScript para la funcionalidad del modal de galería
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeButton = document.querySelector('.close-button');
+
+            // Ahora los clics para el modal se añaden a CADA imagen dentro del carrusel
+            images.forEach(image => {
+                image.addEventListener('click', () => {
+                    if (modal && modalImg) {
+                        modal.style.display = 'flex'; // Muestra el modal
+                        modalImg.src = image.src; // Establece la fuente de la imagen del modal
+                    } else {
+                        console.error('Error: Elementos del modal (imageModal o modalImage) no encontrados.');
+                    }
+                });
+            });
+
+            if (closeButton && modal) {
+                closeButton.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
+            }
+
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
