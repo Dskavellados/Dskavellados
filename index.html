@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSKAVELLADOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: red;
+        }
+        .logo {
+            width: 350px;
+            margin-top: 100px;
+            filter: drop-shadow(0 0 10px red);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px red); }
+            to { filter: drop-shadow(0 0 20px yellow); }
+        }
+        .hero-text {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 50px 0;
+            opacity: 0;
+            animation: fadeInText 2s forwards;
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .separador {
+            border-top: 2px solid red;
+            margin: 40px auto;
+            width: 80%;
+        }
+        .galeria {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .galeria img {
+            width: 100%;
+            height: auto;
+            display: none;
+            border-radius: 10px;
+        }
+        .galeria img.active {
+            display: block;
+        }
+        .videos iframe {
+            width: 100%;
+            height: 600px;
+            border-radius: 10px;
+        }
+        .boton-wsp {
+            background-color: green;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .redes a img {
+            width: 40px;
+            margin: 0 5px;
+            transition: transform 0.3s;
+        }
+        .redes a img:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#acerca">Acerca</a>
+        <a href="#musica">Música</a>
+        <a href="#galeria">Galería</a>
+        <a href="#videos">Videos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+    <img src="https://i.imgur.com/IM5kGy3.png" alt="Logo" class="logo">
+    <div class="hero-text">¡A Bailar Ska!</div>
+    <div class="separador"></div>
+    <h2 id="acerca">Acerca de Nosotros</h2>
+    <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas.</p>
+    <div class="separador"></div>
+    <h2 id="musica">Nuestra Música</h2>
+    <iframe src="https://open.spotify.com/embed/playlist/TU_PLAYLIST" width="100%" height="380" frameborder="0"></iframe>
+    <div class="separador"></div>
+    <h2 id="galeria">Galería</h2>
+    <div class="galeria">
+        <img src="https://i.imgur.com/TRlOYd2.jpeg" class="active" alt="Imagen 1">
+        <img src="https://i.imgur.com/TRlOYd2.jpeg" alt="Imagen 2">
+        <img src="https://i.imgur.com/TRlOYd2.jpeg" alt="Imagen 3">
+    </div>
+    <div class="separador"></div>
+    <h2 id="videos">Videos</h2>
+    <div class="videos">
+        <iframe src="https://www.tiktok.com/embed/7478555800504519942" allowfullscreen></iframe>
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0" allowfullscreen></iframe>
+    </div>
+    <div class="separador"></div>
+    <h2 id="contacto">Déjanos tu Mensaje</h2>
+    <a href="https://wa.me/573024332338" target="_blank" class="boton-wsp">WhatsApp</a>
+    <div class="separador"></div>
+    <h2>Redes Sociales</h2>
+    <div class="redes">
+        <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+        <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://www.tiktok.com/@dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok"></a>
+    </div>
+    <script>
+        let index = 0;
+        const images = document.querySelectorAll(".galeria img");
+        setInterval(() => {
+            images[index].classList.remove("active");
+            index = (index + 1) % images.length;
+            images[index].classList.add("active");
+        }, 3000);
+    </script>
+</body>
+</html>
