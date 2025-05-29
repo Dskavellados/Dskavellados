@@ -57,9 +57,10 @@
             color: white;
             font-size: 1.8em;
             cursor: pointer;
-            display: none;
-            position: absolute;
-            left: 20px;
+            display: none; /* Oculto por defecto en desktop */
+            position: absolute; /* Posicionamiento absoluto para botón de menú en móvil */
+            left: 20px; /* Posición a la izquierda */
+            z-index: 1001; /* Asegura que esté sobre el header */
         }
 
         .nav-menu {
@@ -137,8 +138,8 @@
         }
 
         .logo {
-            width: 350px;
-            max-width: 90%;
+            width: 350px; /* Tamaño del logo en PC */
+            max-width: 90%; /* Asegura que el logo no se desborde en pantallas pequeñas */
             filter: drop-shadow(0 0 10px red);
             animation: glow 1.5s ease-in-out infinite alternate;
             border-radius: 50%;
@@ -185,7 +186,7 @@
             overflow: hidden;
             position: relative;
             border-radius: 10px;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7); /* Sombra más intensa */
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
             aspect-ratio: 16 / 9;
             background-color: #222;
             border: 3px solid red; /* Borde rojo para el carrusel */
@@ -328,7 +329,7 @@
             filter: drop-shadow(0 0 30px yellow); /* Brillo más intenso */
         }
 
-        /* Estilos para el icono de Font Awesome de TikTok (con fondo blanco) */
+        /* Estilos para el icono SVG de TikTok */
         .floating-social .social-icon-svg { /* Clase para el contenedor del SVG */
             display: flex;
             justify-content: center;
@@ -393,7 +394,7 @@
 
             .separador {
                 width: 90%;
-                margin: 40px auto; /* Menos margen en móvil */
+                margin: 40px auto;
             }
 
             .galeria, .videos {
@@ -458,7 +459,7 @@
                 width: 40px;
                 height: 40px;
             }
-            .floating-social .social-icon-fa svg { /* Ajustar tamaño del SVG en móvil */
+            .floating-social .social-icon-fa svg {
                 width: 60%;
                 height: 60%;
             }
@@ -499,7 +500,7 @@
                 width: 35px;
                 height: 35px;
             }
-            .floating-social .social-icon-fa svg { /* Ajustar tamaño del SVG en móvil muy pequeño */
+            .floating-social .social-icon-fa svg {
                 width: 60%;
                 height: 60%;
             }
@@ -622,7 +623,7 @@
             const galleryContainer = document.querySelector('.galeria');
             const images = galleryContainer ? galleryContainer.querySelectorAll('img') : [];
             const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('prevBtn'); // Corrección: era 'nextBtn'
+            const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
             let carouselInterval;
 
