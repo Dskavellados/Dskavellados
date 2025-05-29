@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +39,7 @@
             margin-top: 100px;
             filter: drop-shadow(0 0 10px red);
             animation: glow 1.5s ease-in-out infinite alternate;
+            border-radius: 50%; /* Añadido para hacer el logo circular, común en fotos de perfil */
         }
         @keyframes glow {
             from { filter: drop-shadow(0 0 10px red); }
@@ -78,6 +80,7 @@
             width: 100%;
             height: 600px;
             border-radius: 10px;
+            margin-bottom: 20px; /* Added margin for spacing between videos */
         }
         .boton-wsp {
             background-color: green;
@@ -98,6 +101,51 @@
         .redes a img:hover {
             transform: scale(1.2);
         }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo {
+                width: 250px; /* Smaller logo on smaller screens */
+                margin-top: 80px;
+            }
+            .hero-text {
+                font-size: 1.8em; /* Smaller text on smaller screens */
+                margin: 30px 0;
+            }
+            nav a {
+                margin: 0 8px; /* Less margin for nav links */
+                font-size: 0.9em;
+            }
+            .separador {
+                width: 90%; /* Wider separator on smaller screens */
+            }
+            .galeria, .videos {
+                width: 90%; /* Wider content areas */
+            }
+            .videos iframe {
+                height: 300px; /* Shorter videos on mobile */
+            }
+        }
+        @media (max-width: 480px) {
+            .logo {
+                width: 200px;
+                margin-top: 60px;
+            }
+            .hero-text {
+                font-size: 1.5em;
+                margin: 20px 0;
+            }
+            nav a {
+                display: block; /* Stack nav links vertically */
+                margin: 5px 0;
+            }
+            .boton-wsp {
+                padding: 10px;
+                font-size: 16px;
+            }
+            .redes a img {
+                width: 30px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -108,14 +156,14 @@
         <a href="#videos">Videos</a>
         <a href="#contacto">Contacto</a>
     </nav>
-    <img src="https://i.imgur.com/IM5kGy3.png" alt="Logo" class="logo">
+    <img src="https://github.com/Dskavellados/Dskavellados/blob/main/LOGO/LOGO.jpg?raw=true" alt="Logo Dskavellados" class="logo">
     <div class="hero-text">¡A Bailar Ska!</div>
     <div class="separador"></div>
     <h2 id="acerca">Acerca de Nosotros</h2>
     <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas.</p>
     <div class="separador"></div>
     <h2 id="musica">Nuestra Música</h2>
-    <iframe src="https://open.spotify.com/embed/playlist/TU_PLAYLIST" width="100%" height="380" frameborder="0"></iframe>
+    <iframe src="https://open.spotify.com/embed/artist/3sR2Xb0L6W3d8s2Z9n1X9V?utm_source=generator" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     <div class="separador"></div>
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
@@ -126,8 +174,8 @@
     <div class="separador"></div>
     <h2 id="videos">Videos</h2>
     <div class="videos">
-        <iframe src="https://www.tiktok.com/embed/7478555800504519942" allowfullscreen></iframe>
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/7478555800504519942" frameborder="0" allowfullscreen scrolling="no" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=560" width="100%" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
     <div class="separador"></div>
     <h2 id="contacto">Déjanos tu Mensaje</h2>
@@ -142,11 +190,23 @@
     <script>
         let index = 0;
         const images = document.querySelectorAll(".galeria img");
-        setInterval(() => {
-            images[index].classList.remove("active");
-            index = (index + 1) % images.length;
-            images[index].classList.add("active");
-        }, 3000);
+        
+        // Ensure there are images to cycle through
+        if (images.length > 0) {
+            // Set the first image as active initially
+            images[0].classList.add("active");
+
+            setInterval(() => {
+                // Remove active class from current image
+                images[index].classList.remove("active");
+                
+                // Move to the next image, loop back to start if at the end
+                index = (index + 1) % images.length;
+                
+                // Add active class to the new current image
+                images[index].classList.add("active");
+            }, 3000); // Change image every 3 seconds
+        }
     </script>
 </body>
 </html>
