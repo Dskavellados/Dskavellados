@@ -16,6 +16,24 @@
             margin: 0;
             padding-top: 60px; /* Espacio para el header fijo */
             overflow-x: hidden; /* Evita el scroll horizontal */
+            position: relative; /* Necesario para el pseudo-elemento de fondo */
+        }
+
+        /* Pseudo-elemento para la textura de fondo del body (más visible) */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Textura de lino negro, puedes cambiarla a una de cuadros si prefieres */
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Textura de lino negro */
+            background-size: 200px 200px; /* Tamaño del patrón */
+            background-repeat: repeat;
+            opacity: 0.15; /* Más visible que antes */
+            z-index: -1; /* Detrás de todo el contenido */
+            pointer-events: none; /* No interactuable */
         }
 
         /* Estilos del Header y Navegación */
@@ -24,33 +42,33 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.9); /* Fondo más oscuro para el header */
+            background: rgba(0, 0, 0, 0.95); /* Fondo más oscuro y opaco */
             padding: 10px 20px;
-            box-sizing: border-box; /* Incluye padding en el ancho total */
+            box-sizing: border-box;
             display: flex;
-            justify-content: center; /* Centrar el contenido del header */
-            align-items: center; /* Alinear verticalmente */
+            justify-content: center;
+            align-items: center;
             z-index: 1000;
-            border-bottom: 2px solid red; /* Línea roja en la parte inferior del header */
+            border-bottom: 4px solid red; /* Borde más grueso */
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.7); /* Sombra más intensa y extendida */
         }
 
         .btn-menu {
             color: white;
             font-size: 1.8em;
             cursor: pointer;
-            display: none; /* Oculto por defecto en desktop */
-            position: absolute; /* Posicionamiento absoluto para botón de menú en móvil */
-            left: 20px; /* Posición a la izquierda */
+            display: none;
+            position: absolute;
+            left: 20px;
         }
 
         .nav-menu {
-            list-style: none; /* Quita los puntos de la lista */
-            margin: 0 auto; /* Centrar el menú horizontalmente */
+            list-style: none;
+            margin: 0 auto;
             padding: 0;
-            display: flex; /* Para que los elementos estén en línea en desktop */
-            justify-content: center; /* Centrar los ítems del menú dentro de sí mismo */
-            /* flex-grow: 1; eliminado para que margin: auto funcione mejor */
-            /* width: 100%; eliminado, ya que margin: auto lo maneja */
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
         .nav-menu li {
@@ -61,32 +79,35 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s;
-            padding: 5px 0; /* Añadido padding para mejor área de clic */
-            display: block; /* Para que el padding funcione correctamente */
+            transition: color 0.3s, text-shadow 0.3s;
+            padding: 5px 0;
+            display: block;
+            text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.8); /* Sombra de texto rojiza más fuerte */
         }
 
         .nav-menu a:hover {
-            color: red;
+            color: yellow; /* Color más punk al hover */
+            text-shadow: 0 0 20px yellow, 0 0 30px red; /* Brillo más intenso con doble sombra */
         }
 
         /* Estilos del Logo y Fondo Superior */
-        .logo-container { /* Contenedor para el logo y el texto principal con fondo */
+        .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 100px auto 0 auto; /* Centrar horizontalmente y añadir margen superior */
-            width: 90%; /* Asegurar que ocupe un ancho razonable */
-            max-width: 1000px; /* Ancho máximo para el contenedor del logo */
-            aspect-ratio: 16 / 9; /* Proporción de aspecto para el carrusel (ej: 16:9) */
-            border-radius: 10px; /* Bordes redondeados para el contenedor del fondo */
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Sombra para el contenedor */
-            padding: 20px; /* Espacio alrededor del logo */
-            box-sizing: border-box; /* Incluir padding en el ancho/alto */
-            position: relative; /* Para posicionar el logo y el overlay */
-            overflow: hidden; /* Asegura que el contenido no se desborde */
-            background-color: #000; /* Fondo por si la imagen tarda en cargar */
+            margin: 100px auto 0 auto;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16 / 9;
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9); /* Sombra aún más intensa y brillante */
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+            border: 3px solid red; /* Borde rojo alrededor del contenedor */
         }
         
         /* Imagen de fondo real dentro del contenedor */
@@ -96,9 +117,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Asegura que la imagen completa sea visible */
-            z-index: 0; /* Detrás del logo y el overlay */
-            border-radius: 10px; /* Coincidir con el contenedor */
+            object-fit: cover; /* CAMBIADO A COVER para asegurar que llene el espacio */
+            background-position: center 30%; /* Ajuste para mostrar más rostros */
+            z-index: 0;
+            border-radius: 10px;
         }
 
         /* Overlay para hacer la imagen de fondo más sutil */
@@ -109,35 +131,36 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Capa semi-transparente negra (ajustada a 0.4) */
-            z-index: 1; /* Por debajo del logo y texto */
-            border-radius: 10px; /* Coincidir con el border-radius del contenedor */
+            background-color: rgba(0, 0, 0, 0.7); /* Capa semi-transparente negra (más opaca para contraste) */
+            z-index: 1;
+            border-radius: 10px;
         }
 
         .logo {
             width: 350px;
-            max-width: 90%; /* Asegura que el logo no se desborde en pantallas pequeñas */
+            max-width: 90%;
             filter: drop-shadow(0 0 10px red);
             animation: glow 1.5s ease-in-out infinite alternate;
-            border-radius: 50%; /* Hace el logo circular */
-            position: relative; /* Para que el logo esté por encima del overlay */
-            z-index: 2; /* Asegura que el logo esté delante del overlay */
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes glow {
             from { filter: drop-shadow(0 0 10px red); }
-            to { filter: drop-shadow(0 20px 20px yellow); } /* Efecto de brillo más pronunciado */
+            to { filter: drop-shadow(0 20px 20px yellow); }
         }
 
         /* Estilos de Texto Principal */
         .hero-text {
             font-size: 2.5em;
             font-weight: bold;
-            margin: 20px 0; /* Reducido el margen vertical */
+            margin: 20px 0;
             opacity: 0;
             animation: fadeInText 2s forwards;
-            position: relative; /* Para que el texto esté por encima del overlay */
-            z-index: 2; /* Asegura que el texto esté delante del overlay */
+            position: relative;
+            z-index: 2;
+            text-shadow: 3px 3px 8px rgba(255, 0, 0, 1); /* Sombra de texto muy fuerte */
         }
 
         @keyframes fadeInText {
@@ -147,40 +170,43 @@
 
         /* Separador */
         .separador {
-            border-top: 2px solid red;
-            margin: 40px auto;
-            width: 80%;
+            border-top: 6px solid red; /* Más grueso y prominente */
+            margin: 80px auto; /* Más margen */
+            width: 60%; /* Más estrecho para más impacto */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1); /* Sombra muy intensa */
+            border-radius: 8px; /* Bordes ligeramente redondeados */
         }
 
         /* Galería - Carrusel (Fade Effect) */
         .galeria {
             width: 80%;
-            max-width: 800px; /* Ancho máximo para el carrusel */
+            max-width: 800px;
             margin: auto;
-            overflow: hidden; /* Oculta las imágenes que no están en la vista */
-            position: relative; /* Necesario para el posicionamiento absoluto de las imágenes */
+            overflow: hidden;
+            position: relative;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Sombra para destacar el carrusel */
-            aspect-ratio: 16 / 9; /* Proporción de aspecto para el carrusel (ej: 16:9) */
-            background-color: #222; /* Fondo para cuando no hay imagen o carga */
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7); /* Sombra más intensa */
+            aspect-ratio: 16 / 9;
+            background-color: #222;
+            border: 3px solid red; /* Borde rojo para el carrusel */
         }
 
         .galeria img {
-            position: absolute; /* Posicionamiento absoluto para superponer imágenes */
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
+            object-fit: contain;
             border-radius: 10px;
-            cursor: pointer; /* Indica que la imagen es clickeable para el modal */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil para delimitar la imagen */
-            opacity: 0; /* Oculto por defecto */
-            transition: opacity 0.8s ease-in-out; /* Transición suave para el fade */
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
         }
 
         .galeria img.active {
-            opacity: 1; /* Muestra la imagen activa */
+            opacity: 1;
         }
 
         /* Controles de navegación del carrusel */
@@ -188,19 +214,22 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo más opaco */
             color: white;
             border: none;
             padding: 10px 15px;
             cursor: pointer;
-            font-size: 2em;
+            font-size: 2.5em; /* Flechas más grandes */
             border-radius: 5px;
-            z-index: 10; /* Asegura que las flechas estén por encima de la imagen */
-            transition: background-color 0.3s ease;
+            z-index: 10;
+            transition: background-color 0.3s ease, color 0.3s;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Sombra más visible */
         }
 
         .galeria .nav-arrow:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 1); /* Completamente opaco al hover */
+            color: yellow; /* Color al pasar el ratón */
+            box-shadow: 0 0 25px yellow; /* Brillo amarillo intenso */
         }
 
         /* Posicionamiento de las flechas */
@@ -214,41 +243,43 @@
 
         /* Modal para la galería de imágenes */
         .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed; /* Posición fija para cubrir toda la pantalla */
-            z-index: 1001; /* Por encima de todo lo demás */
+            display: none;
+            position: fixed;
+            z-index: 1001;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto; /* Habilita el scroll si la imagen es muy grande */
-            background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente oscuro */
-            justify-content: center; /* Centra el contenido horizontalmente */
-            align-items: center; /* Centra el contenido verticalmente */
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro */
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-content {
             margin: auto;
             display: block;
-            max-width: 90%; /* Ancho máximo para la imagen en el modal */
-            max-height: 90vh; /* Altura máxima para la imagen en el modal */
+            max-width: 90%;
+            max-height: 90vh;
             border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); /* Sombra intensa para el modal */
         }
 
         .close-button {
             position: absolute;
             top: 20px;
             right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
+            color: red; /* Color rojo para el botón de cerrar */
+            font-size: 45px; /* Más grande */
             font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
+            text-shadow: 0 0 10px black; /* Sombra para el botón de cerrar */
         }
 
         .close-button:hover,
         .close-button:focus {
-            color: #bbb;
+            color: yellow; /* Amarillo al pasar el ratón */
             text-decoration: none;
             cursor: pointer;
         }
@@ -260,56 +291,95 @@
         }
         .videos iframe {
             width: 100%;
-            height: 400px; /* Altura ajustada para una mejor proporción en videos */
+            height: 400px;
             border-radius: 10px;
             margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Sombra para los videos */
         }
 
-        /* Botón de WhatsApp */
-        .boton-wsp {
-            background-color: #25D366; /* Color de WhatsApp */
-            color: white;
-            padding: 15px 25px;
+        /* Contenedor de redes sociales flotante en el lateral */
+        .floating-social {
+            position: fixed;
+            right: 10px;
+            left: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9); /* Fondo más opaco */
+            padding: 8px;
             border-radius: 10px;
-            font-size: 20px;
-            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1); /* Sombra muy intensa */
+            border: 3px solid red; /* Borde más grueso */
+        }
+
+        .floating-social .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        }
+
+        .floating-social .social-icon:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 30px yellow); /* Brillo más intenso */
+        }
+
+        /* Estilos para el icono de Font Awesome de TikTok (con fondo blanco) */
+        .floating-social .social-icon-svg { /* Clase para el contenedor del SVG */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: white; /* ¡Fondo blanco para el icono de TikTok! */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra para el fondo blanco */
+        }
+
+        .floating-social .social-icon-svg svg { /* Estilos para el SVG dentro del contenedor */
+            width: 60%; /* Ajustar tamaño del SVG dentro del círculo */
+            height: 60%;
+            fill: black; /* Color del icono de TikTok (negro) */
+        }
+
+        .floating-social .social-icon-svg:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 30px red; /* Brillo rojo al pasar el ratón */
+        }
+
+        /* Botón de WhatsApp dentro del flotante */
+        .floating-social .whatsapp-button {
+            background-color: #25D366;
+            color: white;
             text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5); /* Sombra para WhatsApp */
         }
-        .boton-wsp:hover {
+        .floating-social .whatsapp-button:hover {
             background-color: #1DA851;
+            box-shadow: 0 0 30px rgba(37, 211, 102, 1); /* Sombra más intensa al hover */
         }
 
-        /* Redes Sociales */
-        .redes a {
-            display: inline-block; /* Para que los enlaces de redes sociales estén en línea */
-            margin: 0 10px; /* Más espacio entre los iconos */
-        }
-        .redes a img {
-            width: 50px; /* Iconos un poco más grandes */
-            height: 50px; /* Mantener proporción */
-            border-radius: 50%; /* Hacerlos circulares si las imágenes lo permiten */
-            transition: transform 0.3s, filter 0.3s;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* Sombra sutil */
-        }
-
-        .redes a img:hover {
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 15px yellow); /* Efecto de brillo al pasar el ratón */
-        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
-                padding-top: 60px; /* Ajuste para el header en móvil */
+                padding-top: 60px;
             }
 
             .logo-container {
-                width: 90%; /* Ajuste para móviles */
+                width: 90%;
                 margin-top: 80px;
-                padding: 10px; /* Menos padding en móvil */
+                padding: 10px;
             }
 
             .logo {
@@ -318,11 +388,12 @@
 
             .hero-text {
                 font-size: 1.8em;
-                margin: 15px 0; /* Menos margen en móvil */
+                margin: 15px 0;
             }
 
             .separador {
                 width: 90%;
+                margin: 40px auto; /* Menos margen en móvil */
             }
 
             .galeria, .videos {
@@ -331,56 +402,69 @@
             
             .galeria {
                 max-width: 100%;
-                aspect-ratio: 4 / 3; /* Proporción de aspecto para móvil */
+                aspect-ratio: 4 / 3;
             }
 
             .galeria img {
-                height: 100%; /* La imagen ocupa todo el espacio del carrusel */
+                height: 100%;
             }
 
             .videos iframe {
-                height: 300px; /* Shorter videos on mobile */
+                height: 300px;
             }
 
-            /* Mostrar botón de menú en pantallas pequeñas */
             .btn-menu {
                 display: block;
                 position: absolute;
                 left: 20px;
             }
 
-            /* Ocultar menú por defecto en pantallas pequeñas */
             .nav-menu {
-                display: none; /* Oculta el menú */
-                flex-direction: column; /* Apila los enlaces verticalmente */
+                display: none;
+                flex-direction: column;
                 width: 100%;
                 position: absolute;
-                top: 60px; /* Debajo del header */
+                top: 60px;
                 left: 0;
-                background: rgba(0, 0, 0, 0.95); /* Fondo para el menú desplegado */
+                background: rgba(0, 0, 0, 0.95);
                 border-top: 1px solid red;
                 padding: 10px 0;
                 box-sizing: border-box;
-                transition: max-height 0.3s ease-out; /* Transición para el despliegue */
-                max-height: 0; /* Altura inicial para la transición */
-                overflow: hidden; /* Oculta el contenido extra */
-                align-items: center; /* Centrar ítems en móvil */
-                padding-left: 0; /* Eliminar padding extra */
+                transition: max-height 0.3s ease-out;
+                max-height: 0;
+                overflow: hidden;
+                align-items: center;
+                padding-left: 0;
             }
 
-            /* Mostrar menú cuando tiene la clase 'active' */
             .nav-menu.active {
-                display: flex; /* Muestra el menú */
-                max-height: 300px; /* Altura máxima para la transición */
+                display: flex;
+                max-height: 300px;
             }
 
             .nav-menu li {
-                margin: 10px 0; /* Espaciado vertical para los ítems del menú */
+                margin: 10px 0;
             }
 
-            .redes a img {
-                width: 40px; /* Iconos de redes sociales un poco más pequeños en móvil */
+            /* Flotante en móvil, ajustar posición y tamaño */
+            .floating-social {
+                right: 5px;
+                left: auto;
+                gap: 8px;
+                padding: 5px;
+            }
+            .floating-social .social-icon,
+            .floating-social .social-icon-fa {
+                width: 40px;
                 height: 40px;
+            }
+            .floating-social .social-icon-fa svg { /* Ajustar tamaño del SVG en móvil */
+                width: 60%;
+                height: 60%;
+            }
+            .floating-social .whatsapp-button {
+                font-size: 0.9em;
+                padding: 6px;
             }
         }
 
@@ -388,7 +472,7 @@
             .logo-container {
                 width: 95%;
                 margin-top: 60px;
-                padding: 5px; /* Menos padding en pantallas muy chicas */
+                padding: 5px;
             }
             .logo {
                 width: 200px;
@@ -404,9 +488,24 @@
                 font-size: 16px;
             }
 
-            .redes a img {
-                width: 35px; /* Más pequeños en pantallas muy chicas */
+            .floating-social {
+                right: 0px;
+                left: auto;
+                gap: 6px;
+                padding: 3px;
+            }
+            .floating-social .social-icon,
+            .floating-social .social-icon-fa {
+                width: 35px;
                 height: 35px;
+            }
+            .floating-social .social-icon-fa svg { /* Ajustar tamaño del SVG en móvil muy pequeño */
+                width: 60%;
+                height: 60%;
+            }
+            .floating-social .whatsapp-button {
+                font-size: 0.8em;
+                padding: 5px;
             }
         }
     </style>
@@ -448,7 +547,7 @@
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
+        <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Dskavellados Imagen 9" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg" alt="Dskavellados Imagen 10" loading="lazy">
@@ -468,7 +567,7 @@
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Dskavellados Imagen 24" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/25.jpg" alt="Dskavellados Imagen 25" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/26.jpg" alt="Dskavellados Imagen 26" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
+        <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/28.jpg" alt="Dskavellados Imagen 28" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/29.jpg" alt="Dskavellados Imagen 29" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/30.jpg" alt="Dskavellados Imagen 30" loading="lazy">
@@ -485,21 +584,21 @@
 
     <h2 id="videos">Videos</h2>
     <div class="videos">
-        <iframe src="https://www.tiktok.com/embed/7478555800504519942" frameborder="0" allowfullscreen scrolling="no" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
+        <iframe src="https://www.tiktok.com/embed/7478555800504519942" frameborder="0" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
 
         <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
     <div class="separador"></div>
 
-    <h2 id="contacto">Déjanos tu Mensaje</h2>
-    <a href="https://wa.me/573024332338" target="_blank" class="boton-wsp">WhatsApp</a>
-    <div class="separador"></div>
-
-    <h2>Redes Sociales</h2>
-    <div class="redes">
-        <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
-        <a href="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
-        <a href="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok"></a>
+    <div class="floating-social">
+        <a href="https://wa.me/573024332338" target="_blank" class="whatsapp-button">WhatsApp</a>
+        <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="social-icon"></a>
+        <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="social-icon"></a>
+        <a href="https://www.tiktok.com/@dskavellados" target="_blank" class="social-icon-svg">
+            <svg viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.001 0C6.12 0 0 6.12 0 12.001 0 17.882 6.12 24 12.001 24 17.882 24 24 17.882 24 12.001 24 6.12 17.882 0 12.001 0ZM15.352 14.184c.334-.06.66-.17.96-.328.29-.158.55-.357.77-.597.22-.24.39-.51.51-.81.12-.3.18-.62.18-.94 0-.32-.06-.64-.18-.94-.12-.3-.29-.57-.51-.81-.22-.24-.48-.439-.77-.597-.3-.158-.62-.268-.96-.328v-1.12c.38.07.74.2.06.38.31.18.59.4.84.65.25.25.46.54.63.86.17.32.25.66.25 1.01 0 .35-.08.69-.25 1.01-.17.32-.38.61-.63.86-.25.25-.53.47-.84.65-.32.18-.68.31-.06.38v1.12ZM8.648 14.184c-.334-.06-.66-.17-.96-.328-.29-.158-.55-.357-.77-.597-.22-.24-.39-.51-.51-.81-.12-.3-.18-.62-.18-.94 0-.32.06-.64.18-.94.12-.3.29-.57.51-.81.22-.24.48-.439.77-.597.3-.158.62-.268.96-.328v-1.12c-.38.07-.74.2-.06.38-.31.18-.59.4-.84.65-.25.25-.46.54-.63.86-.17.32-.25.66-.25 1.01 0 .35.08.69.25 1.01.17.32.38.61.63.86.25.25.53.47.84.65.32.18.68.31.06.38v1.12Z"/>
+            </svg>
+        </a>
     </div>
 
     <div id="imageModal" class="modal">
@@ -523,7 +622,7 @@
             const galleryContainer = document.querySelector('.galeria');
             const images = galleryContainer ? galleryContainer.querySelectorAll('img') : [];
             const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+            const nextBtn = document.getElementById('prevBtn'); // Corrección: era 'nextBtn'
             let currentIndex = 0;
             let carouselInterval;
 
