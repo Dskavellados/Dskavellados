@@ -28,6 +28,7 @@
             padding: 10px 20px;
             box-sizing: border-box; /* Incluye padding en el ancho total */
             display: flex;
+            justify-content: center; /* Centrar el contenido del header */
             align-items: center; /* Alinear verticalmente */
             z-index: 1000;
             border-bottom: 2px solid red; /* Línea roja en la parte inferior del header */
@@ -44,12 +45,12 @@
 
         .nav-menu {
             list-style: none; /* Quita los puntos de la lista */
-            margin: 0;
+            margin: 0 auto; /* Centrar el menú horizontalmente */
             padding: 0;
             display: flex; /* Para que los elementos estén en línea en desktop */
-            justify-content: center; /* Centrar los ítems del menú */
-            flex-grow: 1; /* Permite que el menú ocupe el espacio disponible para centrarse */
-            width: 100%; /* Asegura que ocupe todo el ancho disponible para centrar sus ítems */
+            justify-content: center; /* Centrar los ítems del menú dentro de sí mismo */
+            /* flex-grow: 1; eliminado para que margin: auto funcione mejor */
+            /* width: 100%; eliminado, ya que margin: auto lo maneja */
         }
 
         .nav-menu li {
@@ -77,18 +78,27 @@
             justify-content: center;
             margin: 100px auto 0 auto; /* Centrar horizontalmente y añadir margen superior */
             width: 90%; /* Asegurar que ocupe un ancho razonable */
-            max-width: 900px; /* Ancho máximo para el contenedor del logo (aumentado) */
-            aspect-ratio: 16 / 9; /* Mantener una proporción de aspecto para el fondo */
-            background-image: url('https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg'); /* Imagen de fondo */
-            background-size: contain; /* Ajusta la imagen completa dentro del contenedor */
-            background-repeat: no-repeat; /* No repetir la imagen */
-            background-position: center; /* Centra la imagen completamente */
+            max-width: 1000px; /* Ancho máximo para el contenedor del logo */
+            aspect-ratio: 16 / 9; /* Proporción de aspecto para el carrusel (ej: 16:9) */
             border-radius: 10px; /* Bordes redondeados para el contenedor del fondo */
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Sombra para el contenedor */
-            padding: 40px 20px; /* Más padding para que la imagen se vea más grande */
+            padding: 20px; /* Espacio alrededor del logo */
             box-sizing: border-box; /* Incluir padding en el ancho/alto */
             position: relative; /* Para posicionar el logo y el overlay */
             overflow: hidden; /* Asegura que el contenido no se desborde */
+            background-color: #000; /* Fondo por si la imagen tarda en cargar */
+        }
+        
+        /* Imagen de fondo real dentro del contenedor */
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Asegura que la imagen completa sea visible */
+            z-index: 0; /* Detrás del logo y el overlay */
+            border-radius: 10px; /* Coincidir con el contenedor */
         }
 
         /* Overlay para hacer la imagen de fondo más sutil */
@@ -414,6 +424,8 @@
     </header>
 
     <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg" alt="Fondo Ska Punk" class="background-image" loading="lazy">
+        
         <img src="https://github.com/Dskavellados/Dskavellados/blob/main/LOGO/LOGO.jpg?raw=true" alt="Logo Dskavellados" class="logo">
         <div class="hero-text">¡A Bailar Ska!</div>
     </div>
