@@ -5,46 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSKAVELLADOS</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6c4ad435c2.js" crossorigin="anonymous"></script>
     <style>
+        /* Estilos Generales */
         body {
             background-color: black;
             color: white;
             text-align: center;
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            padding-top: 60px; /* Espacio para el header fijo */
+            overflow-x: hidden; /* Evita el scroll horizontal */
         }
-        nav {
+
+        /* Estilos del Header y Navegación */
+        header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px 0;
-            text-align: center;
+            background: rgba(0, 0, 0, 0.9); /* Fondo más oscuro para el header */
+            padding: 10px 20px;
+            box-sizing: border-box; /* Incluye padding en el ancho total */
+            display: flex;
+            justify-content: space-between; /* Espacio entre el botón y el menú */
+            align-items: center;
             z-index: 1000;
+            border-bottom: 2px solid red; /* Línea roja en la parte inferior del header */
         }
-        nav a {
+
+        .btn-menu {
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            display: none; /* Oculto por defecto en desktop */
+        }
+
+        .nav-menu {
+            list-style: none; /* Quita los puntos de la lista */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Para que los elementos estén en línea en desktop */
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
             font-weight: bold;
             transition: color 0.3s;
+            padding: 5px 0; /* Añadido padding para mejor área de clic */
+            display: block; /* Para que el padding funcione correctamente */
         }
-        nav a:hover {
+
+        .nav-menu a:hover {
             color: red;
         }
+
+        /* Estilos del Logo */
         .logo {
             width: 350px;
-            margin-top: 100px;
+            margin-top: 100px; /* Ajustado para que no se superponga con el header */
             filter: drop-shadow(0 0 10px red);
             animation: glow 1.5s ease-in-out infinite alternate;
-            border-radius: 50%; /* Añadido para hacer el logo circular, común en fotos de perfil */
+            border-radius: 50%; /* Hace el logo circular */
+            max-width: 90%; /* Asegura que el logo no se desborde en pantallas pequeñas */
+            height: auto;
         }
+
         @keyframes glow {
             from { filter: drop-shadow(0 0 10px red); }
-            to { filter: drop-shadow(0 0 20px yellow); }
+            to { filter: drop-shadow(0 20px 20px yellow); } /* Efecto de brillo más pronunciado */
         }
+
+        /* Estilos de Texto Principal */
         .hero-text {
             font-size: 2.5em;
             font-weight: bold;
@@ -52,96 +89,155 @@
             opacity: 0;
             animation: fadeInText 2s forwards;
         }
+
         @keyframes fadeInText {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Separador */
         .separador {
             border-top: 2px solid red;
             margin: 40px auto;
             width: 80%;
         }
+
+        /* Galería */
         .galeria {
             width: 80%;
             margin: auto;
             overflow: hidden;
             position: relative;
         }
+
         .galeria img {
             width: 100%;
             height: auto;
             display: none;
             border-radius: 10px;
         }
+
         .galeria img.active {
             display: block;
+        }
+
+        /* Videos */
+        .videos {
+            width: 80%;
+            margin: auto;
         }
         .videos iframe {
             width: 100%;
             height: 600px;
             border-radius: 10px;
-            margin-bottom: 20px; /* Added margin for spacing between videos */
+            margin-bottom: 20px;
         }
+
+        /* Botón de WhatsApp */
         .boton-wsp {
-            background-color: green;
+            background-color: #25D366; /* Color de WhatsApp */
             color: white;
-            padding: 15px;
+            padding: 15px 25px;
             border-radius: 10px;
             font-size: 20px;
             font-weight: bold;
             text-decoration: none;
             display: inline-block;
             margin-top: 20px;
+            transition: background-color 0.3s ease;
         }
+        .boton-wsp:hover {
+            background-color: #1DA851;
+        }
+
+        /* Redes Sociales */
         .redes a img {
             width: 40px;
             margin: 0 5px;
             transition: transform 0.3s;
         }
+
         .redes a img:hover {
             transform: scale(1.2);
         }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            body {
+                padding-top: 60px; /* Ajuste para el header en móvil */
+            }
+
             .logo {
-                width: 250px; /* Smaller logo on smaller screens */
+                width: 250px;
                 margin-top: 80px;
             }
+
             .hero-text {
-                font-size: 1.8em; /* Smaller text on smaller screens */
+                font-size: 1.8em;
                 margin: 30px 0;
             }
-            nav a {
-                margin: 0 8px; /* Less margin for nav links */
-                font-size: 0.9em;
-            }
+
             .separador {
-                width: 90%; /* Wider separator on smaller screens */
+                width: 90%;
             }
+
             .galeria, .videos {
-                width: 90%; /* Wider content areas */
+                width: 90%;
             }
+
             .videos iframe {
-                height: 300px; /* Shorter videos on mobile */
+                height: 300px;
+            }
+
+            /* Mostrar botón de menú en pantallas pequeñas */
+            .btn-menu {
+                display: block;
+            }
+
+            /* Ocultar menú por defecto en pantallas pequeñas */
+            .nav-menu {
+                display: none; /* Oculta el menú */
+                flex-direction: column; /* Apila los enlaces verticalmente */
+                width: 100%;
+                position: absolute;
+                top: 60px; /* Debajo del header */
+                left: 0;
+                background: rgba(0, 0, 0, 0.95); /* Fondo para el menú desplegado */
+                border-top: 1px solid red;
+                padding: 10px 0;
+                box-sizing: border-box;
+                transition: max-height 0.3s ease-out; /* Transición para el despliegue */
+                max-height: 0; /* Altura inicial para la transición */
+                overflow: hidden; /* Oculta el contenido extra */
+            }
+
+            /* Mostrar menú cuando tiene la clase 'active' */
+            .nav-menu.active {
+                display: flex; /* Muestra el menú */
+                max-height: 300px; /* Altura máxima para la transición */
+            }
+
+            .nav-menu li {
+                margin: 10px 0; /* Espaciado vertical para los ítems del menú */
             }
         }
+
         @media (max-width: 480px) {
             .logo {
                 width: 200px;
                 margin-top: 60px;
             }
+
             .hero-text {
                 font-size: 1.5em;
                 margin: 20px 0;
             }
-            nav a {
-                display: block; /* Stack nav links vertically */
-                margin: 5px 0;
-            }
+
             .boton-wsp {
-                padding: 10px;
+                padding: 10px 20px;
                 font-size: 16px;
             }
+
             .redes a img {
                 width: 30px;
             }
@@ -149,22 +245,32 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="#acerca">Acerca</a>
-        <a href="#musica">Música</a>
-        <a href="#galeria">Galería</a>
-        <a href="#videos">Videos</a>
-        <a href="#contacto">Contacto</a>
-    </nav>
+    <header>
+        <a href="#" class="btn-menu" id="btn-menu"><i class="fas fa-bars"></i></a>
+        <nav class="nav-menu" id="nav-menu">
+            <li><a href="#acerca">Acerca</a></li>
+            <li><a href="#musica">Música</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </nav>
+    </header>
+
     <img src="https://github.com/Dskavellados/Dskavellados/blob/main/LOGO/LOGO.jpg?raw=true" alt="Logo Dskavellados" class="logo">
     <div class="hero-text">¡A Bailar Ska!</div>
     <div class="separador"></div>
+
     <h2 id="acerca">Acerca de Nosotros</h2>
     <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas.</p>
     <div class="separador"></div>
+
     <h2 id="musica">Nuestra Música</h2>
-    <iframe src="https://open.spotify.com/embed/artist/3sR2Xb0L6W3d8s2Z9n1X9V?utm_source=generator" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <!-- Nota: El iframe de Spotify con 'https://open.spotify.com/embed/artist/3sR2Xb0L6W3d8s2Z9n1X9V?utm_source=generator' no es una URL válida para incrustar contenido de Spotify.
+         Deberías usar un código de incrustación real de Spotify. Por ejemplo, ir a una canción/álbum en Spotify, hacer clic en "..." -> Compartir -> Insertar pista/álbum.
+         Aquí he puesto un placeholder. -->
+    <iframe src="https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmCcpeo" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     <div class="separador"></div>
+
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
         <img src="https://i.imgur.com/TRlOYd2.jpeg" class="active" alt="Imagen 1">
@@ -172,40 +278,50 @@
         <img src="https://i.imgur.com/TRlOYd2.jpeg" alt="Imagen 3">
     </div>
     <div class="separador"></div>
+
     <h2 id="videos">Videos</h2>
     <div class="videos">
+        <!-- Nota: Asegúrate de que las URLs de TikTok y Facebook sean válidas para incrustación.
+             A veces las URLs directas de reels o videos no funcionan, y necesitas el código de incrustación de la plataforma. -->
         <iframe src="https://www.tiktok.com/embed/7478555800504519942" frameborder="0" allowfullscreen scrolling="no" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=560" width="100%" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
     <div class="separador"></div>
+
     <h2 id="contacto">Déjanos tu Mensaje</h2>
     <a href="https://wa.me/573024332338" target="_blank" class="boton-wsp">WhatsApp</a>
     <div class="separador"></div>
+
     <h2>Redes Sociales</h2>
     <div class="redes">
         <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
         <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
         <a href="https://www.tiktok.com/@dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok"></a>
     </div>
+
     <script>
+        // JavaScript para la galería de imágenes (ya lo tenías, lo mantengo)
         let index = 0;
         const images = document.querySelectorAll(".galeria img");
         
-        // Ensure there are images to cycle through
         if (images.length > 0) {
-            // Set the first image as active initially
             images[0].classList.add("active");
 
             setInterval(() => {
-                // Remove active class from current image
                 images[index].classList.remove("active");
-                
-                // Move to the next image, loop back to start if at the end
                 index = (index + 1) % images.length;
-                
-                // Add active class to the new current image
                 images[index].classList.add("active");
-            }, 3000); // Change image every 3 seconds
+            }, 3000); // Cambia la imagen cada 3 segundos
+        }
+
+        // JavaScript para el menú de hamburguesa
+        const btnMenu = document.getElementById('btn-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (btnMenu && navMenu) {
+            btnMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active'); // Alterna la clase 'active'
+            });
         }
     </script>
 </body>
