@@ -28,8 +28,7 @@
             padding: 10px 20px;
             box-sizing: border-box; /* Incluye padding en el ancho total */
             display: flex;
-            justify-content: space-between; /* Espacio entre el botón y el menú */
-            align-items: center;
+            align-items: center; /* Alinear verticalmente */
             z-index: 1000;
             border-bottom: 2px solid red; /* Línea roja en la parte inferior del header */
         }
@@ -39,6 +38,8 @@
             font-size: 1.8em;
             cursor: pointer;
             display: none; /* Oculto por defecto en desktop */
+            position: absolute; /* Posicionamiento absoluto para botón de menú en móvil */
+            left: 20px; /* Posición a la izquierda */
         }
 
         .nav-menu {
@@ -46,6 +47,9 @@
             margin: 0;
             padding: 0;
             display: flex; /* Para que los elementos estén en línea en desktop */
+            justify-content: center; /* Centrar los ítems del menú */
+            flex-grow: 1; /* Permite que el menú ocupe el espacio disponible para centrarse */
+            width: 100%; /* Asegura que ocupe todo el ancho disponible para centrar sus ítems */
         }
 
         .nav-menu li {
@@ -65,15 +69,49 @@
             color: red;
         }
 
-        /* Estilos del Logo */
+        /* Estilos del Logo y Fondo Superior */
+        .logo-container { /* Contenedor para el logo y el texto principal con fondo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 100px auto 0 auto; /* Centrar horizontalmente y añadir margen superior */
+            width: 90%; /* Asegurar que ocupe un ancho razonable */
+            max-width: 900px; /* Ancho máximo para el contenedor del logo (aumentado) */
+            aspect-ratio: 16 / 9; /* Mantener una proporción de aspecto para el fondo */
+            background-image: url('https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg'); /* Imagen de fondo */
+            background-size: contain; /* Ajusta la imagen completa dentro del contenedor */
+            background-repeat: no-repeat; /* No repetir la imagen */
+            background-position: center; /* Centra la imagen completamente */
+            border-radius: 10px; /* Bordes redondeados para el contenedor del fondo */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Sombra para el contenedor */
+            padding: 40px 20px; /* Más padding para que la imagen se vea más grande */
+            box-sizing: border-box; /* Incluir padding en el ancho/alto */
+            position: relative; /* Para posicionar el logo y el overlay */
+            overflow: hidden; /* Asegura que el contenido no se desborde */
+        }
+
+        /* Overlay para hacer la imagen de fondo más sutil */
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Capa semi-transparente negra (ajustada a 0.4) */
+            z-index: 1; /* Por debajo del logo y texto */
+            border-radius: 10px; /* Coincidir con el border-radius del contenedor */
+        }
+
         .logo {
             width: 350px;
-            margin-top: 100px; /* Ajustado para que no se superponga con el header */
+            max-width: 90%; /* Asegura que el logo no se desborde en pantallas pequeñas */
             filter: drop-shadow(0 0 10px red);
             animation: glow 1.5s ease-in-out infinite alternate;
             border-radius: 50%; /* Hace el logo circular */
-            max-width: 90%; /* Asegura que el logo no se desborde en pantallas pequeñas */
-            height: auto;
+            position: relative; /* Para que el logo esté por encima del overlay */
+            z-index: 2; /* Asegura que el logo esté delante del overlay */
         }
 
         @keyframes glow {
@@ -85,9 +123,11 @@
         .hero-text {
             font-size: 2.5em;
             font-weight: bold;
-            margin: 50px 0;
+            margin: 20px 0; /* Reducido el margen vertical */
             opacity: 0;
             animation: fadeInText 2s forwards;
+            position: relative; /* Para que el texto esté por encima del overlay */
+            z-index: 2; /* Asegura que el texto esté delante del overlay */
         }
 
         @keyframes fadeInText {
@@ -102,33 +142,35 @@
             width: 80%;
         }
 
-        /* Galería - Carrusel */
+        /* Galería - Carrusel (Fade Effect) */
         .galeria {
             width: 80%;
             max-width: 800px; /* Ancho máximo para el carrusel */
             margin: auto;
             overflow: hidden; /* Oculta las imágenes que no están en la vista */
-            position: relative;
+            position: relative; /* Necesario para el posicionamiento absoluto de las imágenes */
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Sombra para destacar el carrusel */
             aspect-ratio: 16 / 9; /* Proporción de aspecto para el carrusel (ej: 16:9) */
             background-color: #222; /* Fondo para cuando no hay imagen o carga */
         }
 
-        .carousel-inner {
-            display: flex; /* Coloca las imágenes en fila */
-            width: calc(100% * 35); /* Ancho total para todas las imágenes (100% * número de imágenes) */
-            height: 100%;
-            transition: transform 0.8s ease-in-out; /* Transición suave para el desplazamiento */
-        }
-
-        .carousel-inner img {
-            flex-shrink: 0; /* Evita que las imágenes se encojan */
-            width: calc(100% / 35); /* Cada imagen ocupa 1/N del ancho del contenedor interno */
+        .galeria img {
+            position: absolute; /* Posicionamiento absoluto para superponer imágenes */
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
             object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
             border-radius: 10px;
             cursor: pointer; /* Indica que la imagen es clickeable para el modal */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil para delimitar la imagen */
+            opacity: 0; /* Oculto por defecto */
+            transition: opacity 0.8s ease-in-out; /* Transición suave para el fade */
+        }
+
+        .galeria img.active {
+            opacity: 1; /* Muestra la imagen activa */
         }
 
         /* Controles de navegación del carrusel */
@@ -151,6 +193,7 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
+        /* Posicionamiento de las flechas */
         .galeria .prev {
             left: 10px;
         }
@@ -230,14 +273,21 @@
         }
 
         /* Redes Sociales */
+        .redes a {
+            display: inline-block; /* Para que los enlaces de redes sociales estén en línea */
+            margin: 0 10px; /* Más espacio entre los iconos */
+        }
         .redes a img {
-            width: 40px;
-            margin: 0 5px;
-            transition: transform 0.3s;
+            width: 50px; /* Iconos un poco más grandes */
+            height: 50px; /* Mantener proporción */
+            border-radius: 50%; /* Hacerlos circulares si las imágenes lo permiten */
+            transition: transform 0.3s, filter 0.3s;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* Sombra sutil */
         }
 
         .redes a img:hover {
             transform: scale(1.2);
+            filter: drop-shadow(0 0 15px yellow); /* Efecto de brillo al pasar el ratón */
         }
 
         /* Responsive adjustments */
@@ -246,14 +296,19 @@
                 padding-top: 60px; /* Ajuste para el header en móvil */
             }
 
+            .logo-container {
+                width: 90%; /* Ajuste para móviles */
+                margin-top: 80px;
+                padding: 10px; /* Menos padding en móvil */
+            }
+
             .logo {
                 width: 250px;
-                margin-top: 80px;
             }
 
             .hero-text {
                 font-size: 1.8em;
-                margin: 30px 0;
+                margin: 15px 0; /* Menos margen en móvil */
             }
 
             .separador {
@@ -265,7 +320,6 @@
             }
             
             .galeria {
-                /* En móvil, el carrusel puede ser un poco más pequeño */
                 max-width: 100%;
                 aspect-ratio: 4 / 3; /* Proporción de aspecto para móvil */
             }
@@ -281,6 +335,8 @@
             /* Mostrar botón de menú en pantallas pequeñas */
             .btn-menu {
                 display: block;
+                position: absolute;
+                left: 20px;
             }
 
             /* Ocultar menú por defecto en pantallas pequeñas */
@@ -298,6 +354,8 @@
                 transition: max-height 0.3s ease-out; /* Transición para el despliegue */
                 max-height: 0; /* Altura inicial para la transición */
                 overflow: hidden; /* Oculta el contenido extra */
+                align-items: center; /* Centrar ítems en móvil */
+                padding-left: 0; /* Eliminar padding extra */
             }
 
             /* Mostrar menú cuando tiene la clase 'active' */
@@ -309,17 +367,26 @@
             .nav-menu li {
                 margin: 10px 0; /* Espaciado vertical para los ítems del menú */
             }
+
+            .redes a img {
+                width: 40px; /* Iconos de redes sociales un poco más pequeños en móvil */
+                height: 40px;
+            }
         }
 
         @media (max-width: 480px) {
+            .logo-container {
+                width: 95%;
+                margin-top: 60px;
+                padding: 5px; /* Menos padding en pantallas muy chicas */
+            }
             .logo {
                 width: 200px;
-                margin-top: 60px;
             }
 
             .hero-text {
                 font-size: 1.5em;
-                margin: 20px 0;
+                margin: 10px 0;
             }
 
             .boton-wsp {
@@ -328,7 +395,8 @@
             }
 
             .redes a img {
-                width: 30px;
+                width: 35px; /* Más pequeños en pantallas muy chicas */
+                height: 35px;
             }
         }
     </style>
@@ -345,8 +413,11 @@
         </nav>
     </header>
 
-    <img src="https://github.com/Dskavellados/Dskavellados/blob/main/LOGO/LOGO.jpg?raw=true" alt="Logo Dskavellados" class="logo">
-    <div class="hero-text">¡A Bailar Ska!</div>
+    <div class="logo-container">
+        <img src="https://github.com/Dskavellados/Dskavellados/blob/main/LOGO/LOGO.jpg?raw=true" alt="Logo Dskavellados" class="logo">
+        <div class="hero-text">¡A Bailar Ska!</div>
+    </div>
+
     <div class="separador"></div>
 
     <h2 id="acerca">Acerca de Nosotros</h2>
@@ -359,43 +430,41 @@
 
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
-        <div class="carousel-inner" id="carouselInner">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/1.jpg" alt="Dskavellados Imagen 1" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/2.jpg" alt="Dskavellados Imagen 2" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Dskavellados Imagen 3" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Dskavellados Imagen 9" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg" alt="Dskavellados Imagen 10" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/11.jpg" alt="Dskavellados Imagen 11" loading="lazy">
-            <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/12.jpg" alt="Dskavellados Imagen 12" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg" alt="Dskavellados Imagen 13" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/14.jpg" alt="Dskavellados Imagen 14" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/15.jpg" alt="Dskavellados Imagen 15" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/16.jpg" alt="Dskavellados Imagen 16" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/17.jpg" alt="Dskavellados Imagen 17" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg" alt="Dskavellados Imagen 18" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/19.jpg" alt="Dskavellados Imagen 19" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/20.jpg" alt="Dskavellados Imagen 20" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg" alt="Dskavellados Imagen 21" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/22.jpg" alt="Dskavellados Imagen 22" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/23.jpg" alt="Dskavellados Imagen 23" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Dskavellados Imagen 24" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/25.jpg" alt="Dskavellados Imagen 25" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/26.jpg" alt="Dskavellados Imagen 26" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/28.jpg" alt="Dskavellados Imagen 28" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/29.jpg" alt="Dskavellados Imagen 29" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/30.jpg" alt="Dskavellados Imagen 30" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg" alt="Dskavellados Imagen 31" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/32.jpg" alt="Dskavellados Imagen 32" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/33.jpg" alt="Dskavellados Imagen 33" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg" alt="Dskavellados Imagen 34" loading="lazy">
-            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/35.jpg" alt="Dskavellados Imagen 35" loading="lazy">
-        </div>
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/1.jpg" alt="Dskavellados Imagen 1" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/2.jpg" alt="Dskavellados Imagen 2" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Dskavellados Imagen 3" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Dskavellados Imagen 9" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg" alt="Dskavellados Imagen 10" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/11.jpg" alt="Dskavellados Imagen 11" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/12.jpg" alt="Dskavellados Imagen 12" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg" alt="Dskavellados Imagen 13" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/14.jpg" alt="Dskavellados Imagen 14" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/15.jpg" alt="Dskavellados Imagen 15" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/16.jpg" alt="Dskavellados Imagen 16" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/17.jpg" alt="Dskavellados Imagen 17" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg" alt="Dskavellados Imagen 18" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/19.jpg" alt="Dskavellados Imagen 19" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/20.jpg" alt="Dskavellados Imagen 20" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg" alt="Dskavellados Imagen 21" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/22.jpg" alt="Dskavellados Imagen 22" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/23.jpg" alt="Dskavellados Imagen 23" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Dskavellados Imagen 24" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/25.jpg" alt="Dskavellados Imagen 25" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/26.jpg" alt="Dskavellados Imagen 26" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/28.jpg" alt="Dskavellados Imagen 28" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/29.jpg" alt="Dskavellados Imagen 29" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/30.jpg" alt="Dskavellados Imagen 30" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg" alt="Dskavellados Imagen 31" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/32.jpg" alt="Dskavellados Imagen 32" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/33.jpg" alt="Dskavellados Imagen 33" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg" alt="Dskavellados Imagen 34" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/35.jpg" alt="Dskavellados Imagen 35" loading="lazy">
         
         <button class="nav-arrow prev" id="prevBtn">❮</button>
         <button class="nav-arrow next" id="nextBtn">❯</button>
@@ -437,72 +506,73 @@
             });
         }
 
-        // JavaScript para la funcionalidad del carrusel de galería
+        // JavaScript para la funcionalidad del carrusel de galería (Efecto de Fade)
         document.addEventListener('DOMContentLoaded', () => {
-            const carouselInner = document.getElementById('carouselInner'); // Nuevo: el contenedor interno
-            const images = carouselInner.querySelectorAll('img'); // Ahora seleccionamos las imágenes dentro del inner
+            const galleryContainer = document.querySelector('.galeria');
+            const images = galleryContainer ? galleryContainer.querySelectorAll('img') : [];
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
-            let carouselInterval; // Variable para almacenar el ID del intervalo
+            let carouselInterval;
 
-            // Función para actualizar la posición del carrusel
-            function updateCarousel() {
-                const offset = -currentIndex * 100; // Calcula el desplazamiento en porcentaje
-                carouselInner.style.transform = `translateX(${offset}%)`;
+            function showImage(index) {
+                images.forEach((img, i) => {
+                    img.classList.remove('active');
+                });
+                if (images[index]) {
+                    images[index].classList.add('active');
+                }
             }
 
-            // Función para iniciar el carrusel automático
             function startCarousel() {
-                // Limpiar cualquier intervalo existente para evitar duplicados
                 if (carouselInterval) {
                     clearInterval(carouselInterval);
                 }
                 carouselInterval = setInterval(() => {
                     currentIndex = (currentIndex + 1) % images.length;
-                    updateCarousel(); // Actualiza la posición del carrusel
-                }, 6000); // Cambia cada 6 segundos
+                    showImage(currentIndex);
+                }, 6000);
             }
 
-            // Inicializar el carrusel mostrando la primera imagen
-            if (images.length > 0 && carouselInner) { // Asegurarse de que carouselInner exista
-                updateCarousel(); // Mostrar la primera imagen
-                startCarousel(); // Iniciar el carrusel automático
+            if (images.length > 0) {
+                showImage(currentIndex);
+                startCarousel();
 
-                // Funcionalidad de los botones de navegación
                 if (prevBtn) {
                     prevBtn.addEventListener('click', () => {
                         currentIndex = (currentIndex - 1 + images.length) % images.length;
-                        updateCarousel(); // Actualiza la posición
-                        startCarousel(); // Reiniciar el carrusel automático al interactuar
+                        showImage(currentIndex);
+                        startCarousel();
                     });
                 }
 
                 if (nextBtn) {
                     nextBtn.addEventListener('click', () => {
                         currentIndex = (currentIndex + 1) % images.length;
-                        updateCarousel(); // Actualiza la posición
-                        startCarousel(); // Reiniciar el carrusel automático al interactuar
+                        showImage(currentIndex);
+                        startCarousel();
                     });
                 }
+            } else {
+                console.warn('Advertencia: No se encontraron imágenes en el carrusel.');
             }
 
-            // JavaScript para la funcionalidad del modal de galería
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeButton = document.querySelector('.close-button');
 
-            // Ahora los clics para el modal se añaden a CADA imagen dentro del carrusel
-            images.forEach(image => {
-                image.addEventListener('click', () => {
-                    if (modal && modalImg) {
-                        modal.style.display = 'flex'; // Muestra el modal
-                        modalImg.src = image.src; // Establece la fuente de la imagen del modal
-                    } else {
-                        console.error('Error: Elementos del modal (imageModal o modalImage) no encontrados.');
-                    }
+            if (images.length > 0) {
+                images.forEach(image => {
+                    image.addEventListener('click', () => {
+                        if (modal && modalImg) {
+                            modal.style.display = 'flex';
+                            modalImg.src = image.src;
+                        } else {
+                            console.error('Error: Elementos del modal (imageModal o modalImage) no encontrados.');
+                        }
+                    });
                 });
-            });
+            }
 
             if (closeButton && modal) {
                 closeButton.addEventListener('click', () => {
