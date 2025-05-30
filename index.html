@@ -17,6 +17,11 @@
             padding-top: 60px; /* Espacio para el header fijo */
             overflow-x: hidden; /* Evita el scroll horizontal */
             position: relative; /* Necesario para el pseudo-elemento de fondo */
+            /* Propiedades de fondo dinámicas, se establecerán con JavaScript */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
 
         /* Pseudo-elemento para la textura de fondo del body (más visible y punk) */
@@ -27,11 +32,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Textura de cuadros ska o grunge más prominente */
-            background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png'); /* Papel gris sucio */
-            /* Opcional: url('https://www.transparenttextures.com/patterns/skulls.png'); para algo más agresivo */
-            /* Opcional: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); para algo más industrial */
-            background-size: 300px 300px; /* Tamaño del patrón más grande */
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Textura de lino negro */
+            background-size: 250px 250px; /* Tamaño del patrón */
             background-repeat: repeat;
             opacity: 0.2; /* Más visible que antes */
             z-index: -1; /* Detrás de todo el contenido */
@@ -52,17 +54,17 @@
             align-items: center;
             z-index: 1000;
             border-bottom: 5px solid #ff0000; /* Borde rojo más grueso */
-            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.8); /* Sombra más intensa y extendida */
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.7); /* Sombra más intensa y extendida */
         }
 
         .btn-menu {
             color: white;
             font-size: 1.8em;
             cursor: pointer;
-            display: none;
-            position: absolute;
-            left: 20px;
-            z-index: 1001;
+            display: none; /* Oculto por defecto en desktop */
+            position: absolute; /* Posicionamiento absoluto para botón de menú en móvil */
+            left: 20px; /* Posición a la izquierda */
+            z-index: 1001; /* Asegura que esté sobre el header */
         }
 
         .nav-menu {
@@ -85,7 +87,7 @@
             transition: color 0.3s, text-shadow 0.3s;
             padding: 5px 0;
             display: block;
-            text-shadow: 3px 3px 8px rgba(255, 0, 0, 1); /* Sombra de texto rojiza más fuerte */
+            text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.8); /* Sombra de texto rojiza más fuerte */
             font-size: 1.1em; /* Ligeramente más grande */
         }
 
@@ -94,95 +96,41 @@
             text-shadow: 0 0 25px #ffcc00, 0 0 40px #ff0000; /* Brillo más intenso con doble sombra */
         }
 
-        /* Estilos del Logo y Fondo Superior */
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 100px auto 0 auto;
-            width: 90%;
-            max-width: 1000px;
-            aspect-ratio: 16 / 9;
-            border-radius: 15px; /* Bordes más redondeados */
-            box-shadow: 0 0 50px rgba(255, 0, 0, 1); /* Sombra aún más intensa y brillante */
-            padding: 25px; /* Más padding */
-            box-sizing: border-box;
+        /* Contenedor del Video de Fondo */
+        .hero-video-container {
             position: relative;
+            width: 100%;
+            max-width: 1200px; /* Ancho máximo para el contenedor del video */
+            margin: 80px auto 0 auto; /* Centrar horizontalmente y añadir margen superior */
+            aspect-ratio: 16 / 9; /* Proporción de aspecto para videos (16:9) */
             overflow: hidden;
-            background-color: #000;
-            border: 4px solid #ff0000; /* Borde rojo más grueso */
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.9);
+            border: 4px solid #ff0000;
+            background-color: #000; /* Fondo negro si el video no carga */
+            display: flex; /* Para centrar el contenido */
+            justify-content: center;
+            align-items: center;
         }
-        
-        /* Imagen de fondo real dentro del contenedor */
-        .background-image {
+
+        /* Estilos para el video */
+        .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* CAMBIADO A COVER para asegurar que llene el espacio */
-            background-position: center 30%; /* Ajuste para mostrar más rostros */
+            object-fit: contain; /* CAMBIADO A CONTAIN: Muestra el video completo, con barras si es necesario */
             z-index: 0;
-            border-radius: 15px; /* Coincidir con el contenedor */
-            filter: grayscale(50%) brightness(0.8); /* Desaturar y oscurecer ligeramente */
-        }
-
-        /* Overlay para hacer la imagen de fondo más sutil y punk */
-        .logo-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.75); /* Capa semi-transparente negra (más opaca) */
-            z-index: 1;
-            border-radius: 15px; /* Coincidir con el contenedor */
-            /* Opcional: Añadir una textura de graffiti o salpicadura de pintura */
-            /* background-image: url('https://via.placeholder.com/500x500/000000/FF0000?text=GRAFFITI'); */
-            /* background-size: cover; */
-            /* opacity: 0.3; */
-        }
-
-        .logo {
-            width: 350px;
-            max-width: 90%;
-            filter: drop-shadow(0 0 15px red); /* Sombra del logo más intensa */
-            animation: glow 1.5s ease-in-out infinite alternate;
-            border-radius: 50%;
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 15px red); }
-            to { filter: drop-shadow(0 25px 25px #ffcc00); } /* Brillo más intenso y amarillo */
-        }
-
-        /* Estilos de Texto Principal */
-        .hero-text {
-            font-size: 2.8em; /* Texto más grande */
-            font-weight: bold;
-            margin: 25px 0; /* Más margen */
-            opacity: 0;
-            animation: fadeInText 2s forwards;
-            position: relative;
-            z-index: 2;
-            text-shadow: 4px 4px 10px rgba(255, 0, 0, 1); /* Sombra de texto muy fuerte */
-            color: #ffcc00; /* Color amarillo para el texto */
-        }
-
-        @keyframes fadeInText {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            border-radius: 15px;
+            filter: grayscale(50%) brightness(0.7); /* Desaturar y oscurecer el video */
         }
 
         /* Separador */
         .separador {
             border-top: 8px solid #ff0000; /* Más grueso y prominente */
             margin: 100px auto; /* Más margen */
-            width: 50%; /* Más estrecho para más impacto */
+            width: 60%; /* Más estrecho para más impacto */
             box-shadow: 0 0 30px rgba(255, 0, 0, 1); /* Sombra muy intensa */
             border-radius: 10px; /* Bordes redondeados */
         }
@@ -200,6 +148,7 @@
             line-height: 1.6;
             max-width: 700px;
             margin: 0 auto 40px auto;
+            text-shadow: 0px 0px 2px #ffcc00, 0px 0px 4px #ffd700; /* Contorno amarillo/dorado */
         }
 
         /* Galería - Carrusel (Fade Effect) */
@@ -213,7 +162,7 @@
             box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); /* Sombra más intensa */
             aspect-ratio: 16 / 9;
             background-color: #222;
-            border: 4px solid #ff0000; /* Borde rojo más grueso */
+            border: 4px solid #ff0000; /* Borde rojo para el carrusel */
         }
 
         .galeria img {
@@ -244,7 +193,7 @@
             border: none;
             padding: 12px 18px; /* Más grandes */
             cursor: pointer;
-            font-size: 2.8em; /* Flechas más grandes */
+            font-size: 2.5em; /* Flechas más grandes */
             border-radius: 8px; /* Más redondeado */
             z-index: 10;
             transition: background-color 0.3s ease, color 0.3s, box-shadow 0.3s ease;
@@ -292,8 +241,8 @@
 
         .close-button {
             position: absolute;
-            top: 25px; /* Más abajo */
-            right: 40px; /* Más a la derecha */
+            top: 25px;
+            right: 40px;
             color: #ff0000; /* Color rojo para el botón de cerrar */
             font-size: 50px; /* Más grande */
             font-weight: bold;
@@ -307,7 +256,7 @@
             color: #ffcc00; /* Amarillo al pasar el ratón */
         }
 
-        /* Videos */
+        /* Videos de la sección "Videos" */
         .videos {
             width: 80%;
             margin: auto;
@@ -318,62 +267,62 @@
             border-radius: 15px;
             margin-bottom: 30px; /* Más margen */
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Sombra para los videos */
-            border: 3px solid red; /* Borde rojo para los videos */
+            border: 4px solid #ff0000; /* Borde rojo para los videos */
         }
 
         /* Contenedor de redes sociales flotante en el lateral */
         .floating-social {
             position: fixed;
-            right: 15px; /* Más a la derecha */
+            right: 8px; /* Más cerca del borde derecho */
             left: auto;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Más espacio entre iconos */
+            gap: 6px; /* Espacio entre los iconos (reducido aún más) */
             z-index: 1000;
             background-color: rgba(0, 0, 0, 0.95); /* Fondo más opaco */
-            padding: 10px; /* Más padding */
-            border-radius: 15px; /* Más redondeado */
-            box-shadow: 0 0 25px rgba(255, 0, 0, 1); /* Sombra muy intensa */
-            border: 4px solid #ff0000; /* Borde más grueso */
+            padding: 4px; /* Padding más pequeño */
+            border-radius: 10px; /* Más redondeado */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1); /* Sombra intensa */
+            border: 2px solid #ff0000; /* Borde más delgado */
         }
 
         .floating-social .social-icon {
-            width: 50px; /* Iconos más grandes */
-            height: 50px;
+            width: 35px; /* Iconos más pequeños */
+            height: 35px;
             border-radius: 50%;
             transition: transform 0.3s ease, filter 0.3s ease;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5)); /* Sombra más visible */
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* Sombra sutil */
         }
 
         .floating-social .social-icon:hover {
-            transform: scale(1.2); /* Zoom más pronunciado */
-            filter: drop-shadow(0 0 40px #ffcc00); /* Brillo amarillo muy intenso */
+            transform: scale(1.05); /* Zoom más sutil */
+            filter: drop-shadow(0 0 25px #ffcc00); /* Brillo amarillo intenso */
         }
 
-        /* Estilos para el icono SVG de TikTok (con fondo blanco) */
+        /* Estilos para el icono SVG de TikTok (con fondo blanco y centrado) */
         .floating-social .social-icon-svg {
             display: flex;
             justify-content: center; /* Centrar horizontalmente */
             align-items: center; /* Centrar verticalmente */
-            width: 50px; /* Mismo tamaño que las imágenes */
-            height: 50px;
+            width: 35px; /* Mismo tamaño que las imágenes */
+            height: 35px;
             border-radius: 50%;
-            background-color: white; /* Fondo blanco para el icono de TikTok */
+            background-color: white; /* ¡Fondo blanco para el icono de TikTok! */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.7); /* Sombra más fuerte para el fondo blanco */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra para el fondo blanco */
         }
 
         .floating-social .social-icon-svg svg {
-            width: 65%; /* Ajustar tamaño del SVG dentro del círculo (ligeramente más grande) */
-            height: 65%;
+            width: 80%; /* Ajustar tamaño del SVG dentro del círculo (más grande para centrar) */
+            height: 80%;
             fill: black; /* Color del icono de TikTok (negro) */
         }
 
         .floating-social .social-icon-svg:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 40px #ff0000; /* Brillo rojo intenso al pasar el ratón */
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #ff0000; /* Brillo rojo intenso al pasar el ratón */
         }
 
         /* Botón de WhatsApp dentro del flotante */
@@ -381,16 +330,16 @@
             background-color: #25D366;
             color: white;
             text-decoration: none;
-            font-size: 1.2em; /* Texto más grande */
-            padding: 10px; /* Más padding */
-            border-radius: 8px; /* Más redondeado */
+            font-size: 0.9em; /* Texto más pequeño */
+            padding: 4px 8px; /* Padding más pequeño */
+            border-radius: 5px; /* Más redondeado */
             text-align: center;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.8); /* Sombra más intensa */
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
         }
         .floating-social .whatsapp-button:hover {
             background-color: #1DA851;
-            box-shadow: 0 0 40px rgba(37, 211, 102, 1); /* Sombra muy intensa al hover */
+            box-shadow: 0 0 30px rgba(37, 211, 102, 1);
         }
 
 
@@ -400,30 +349,21 @@
                 padding-top: 60px;
             }
 
-            .logo-container {
+            .hero-video-container {
                 width: 95%; /* Más ancho en móvil */
-                margin-top: 80px;
+                margin-top: 60px;
                 padding: 15px; /* Más padding en móvil */
             }
 
-            .logo {
-                width: 280px; /* Logo más grande en móvil */
-            }
-
-            .hero-text {
-                font-size: 2em; /* Texto más grande en móvil */
-                margin: 20px 0;
-            }
-
             .separador {
-                width: 80%; /* Más ancho en móvil */
-                margin: 60px auto;
+                width: 90%; /* Más ancho en móvil */
+                margin: 50px auto;
             }
 
             .galeria, .videos {
                 width: 95%; /* Más ancho en móvil */
             }
-            
+
             .galeria {
                 max-width: 100%;
                 aspect-ratio: 4 / 3;
@@ -434,7 +374,7 @@
             }
 
             .videos iframe {
-                height: 350px; /* Más alto en móvil */
+                height: 300px; /* Más alto en móvil */
             }
 
             .btn-menu {
@@ -450,9 +390,9 @@
                 position: absolute;
                 top: 60px;
                 left: 0;
-                background: rgba(0, 0, 0, 0.98); /* Fondo más opaco */
+                background: rgba(0, 0, 0, 0.98);
                 border-top: 2px solid red;
-                padding: 15px 0; /* Más padding */
+                padding: 15px 0;
                 box-sizing: border-box;
                 transition: max-height 0.3s ease-out;
                 max-height: 0;
@@ -463,78 +403,132 @@
 
             .nav-menu.active {
                 display: flex;
-                max-height: 350px; /* Altura máxima mayor */
+                max-height: 350px;
             }
 
             .nav-menu li {
-                margin: 12px 0; /* Más espacio */
+                margin: 10px 0;
             }
 
             /* Flotante en móvil, ajustar posición y tamaño */
             .floating-social {
-                right: 8px; /* Más a la derecha */
+                right: 5px;
                 left: auto;
-                gap: 10px;
-                padding: 6px; /* Más padding */
+                gap: 6px;
+                padding: 3px;
             }
             .floating-social .social-icon,
             .floating-social .social-icon-fa {
-                width: 45px; /* Más grande */
-                height: 45px;
+                width: 30px; /* Más pequeño */
+                height: 30px;
+            }
+            .floating-social .social-icon-fa svg {
+                width: 70%;
+                height: 70%;
+            }
+            .floating-social .whatsapp-button {
+                font-size: 0.8em;
+                padding: 4px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-video-container {
+                width: 98%;
+                margin-top: 50px;
+                padding: 10px;
+            }
+
+            .separador {
+                margin: 40px auto;
+            }
+
+            .videos iframe {
+                height: 250px;
+            }
+
+            .floating-social {
+                right: 3px;
+                gap: 4px;
+                padding: 2px;
+            }
+            .floating-social .social-icon,
+            .floating-social .social-icon-fa {
+                width: 28px;
+                height: 28px;
             }
             .floating-social .social-icon-fa svg {
                 width: 65%;
                 height: 65%;
             }
             .floating-social .whatsapp-button {
-                font-size: 1em;
-                padding: 8px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo-container {
-                width: 98%; /* Casi todo el ancho */
-                margin-top: 60px;
-                padding: 10px;
-            }
-            .logo {
-                width: 220px; /* Logo más pequeño */
-            }
-
-            .hero-text {
-                font-size: 1.8em;
-                margin: 15px 0;
-            }
-
-            .boton-wsp {
-                padding: 10px 20px;
-                font-size: 16px;
-            }
-
-            .floating-social {
-                right: 5px;
-                left: auto;
-                gap: 8px;
-                padding: 4px;
-            }
-            .floating-social .social-icon,
-            .floating-social .social-icon-fa {
-                width: 40px;
-                height: 40px;
-            }
-            .floating-social .social-icon-fa svg {
-                width: 60%;
-                height: 60%;
-            }
-            .floating-social .whatsapp-button {
-                font-size: 0.9em;
-                padding: 6px;
+                font-size: 0.7em;
+                padding: 3px 5px;
             }
         }
     </style>
 </head>
 <body>
+    <script>
+        // Script para cargar el fondo dinámico de la página según el dispositivo
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBackgrounds = [
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel1.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel2.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel3.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel4.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel5.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel6.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel7.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Cel8.jpg"
+            ];
+
+            const pcBackgrounds = [
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web1.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web2.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web3.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web4.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web5.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web6.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web7.jpg",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Fondos/Web8.jpg"
+            ];
+
+            function setRandomBackground() {
+                const isMobile = window.innerWidth <= 768; // Define mobile breakpoint
+                const backgrounds = isMobile ? mobileBackgrounds : pcBackgrounds;
+                const randomIndex = Math.floor(Math.random() * backgrounds.length);
+                const selectedImage = backgrounds.length > 0 ? backgrounds[randomIndex] : ''; // Fallback si no hay imágenes
+                document.body.style.backgroundImage = `url('${selectedImage}')`;
+            }
+
+            setRandomBackground(); // Set background on page load
+        });
+
+        // Script para cargar el video de fondo dinámico
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroVideo = document.getElementById('heroVideo');
+            const videoSources = [
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/LOGO/Video1.mp4",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/LOGO/Video2.mp4",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/LOGO/Video3.mp4",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/LOGO/Video4.mp4",
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/LOGO/Video5.mp4"
+            ];
+
+            if (heroVideo && videoSources.length > 0) {
+                const randomIndex = Math.floor(Math.random() * videoSources.length);
+                heroVideo.src = videoSources[randomIndex];
+                heroVideo.load(); // Cargar el video
+                heroVideo.play().catch(error => {
+                    console.warn("Autoplay de video bloqueado:", error);
+                    // Opcional: mostrar un botón de "Play" si el autoplay falla
+                });
+            } else {
+                console.warn("Advertencia: No se encontró el elemento de video o no hay fuentes de video.");
+            }
+        });
+    </script>
     <header>
         <a href="#" class="btn-menu" id="btn-menu"><i class="fas fa-bars"></i></a>
         <nav class="nav-menu" id="nav-menu">
@@ -546,12 +540,9 @@
         </nav>
     </header>
 
-    <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg" alt="Fondo Ska Punk" class="background-image" loading="lazy">
-        
-        <img src="https://github.com/Dskavellados/Dskavellados/blob/main/LOGO/LOGO.jpg?raw=true" alt="Logo Dskavellados" class="logo">
-        <div class="hero-text">¡A Bailar Ska!</div>
-    </div>
+    <div class="hero-video-container">
+        <video class="hero-video" id="heroVideo" autoplay loop muted playsinline></video>
+        </div>
 
     <div class="separador"></div>
 
@@ -569,7 +560,7 @@
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/2.jpg" alt="Dskavellados Imagen 2" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Dskavellados Imagen 3" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
+        <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
         <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
@@ -629,100 +620,3 @@
         <span class="close-button">×</span>
         <img class="modal-content" id="modalImage">
     </div>
-
-    <script>
-        // JavaScript para el menú de hamburguesa
-        const btnMenu = document.getElementById('btn-menu');
-        const navMenu = document.getElementById('nav-menu');
-
-        if (btnMenu && navMenu) {
-            btnMenu.addEventListener('click', () => {
-                navMenu.classList.toggle('active'); // Alterna la clase 'active'
-            });
-        }
-
-        // JavaScript para la funcionalidad del carrusel de galería (Efecto de Fade)
-        document.addEventListener('DOMContentLoaded', () => {
-            const galleryContainer = document.querySelector('.galeria');
-            const images = galleryContainer ? galleryContainer.querySelectorAll('img') : [];
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            let currentIndex = 0;
-            let carouselInterval;
-
-            function showImage(index) {
-                images.forEach((img, i) => {
-                    img.classList.remove('active');
-                });
-                if (images[index]) {
-                    images[index].classList.add('active');
-                }
-            }
-
-            function startCarousel() {
-                if (carouselInterval) {
-                    clearInterval(carouselInterval);
-                }
-                carouselInterval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    showImage(currentIndex);
-                }, 6000);
-            }
-
-            if (images.length > 0) {
-                showImage(currentIndex);
-                startCarousel();
-
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        currentIndex = (currentIndex - 1 + images.length) % images.length;
-                        showImage(currentIndex);
-                        startCarousel();
-                    });
-                }
-
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        currentIndex = (currentIndex + 1) % images.length;
-                        showImage(currentIndex);
-                        startCarousel();
-                    });
-                }
-            } else {
-                console.warn('Advertencia: No se encontraron imágenes en el carrusel.');
-            }
-
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const closeButton = document.querySelector('.close-button');
-
-            if (images.length > 0) {
-                images.forEach(image => {
-                    image.addEventListener('click', () => {
-                        if (modal && modalImg) {
-                            modal.style.display = 'flex';
-                            modalImg.src = image.src;
-                        } else {
-                            console.error('Error: Elementos del modal (imageModal o modalImage) no encontrados.');
-                        }
-                    });
-                });
-            }
-
-            if (closeButton && modal) {
-                closeButton.addEventListener('click', () => {
-                    modal.style.display = 'none';
-                });
-            }
-
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
