@@ -120,7 +120,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* CAMBIADO A CONTAIN: Muestra el video completo, con barras si es necesario */
+            object-fit: cover; /* VUELTO A COVER: Cubrir el contenedor, recortando si es necesario */
             z-index: 0;
             border-radius: 15px;
             filter: grayscale(50%) brightness(0.7); /* Desaturar y oscurecer el video */
@@ -163,24 +163,37 @@
             aspect-ratio: 16 / 9;
             background-color: #222;
             border: 4px solid #ff0000; /* Borde rojo para el carrusel */
+            display: flex; /* Para centrar el contenido de carga */
+            justify-content: center;
+            align-items: center;
+            min-height: 200px; /* Altura mínima para el contenedor de la galería */
+        }
+
+        .galeria .loading-indicator {
+            color: gray;
+            font-size: 1.2em;
+            position: absolute;
+            z-index: 5; /* Por encima de las imágenes ocultas */
         }
 
         .galeria img {
-            position: absolute;
+            position: absolute; /* Posicionamiento absoluto para superponer imágenes */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
             border-radius: 15px;
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+            opacity: 0; /* Oculto por defecto para la transición */
+            transition: opacity 0.8s ease-in-out; /* Transición suave para el fade */
+            z-index: 1; /* Por debajo de la imagen activa */
         }
 
         .galeria img.active {
-            opacity: 1;
+            opacity: 1; /* Muestra la imagen activa con opacidad completa */
+            z-index: 2; /* Asegura que la imagen activa esté en la parte superior */
         }
 
         /* Controles de navegación del carrusel */
@@ -256,18 +269,26 @@
             color: #ffcc00; /* Amarillo al pasar el ratón */
         }
 
-        /* Videos de la sección "Videos" */
-        .videos {
-            width: 80%;
-            margin: auto;
-        }
-        .videos iframe {
-            width: 100%;
-            height: 450px; /* Videos un poco más altos */
+        /* Contenedor responsivo para videos */
+        .video-responsive-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width = 9 / 16 = 0.5625) */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 30px auto; /* Centrar y añadir margen */
             border-radius: 15px;
-            margin-bottom: 30px; /* Más margen */
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Sombra para los videos */
             border: 4px solid #ff0000; /* Borde rojo para los videos */
+        }
+
+        .video-responsive-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         /* Contenedor de redes sociales flotante en el lateral */
@@ -315,8 +336,8 @@
         }
 
         .floating-social .social-icon-svg svg {
-            width: 80%; /* Ajustar tamaño del SVG dentro del círculo (más grande para centrar) */
-            height: 80%;
+            width: 70%; /* Ajustar tamaño del SVG dentro del círculo para centrarlo */
+            height: 70%;
             fill: black; /* Color del icono de TikTok (negro) */
         }
 
@@ -352,7 +373,7 @@
             .hero-video-container {
                 width: 95%; /* Más ancho en móvil */
                 margin-top: 60px;
-                padding: 15px; /* Más padding en móvil */
+                padding: 0; /* Eliminar padding extra en móvil, ya lo maneja el video */
             }
 
             .separador {
@@ -366,16 +387,14 @@
 
             .galeria {
                 max-width: 100%;
-                aspect-ratio: 4 / 3;
+                aspect-ratio: 4 / 3; /* Ajuste de aspecto para móvil */
             }
 
             .galeria img {
                 height: 100%;
             }
 
-            .videos iframe {
-                height: 300px; /* Más alto en móvil */
-            }
+            /* Los videos se ajustan automáticamente con el contenedor responsivo */
 
             .btn-menu {
                 display: block;
@@ -418,11 +437,11 @@
                 padding: 3px;
             }
             .floating-social .social-icon,
-            .floating-social .social-icon-fa {
+            .floating-social .social-icon-svg { /* Incluir social-icon-svg aquí */
                 width: 30px; /* Más pequeño */
                 height: 30px;
             }
-            .floating-social .social-icon-fa svg {
+            .floating-social .social-icon-svg svg {
                 width: 70%;
                 height: 70%;
             }
@@ -436,16 +455,14 @@
             .hero-video-container {
                 width: 98%;
                 margin-top: 50px;
-                padding: 10px;
+                padding: 0;
             }
 
             .separador {
                 margin: 40px auto;
             }
 
-            .videos iframe {
-                height: 250px;
-            }
+            /* Videos ya son responsivos */
 
             .floating-social {
                 right: 3px;
@@ -453,11 +470,11 @@
                 padding: 2px;
             }
             .floating-social .social-icon,
-            .floating-social .social-icon-fa {
+            .floating-social .social-icon-svg { /* Incluir social-icon-svg aquí */
                 width: 28px;
                 height: 28px;
             }
-            .floating-social .social-icon-fa svg {
+            .floating-social .social-icon-svg svg {
                 width: 65%;
                 height: 65%;
             }
@@ -528,6 +545,127 @@
                 console.warn("Advertencia: No se encontró el elemento de video o no hay fuentes de video.");
             }
         });
+
+        // Script para la galería de imágenes (carrusel con fade y auto-transición)
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryImages = document.querySelectorAll('.galeria img');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const galleryLoading = document.getElementById('galleryLoading');
+            const imageModal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeButton = document.querySelector('.close-button');
+
+            let currentIndex = 0;
+            let intervalId; // Para almacenar el ID del intervalo y poder reiniciarlo
+
+            // Función para mostrar una imagen específica
+            function showImage(index) {
+                // Ocultar el indicador de carga si las imágenes ya están presentes
+                if (galleryLoading) {
+                    galleryLoading.style.display = 'none';
+                }
+
+                galleryImages.forEach((img, i) => {
+                    if (i === index) {
+                        img.classList.add('active'); // Muestra la imagen actual
+                    } else {
+                        img.classList.remove('active'); // Oculta las demás
+                    }
+                });
+            }
+
+            // Función para avanzar a la siguiente imagen
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % galleryImages.length;
+                showImage(currentIndex);
+            }
+
+            // Función para retroceder a la imagen anterior
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                showImage(currentIndex);
+            }
+
+            // Iniciar la transición automática
+            function startAutoSlide() {
+                // Limpiar cualquier intervalo existente para evitar duplicados
+                if (intervalId) {
+                    clearInterval(intervalId);
+                }
+                intervalId = setInterval(nextImage, 6000); // Cambia cada 6 segundos
+            }
+
+            // Event listeners para los botones de navegación
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    prevImage();
+                    startAutoSlide(); // Reinicia el temporizador al interactuar manualmente
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    nextImage();
+                    startAutoSlide(); // Reinicia el temporizador al interactuar manualmente
+                });
+            }
+
+            // Event listeners para abrir el modal al hacer clic en una imagen
+            galleryImages.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    modalImage.src = img.src;
+                    imageModal.style.display = 'flex'; // Usar flex para centrar el contenido
+                });
+            });
+
+            // Event listener para cerrar el modal
+            if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                    imageModal.style.display = 'none';
+                });
+            }
+
+            // Cerrar el modal haciendo clic fuera de la imagen
+            if (imageModal) {
+                imageModal.addEventListener('click', (e) => {
+                    if (e.target === imageModal) {
+                        imageModal.style.display = 'none';
+                    }
+                });
+            }
+
+            // Inicializar la galería: mostrar la primera imagen y empezar el auto-slide
+            if (galleryImages.length > 0) {
+                showImage(currentIndex);
+                startAutoSlide();
+            } else {
+                if (galleryLoading) {
+                    galleryLoading.textContent = 'No hay imágenes para mostrar.';
+                }
+            }
+        });
+
+        // Script para el menú de navegación móvil
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnMenu = document.getElementById('btn-menu');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (btnMenu && navMenu) {
+                btnMenu.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+
+                // Cerrar el menú al hacer clic en un enlace (solo en móvil)
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) { // Solo si es una pantalla pequeña
+                            navMenu.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
     </script>
     <header>
         <a href="#" class="btn-menu" id="btn-menu"><i class="fas fa-bars"></i></a>
@@ -542,7 +680,7 @@
 
     <div class="hero-video-container">
         <video class="hero-video" id="heroVideo" autoplay loop muted playsinline></video>
-        </div>
+    </div>
 
     <div class="separador"></div>
 
@@ -551,18 +689,21 @@
     <div class="separador"></div>
 
     <h2 id="musica">Nuestra Música</h2>
-    <iframe src="https://open.spotify.com/embed/track/YOUR_SPOTIFY_TRACK_ID?utm_source=generator" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <div class="video-responsive-container">
+        <iframe src="https://open.spotify.com/embed/artist/5P4g0Z2X1Q0Q0Q0Q0Q0Q0Q?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
     <div class="separador"></div>
 
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
+        <div class="loading-indicator" id="galleryLoading">Cargando galería...</div>
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/1.jpg" alt="Dskavellados Imagen 1" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/2.jpg" alt="Dskavellados Imagen 2" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Dskavellados Imagen 3" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
-        <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
-        <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Dskavellados Imagen 9" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg" alt="Dskavellados Imagen 10" loading="lazy">
@@ -582,7 +723,7 @@
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Dskavellados Imagen 24" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/25.jpg" alt="Dskavellados Imagen 25" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/26.jpg" alt="Dskavellados Imagen 26" loading="lazy">
-        <img src="https://raw.githubusercontent.com="Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
+        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/28.jpg" alt="Dskavellados Imagen 28" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/29.jpg" alt="Dskavellados Imagen 29" loading="lazy">
         <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/30.jpg" alt="Dskavellados Imagen 30" loading="lazy">
@@ -599,9 +740,13 @@
 
     <h2 id="videos">Videos</h2>
     <div class="videos">
-        <iframe src="https://www.tiktok.com/embed/7478555800504519942" frameborder="0" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
+        <div class="video-responsive-container">
+            <iframe src="https://www.tiktok.com/embed/7478555800504519942" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
+        </div>
 
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <div class="video-responsive-container">
+            <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
     </div>
     <div class="separador"></div>
 
@@ -610,7 +755,7 @@
         <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="social-icon"></a>
         <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="social-icon"></a>
         <a href="https://www.tiktok.com/@dskavellados" target="_blank" class="social-icon-svg">
-            <svg viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.001 0C6.12 0 0 6.12 0 12.001 0 17.882 6.12 24 12.001 24 17.882 24 24 17.882 24 12.001 24 6.12 17.882 0 12.001 0ZM15.352 14.184c.334-.06.66-.17.96-.328.29-.158.55-.357.77-.597.22-.24.39-.51.51-.81.12-.3.18-.62.18-.94 0-.32-.06-.64-.18-.94-.12-.3-.29-.57-.51-.81-.22-.24-.48-.439-.77-.597-.3-.158-.62-.268-.96-.328v-1.12c.38.07.74.2.06.38.31.18.59.4.84.65.25.25.46.54.63.86.17.32.25.66.25 1.01 0 .35-.08.69-.25 1.01-.17.32-.38.61-.63.86-.25.25-.53.47-.84.65-.32.18-.68.31-.06.38v1.12ZM8.648 14.184c-.334-.06-.66-.17-.96-.328-.29-.158-.55-.357-.77-.597-.22-.24-.39-.51-.51-.81-.12-.3-.18-.62-.18-.94 0-.32.06-.64.18-.94.12-.3.29-.57.51-.81.22-.24.48-.439.77-.597.3-.158.62-.268.96-.328v-1.12c-.38.07-.74.2-.06.38-.31.18-.59.4-.84.65-.25.25-.46.54-.63.86-.17.32-.25.66-.25 1.01 0 .35.08.69.25 1.01.17.32.38.61.63.86.25.25.53.47.84.65.32.18.68.31.06.38v1.12Z"/>
             </svg>
         </a>
@@ -620,3 +765,5 @@
         <span class="close-button">×</span>
         <img class="modal-content" id="modalImage">
     </div>
+</body>
+</html>
