@@ -269,6 +269,13 @@
             color: #ffcc00; /* Amarillo al pasar el ratón */
         }
 
+        /* Styling for the videos container */
+        .videos {
+            max-width: 1000px; /* Or a suitable value */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* Contenedor responsivo para videos */
         .video-responsive-container {
             position: relative;
@@ -282,13 +289,79 @@
             border: 4px solid #ff0000; /* Borde rojo para los videos */
         }
 
-        .video-responsive-container iframe {
+        .video-responsive-container iframe,
+        .video-responsive-container-vertical iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
+        }
+
+        .video-responsive-container-vertical {
+            position: relative;
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 400px; /* Max-width for vertical video */
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            border: 4px solid #ff0000;
+        }
+
+        /* Video Carousel Styles */
+        .video-carousel {
+            position: relative;
+            max-width: 400px; /* Should match .video-responsive-container-vertical max-width */
+            margin: 30px auto;
+            overflow: hidden; /* Important for slide effect */
+            border-radius: 15px; /* Optional: if you want rounded corners on the carousel viewport */
+            /* Add any other specific styling for the carousel container, like borders from .video-responsive-container-vertical if needed */
+            /* border: 4px solid #0000ff; /* Example: blue border for testing */
+        }
+
+        .video-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .video-carousel-slide {
+            flex: 0 0 100%; /* Each slide takes full width of the carousel */
+            box-sizing: border-box;
+            /* The .video-responsive-container-vertical within the slide handles the aspect ratio */
+        }
+
+        /* Video Navigation Arrows - can reuse/adapt from .galeria .nav-arrow if desired, but ensure distinct or no conflict */
+        .video-carousel .video-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 2em;
+            border-radius: 8px;
+            z-index: 10;
+            transition: background-color 0.3s ease, color 0.3s, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .video-carousel .video-nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 1);
+            color: #ffcc00;
+            box-shadow: 0 0 25px #ffcc00;
+        }
+
+        .video-carousel .video-nav-arrow.prev {
+            left: 10px;
+        }
+
+        .video-carousel .video-nav-arrow.next {
+            right: 10px;
         }
 
         /* Contenedor de redes sociales flotante en el lateral */
@@ -302,11 +375,7 @@
             flex-direction: column;
             gap: 6px; /* Espacio entre los iconos (reducido aún más) */
             z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.95); /* Fondo más opaco */
             padding: 4px; /* Padding más pequeño */
-            border-radius: 10px; /* Más redondeado */
-            box-shadow: 0 0 20px rgba(255, 0, 0, 1); /* Sombra intensa */
-            border: 2px solid #ff0000; /* Borde más delgado */
         }
 
         .floating-social .social-icon {
@@ -336,8 +405,8 @@
         }
 
         .floating-social .social-icon-svg svg {
-            width: 70%; /* Ajustar tamaño del SVG dentro del círculo para centrarlo */
-            height: 70%;
+            width: 65%; /* Ajustar tamaño del SVG dentro del círculo para centrarlo */
+            height: 65%;
             fill: black; /* Color del icono de TikTok (negro) */
         }
 
@@ -348,6 +417,7 @@
 
         /* Botón de WhatsApp dentro del flotante */
         .floating-social .whatsapp-button {
+            display: none;
             background-color: #25D366;
             color: white;
             text-decoration: none;
@@ -740,12 +810,27 @@
 
     <h2 id="videos">Videos</h2>
     <div class="videos">
-        <div class="video-responsive-container">
-            <iframe src="https://www.tiktok.com/embed/7478555800504519942" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
+        <div class="video-carousel" id="facebookVideoCarousel">
+            <div class="video-carousel-track" id="facebookVideoTrack">
+                <!-- Existing Facebook Video 1 -->
+                <div class="video-carousel-slide">
+                    <div class="video-responsive-container-vertical">
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <!-- New Facebook Video 2 -->
+                <div class="video-carousel-slide">
+                    <div class="video-responsive-container-vertical">
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fm.facebook.com%2Freel%2F1203240854809546%2F&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+            <button class="video-nav-arrow prev" id="fbVideoPrevBtn">❮</button>
+            <button class="video-nav-arrow next" id="fbVideoNextBtn">❯</button>
         </div>
 
-        <div class="video-responsive-container">
-            <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <div class="video-responsive-container-vertical">
+            <iframe src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
     </div>
     <div class="separador"></div>
@@ -753,17 +838,73 @@
     <div class="floating-social">
         <a href="https://wa.me/573024332338" target="_blank" class="whatsapp-button">WhatsApp</a>
         <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="social-icon"></a>
-        <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="social-icon"></a>
         <a href="https://www.tiktok.com/@dskavellados" target="_blank" class="social-icon-svg">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.001 0C6.12 0 0 6.12 0 12.001 0 17.882 6.12 24 12.001 24 17.882 24 24 17.882 24 12.001 24 6.12 17.882 0 12.001 0ZM15.352 14.184c.334-.06.66-.17.96-.328.29-.158.55-.357.77-.597.22-.24.39-.51.51-.81.12-.3.18-.62.18-.94 0-.32-.06-.64-.18-.94-.12-.3-.29-.57-.51-.81-.22-.24-.48-.439-.77-.597-.3-.158-.62-.268-.96-.328v-1.12c.38.07.74.2.06.38.31.18.59.4.84.65.25.25.46.54.63.86.17.32.25.66.25 1.01 0 .35-.08.69-.25 1.01-.17.32-.38.61-.63.86-.25.25-.53.47-.84.65-.32.18-.68.31-.06.38v1.12ZM8.648 14.184c-.334-.06-.66-.17-.96-.328-.29-.158-.55-.357-.77-.597-.22-.24-.39-.51-.51-.81-.12-.3-.18-.62-.18-.94 0-.32.06-.64.18-.94.12-.3.29-.57.51-.81.22-.24.48-.439.77-.597.3-.158.62-.268.96-.328v-1.12c-.38.07-.74.2-.06.38-.31.18-.59.4-.84.65-.25.25-.46.54-.63.86-.17.32-.25.66-.25 1.01 0 .35.08.69.25 1.01.17.32.38.61.63.86.25.25.53.47.84.65.32.18.68.31.06.38v1.12Z"/>
-            </svg>
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>TikTok</title><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
         </a>
+    <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="social-icon"></a>
     </div>
 
     <div id="imageModal" class="modal">
         <span class="close-button">×</span>
         <img class="modal-content" id="modalImage">
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fbVideoCarousel = document.getElementById('facebookVideoCarousel');
+            if (fbVideoCarousel) { // Check if the carousel element exists
+                const track = document.getElementById('facebookVideoTrack');
+                const slides = Array.from(track.children);
+                const nextButton = document.getElementById('fbVideoNextBtn');
+                const prevButton = document.getElementById('fbVideoPrevBtn');
+                
+                if (!track || !nextButton || !prevButton || slides.length === 0) {
+                    console.warn('Facebook video carousel elements not found or no slides.');
+                    return;
+                }
+
+                let fbCurrentIndex = 0;
+                // let slideWidth = slides[0].getBoundingClientRect().width; // Initial calculation
+                // Recalculate slideWidth considering the carousel's actual rendered width
+                // This is more robust if CSS or parent elements define the width dynamically
+                let slideWidth = fbVideoCarousel.clientWidth;
+
+
+                const updateFbCarousel = () => {
+                    track.style.transform = `translateX(-${fbCurrentIndex * slideWidth}px)`;
+                    // Simplified: No attempt to pause/play iframes for this version
+                };
+                
+                // Initial check for slideWidth
+                if (slideWidth === 0 && slides.length > 0) {
+                    console.warn("Facebook video carousel slide width is 0 initially. Using clientWidth of carousel as fallback.");
+                    // Fallback if getBoundingClientRect was 0, use clientWidth of the carousel itself.
+                    // This assumes slides are meant to be 100% width of the carousel.
+                }
+                if (slideWidth === 0 && slides.length > 0) { // If still 0 after fallback
+                     console.error("Facebook video carousel slide width is still 0. Carousel may not function correctly.");
+                }
+
+
+                nextButton.addEventListener('click', () => {
+                    slideWidth = fbVideoCarousel.clientWidth; // Recalculate on interaction, just in case
+                    fbCurrentIndex = (fbCurrentIndex + 1) % slides.length;
+                    updateFbCarousel();
+                });
+
+                prevButton.addEventListener('click', () => {
+                    slideWidth = fbVideoCarousel.clientWidth; // Recalculate on interaction
+                    fbCurrentIndex = (fbCurrentIndex - 1 + slides.length) % slides.length;
+                    updateFbCarousel();
+                });
+
+                window.addEventListener('resize', () => {
+                    if (slides.length > 0) {
+                        slideWidth = fbVideoCarousel.clientWidth; // Use clientWidth of the carousel for responsiveness
+                        updateFbCarousel(); 
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
