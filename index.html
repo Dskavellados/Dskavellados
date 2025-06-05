@@ -375,11 +375,7 @@
             flex-direction: column;
             gap: 6px; /* Espacio entre los iconos (reducido aún más) */
             z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.95); /* Fondo más opaco */
             padding: 4px; /* Padding más pequeño */
-            border-radius: 10px; /* Más redondeado */
-            box-shadow: 0 0 20px rgba(255, 0, 0, 1); /* Sombra intensa */
-            border: 2px solid #ff0000; /* Borde más delgado */
         }
 
         .floating-social .social-icon {
@@ -412,8 +408,6 @@
             width: 65%; /* Ajustar tamaño del SVG dentro del círculo para centrarlo */
             height: 65%;
             fill: black; /* Color del icono de TikTok (negro) */
-            position: relative;
-            left: 3px;
         }
 
         .floating-social .social-icon-svg:hover {
@@ -423,6 +417,7 @@
 
         /* Botón de WhatsApp dentro del flotante */
         .floating-social .whatsapp-button {
+            display: none;
             background-color: #25D366;
             color: white;
             text-decoration: none;
@@ -815,10 +810,6 @@
 
     <h2 id="videos">Videos</h2>
     <div class="videos">
-        <div class="video-responsive-container-vertical">
-            <iframe src="https://www.tiktok.com/embed/7478555800504519942" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
-        </div>
-
         <div class="video-carousel" id="facebookVideoCarousel">
             <div class="video-carousel-track" id="facebookVideoTrack">
                 <!-- Existing Facebook Video 1 -->
@@ -836,6 +827,10 @@
             </div>
             <button class="video-nav-arrow prev" id="fbVideoPrevBtn">❮</button>
             <button class="video-nav-arrow next" id="fbVideoNextBtn">❯</button>
+        </div>
+
+        <div class="video-responsive-container-vertical">
+            <iframe src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
     </div>
     <div class="separador"></div>
