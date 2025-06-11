@@ -473,7 +473,9 @@
             }
 
             .nav-menu {
-                display: none;
+                display: flex;
+                visibility: hidden;
+                opacity: 0;
                 flex-direction: column;
                 width: 100%;
                 position: absolute;
@@ -483,7 +485,7 @@
                 border-top: 2px solid red;
                 padding: 15px 0;
                 box-sizing: border-box;
-                transition: max-height 0.3s ease-out;
+                transition: max-height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
                 max-height: 0;
                 overflow: hidden;
                 align-items: center;
@@ -492,6 +494,8 @@
 
             .nav-menu.active {
                 display: flex;
+                visibility: visible;
+                opacity: 1;
                 max-height: 350px;
             }
 
