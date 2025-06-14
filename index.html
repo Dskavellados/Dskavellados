@@ -553,6 +553,79 @@
                 padding: 3px 5px;
             }
         }
+
+     /* New Video Carousel Styles for Presentaciones en Vivo */
+     .video-carousel-nuevo {
+         width: 80%; /* Or max-width like other carousels */
+         max-width: 500px; /* Adjusted for potentially vertical videos, can be tuned */
+         margin: auto;
+         overflow: hidden;
+         position: relative;
+         border-radius: 15px;
+         box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+         /* aspect-ratio: 9 / 16; /* Default to vertical, but individual slides will control their aspect ratio */
+         background-color: #222;
+         border: 4px solid #ff0000;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 300px; /* Adjust as needed */
+     }
+
+     .video-carousel-nuevo .loading-indicator-nuevo {
+         color: gray;
+         font-size: 1.2em;
+         position: absolute;
+         z-index: 5;
+     }
+
+     .video-carousel-track-nuevo {
+         display: flex;
+         transition: transform 0.5s ease-in-out;
+         height: 100%; /* Ensure track takes full height */
+     }
+
+     /* Styles for individual slides within the new carousel (will contain iframes) */
+     /* .video-carousel-slide-nuevo will be the class for divs added in the next step */
+     .video-carousel-slide-nuevo {
+         flex: 0 0 100%; /* Each slide takes full width of the carousel */
+         box-sizing: border-box;
+         display: flex;        /* Added for centering content */
+         align-items: center;  /* Added for centering content */
+         justify-content: center; /* Added for centering content */
+         min-height: 100%; /* Ensure slide takes up min height of carousel */
+     }
+
+     /* Navigation arrows for the new carousel */
+     .video-carousel-nuevo .nav-arrow-nuevo {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         background-color: rgba(0, 0, 0, 0.9);
+         color: white;
+         border: none;
+         padding: 12px 18px;
+         cursor: pointer;
+         font-size: 2.5em;
+         border-radius: 8px;
+         z-index: 10;
+         transition: background-color 0.3s ease, color 0.3s, box-shadow 0.3s ease;
+         box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+     }
+
+     .video-carousel-nuevo .nav-arrow-nuevo:hover {
+         background-color: rgba(0, 0, 0, 1);
+         color: #ffcc00;
+         box-shadow: 0 0 35px #ffcc00;
+     }
+
+     .video-carousel-nuevo .prev-nuevo {
+         left: 15px;
+     }
+
+     .video-carousel-nuevo .next-nuevo {
+         right: 15px;
+     }
     </style>
 </head>
 <body>
@@ -743,7 +816,7 @@
             <li><a href="#acerca">Acerca</a></li>
             <li><a href="#musica">Música</a></li>
             <li><a href="#galeria">Galería</a></li>
-            <li><a href="#videos">Videos</a></li>
+            <li><a href="#presentaciones-en-vivo">En Vivo</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </nav>
     </header>
@@ -756,13 +829,13 @@
 
     <h2 id="acerca">Acerca de Nosotros</h2>
     <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas.</p>
-    <div class="separador"></div>
+    <div class="separador" style="display: none;"></div>
 
-    <h2 id="musica">Nuestra Música</h2>
+    <h2 id="musica" style="display: none;">Nuestra Música</h2>
     <div class="video-responsive-container" style="display: none;">
         <iframe src="https://open.spotify.com/embed/artist/5P4g0Z2X1Q0Q0Q0Q0Q0Q0Q?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
-    <div class="separador"></div>
+    <div class="separador" style="display: none;"></div>
 
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
@@ -808,8 +881,8 @@
     </div>
     <div class="separador"></div>
 
-    <h2 id="videos">Videos</h2>
-    <div class="videos">
+    <h2 id="videos" style="display: none;">Videos</h2>
+    <div class="videos" style="display: none;">
         <div class="video-carousel" id="facebookVideoCarousel" style="display: none;">
             <div class="video-carousel-track" id="facebookVideoTrack">
                 <!-- Existing Facebook Video 1 -->
@@ -833,165 +906,58 @@
             <iframe src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
     </div>
-    <div class="separador"></div>
+    <div class="separador" style="display: none;"></div>
 
     <div class="separador"></div>
     <h2 id="presentaciones-en-vivo">Presentaciones en vivo</h2>
     <div class="presentaciones-envivo-container">
-      <div class="instagram-reel-container" style="margin: 20px auto; max-width: 350px;">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/dskavellados/reel/DKx4MRdNtuv/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/dskavellados/reel/DKx4MRdNtuv/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style=" display: flex; flex-direction: row; align-items: center;">
-                <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
-                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+     <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
+         <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hDxwA1E2fug" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-              </div>
-              <div style="padding: 19% 0;"></div>
-              <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g transform="translate(-511.000000, -20.000000)" fill="#000000">
-                      <g>
-                        <path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.056,25.479 533.003,25.448 541,25.448 C548.997,25.448 549.944,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101Z"></path>
-                      </g>
-                    </g>
-                  </g>
-                </svg>
-              </div>
-              <div style="padding-top: 8px;">
-                <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-              </div>
-              <div style="padding: 12.5% 0;"></div>
-              <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;">
-                <div>
-                  <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div>
-                  <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div>
-                  <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/N6gPRKkH_5Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div style="margin-left: 8px;">
-                  <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div>
-                  <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/1FFrxvcFpYY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div style="margin-left: auto;">
-                  <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div>
-                  <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div>
-                  <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/zhHt00TgGgc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-              </div>
-              <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;">
-                <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div>
-                <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div>
-              </div>
-            </a>
-            <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              <a href="https://www.instagram.com/dskavellados/reel/DKx4MRdNtuv/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by DSKAVELLADOS (@dskavellados)</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-      <div class="instagram-reel-container" style="margin: 20px auto; max-width: 350px;">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/dskavellados/reel/DKsz9M3NbaL/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/dskavellados/reel/DKsz9M3NbaL/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style=" display: flex; flex-direction: row; align-items: center;">
-                <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
-                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/uaSIGp2c3tU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-              </div>
-              <div style="padding: 19% 0;"></div><div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" fill="none"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.056,25.479 533.003,25.448 541,25.448 C548.997,25.448 549.944,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101Z"></path></g></g></g></svg></div>
-              <div style="padding-top: 8px;"><div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div>
-            </a>
-            <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              <a href="https://www.instagram.com/dskavellados/reel/DKsz9M3NbaL/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by DSKAVELLADOS (@dskavellados)</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-      <div class="instagram-reel-container" style="margin: 20px auto; max-width: 350px;">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/dskavellados/reel/DKszu3wtTpq/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/dskavellados/reel/DKszu3wtTpq/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style=" display: flex; flex-direction: row; align-items: center;">
-                <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
-                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/59unIB7_Q0c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-              </div>
-              <div style="padding: 19% 0;"></div><div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" fill="none"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.056,25.479 533.003,25.448 541,25.448 C548.997,25.448 549.944,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101Z"></path></g></g></g></svg></div>
-              <div style="padding-top: 8px;"><div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div>
-            </a>
-            <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              <a href="https://www.instagram.com/dskavellados/reel/DKszu3wtTpq/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by DSKAVELLADOS (@dskavellados)</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-      <div class="instagram-reel-container" style="margin: 20px auto; max-width: 350px;">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/dskavellados/reel/DKszhaLNiD0/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/dskavellados/reel/DKszhaLNiD0/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style=" display: flex; flex-direction: row; align-items: center;">
-                <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
-                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/C5cloj5SRIk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-              </div>
-              <div style="padding: 19% 0;"></div><div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" fill="none"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.056,25.479 533.003,25.448 541,25.448 C548.997,25.448 549.944,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101Z"></path></g></g></g></svg></div>
-              <div style="padding-top: 8px;"><div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div>
-            </a>
-            <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              <a href="https://www.instagram.com/dskavellados/reel/DKszhaLNiD0/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by DSKAVELLADOS (@dskavellados)</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-      <div class="instagram-reel-container" style="margin: 20px auto; max-width: 350px;">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/angiesaxmakeup/reel/DKa4MUss7x0/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/angiesaxmakeup/reel/DKa4MUss7x0/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style=" display: flex; flex-direction: row; align-items: center;">
-                <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
-                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vqBAqsXbkQQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
-              </div>
-              <div style="padding: 19% 0;"></div><div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" fill="none"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.056,25.479 533.003,25.448 541,25.448 C548.997,25.448 549.944,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101Z"></path></g></g></g></svg></div>
-              <div style="padding-top: 8px;"><div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div>
-            </a>
-            <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              <a href="https://www.instagram.com/angiesaxmakeup/reel/DKa4MUss7x0/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Angie Guzman (@angiesaxmakeup)</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-      <div class="instagram-reel-container" style="margin: 20px auto; max-width: 350px;">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/dskavellados/reel/DJUZvwqIN7J/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/dskavellados/reel/DJUZvwqIN7J/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style=" display: flex; flex-direction: row; align-items: center;">
-                <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
-                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
-                  <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
-                </div>
-              </div>
-              <div style="padding: 19% 0;"></div><div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" fill="none"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.056,25.479 533.003,25.448 541,25.448 C548.997,25.448 549.944,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101Z"></path></g></g></g></svg></div>
-              <div style="padding-top: 8px;"><div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div>
-            </a>
-            <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              <a href="https://www.instagram.com/dskavellados/reel/DJUZvwqIN7J/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by DSKAVELLADOS (@dskavellados)</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
+            </div>
+         </div>
+         <button class="nav-arrow-nuevo prev-nuevo" id="presentacionesVideoPrevBtn">❮</button>
+         <button class="nav-arrow-nuevo next-nuevo" id="presentacionesVideoNextBtn">❯</button>
+         <div class="loading-indicator-nuevo" id="presentacionesVideoLoading">Cargando videos...</div>
+     </div>
     </div>
     <div class="separador"></div>
 
@@ -1067,5 +1033,104 @@
         });
     </script>
     <script async src="//www.instagram.com/embed.js"></script>
+    <script>
+     document.addEventListener('DOMContentLoaded', () => {
+         const presentacionesCarousel = document.getElementById('presentacionesVideoCarousel');
+         if (!presentacionesCarousel) return; // Guard clause
+
+         const track = document.getElementById('presentacionesVideoTrack');
+         const nextButton = document.getElementById('presentacionesVideoNextBtn');
+         const prevButton = document.getElementById('presentacionesVideoPrevBtn');
+         const loadingIndicator = document.getElementById('presentacionesVideoLoading');
+
+         if (!track || !nextButton || !prevButton || !loadingIndicator) {
+             console.warn('One or more elements for Presentaciones en Vivo carousel not found.');
+             if(loadingIndicator) loadingIndicator.textContent = 'Error al cargar carrusel.';
+             return;
+         }
+
+         let slides = Array.from(track.children); // Will be populated in the next step
+         let currentIndex = 0;
+         let slideWidth = 0; // Will be set after slides are loaded
+
+         function updateSlideWidth() {
+            if (slides.length > 0) {
+                // Use clientWidth of the carousel itself for slide width, assuming slides are 100%
+                slideWidth = presentacionesCarousel.clientWidth;
+            }
+         }
+
+         function updateCarousel() {
+             if (slides.length === 0 || slideWidth === 0) {
+                 // Hide loading indicator if no slides, or show error.
+                 if (loadingIndicator) loadingIndicator.style.display = slides.length > 0 ? 'block' : 'none';
+                 if (slides.length === 0 && loadingIndicator) loadingIndicator.textContent = 'No hay videos para mostrar.';
+                 return;
+             }
+             if (loadingIndicator) loadingIndicator.style.display = 'none';
+
+             track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+             // Pause all videos, then play the current one (optional, can be complex with iframes)
+             // For now, manual play/pause by user is assumed.
+             // Advanced: Could use YouTube Iframe API if more control is needed.
+         }
+
+         nextButton.addEventListener('click', () => {
+             if (slides.length === 0) return;
+             currentIndex = (currentIndex + 1) % slides.length;
+             updateCarousel();
+         });
+
+         prevButton.addEventListener('click', () => {
+             if (slides.length === 0) return;
+             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+             updateCarousel();
+         });
+
+         window.addEventListener('resize', () => {
+             if (slides.length > 0) {
+                 updateSlideWidth();
+                 updateCarousel();
+             }
+         });
+
+         // Call this function when slides are added/loaded in the next step
+         // For now, set up an observer to detect when slides (iframes) are added.
+         const observer = new MutationObserver((mutationsList, observer) => {
+             for(const mutation of mutationsList) {
+                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                     slides = Array.from(track.children);
+                     if (slides.length > 0) {
+                         updateSlideWidth(); // Calculate slide width based on first slide
+                         updateCarousel();   // Update display
+                         // observer.disconnect(); // Optional: disconnect if slides are added all at once
+                     }
+                     // Show/hide arrows based on slide count
+                     if (slides.length <= 1) {
+                        nextButton.style.display = 'none';
+                        prevButton.style.display = 'none';
+                     } else {
+                        nextButton.style.display = 'block';
+                        prevButton.style.display = 'block';
+                     }
+                     break;
+                 }
+             }
+         });
+         observer.observe(track, { childList: true });
+
+         // Initial check in case slides are already there (e.g. static HTML, though not in this plan)
+         slides = Array.from(track.children);
+         if (slides.length > 0) {
+            updateSlideWidth();
+            updateCarousel();
+         } else {
+            if (loadingIndicator) loadingIndicator.style.display = 'block';
+            nextButton.style.display = 'none';
+            prevButton.style.display = 'none';
+         }
+     });
+     </script>
 </body>
 </html>
