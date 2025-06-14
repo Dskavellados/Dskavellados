@@ -140,7 +140,7 @@
             font-size: 2.2em; /* Títulos más grandes */
             color: #ff0000; /* Color rojo para los títulos */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Sombra para los títulos */
-            margin-bottom: 30px; 
+            margin-bottom: 30px;
             transition: color 0.3s ease, text-shadow 0.3s ease; /* ADDED/MODIFIED: Ensure transition */
         }
 
@@ -167,7 +167,7 @@
             position: relative;
             border-radius: 15px; /* Más redondeado */
             box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); /* Sombra más intensa */
-            aspect-ratio: 16 / 9; 
+            aspect-ratio: 16 / 9;
             background-color: #222;
             border: 4px solid #ff0000; /* Borde rojo para el carrusel */
             display: flex; /* Para centrar el contenido de carga */
@@ -842,7 +842,7 @@
     <div class="video-responsive-container" style="display: none;">
         <iframe src="https://open.spotify.com/embed/artist/5P4g0Z2X1Q0Q0Q0Q0Q0Q0Q?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
-    
+
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
         <div class="loading-indicator" id="galleryLoading">Cargando galería...</div>
@@ -912,51 +912,54 @@
             <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
     </div>
-    
+
     <h2 id="presentaciones-en-vivo">Presentaciones en vivo</h2>
     <div class="presentaciones-envivo-container">
+        <div id="test-youtube-player" style="width:640px; height:360px; border:2px solid blue; margin: 20px auto;"></div>
      <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
          <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
+            <!--
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container" id="youtube-player-container-0">
-                    <div id="youtube-player-0"></div>
+                <div class="video-responsive-container" id="youtube-player-container-0" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-0" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-1">
-                    <div id="youtube-player-1"></div>
+                <div class="video-responsive-container-vertical" id="youtube-player-container-1" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-1" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-2">
-                    <div id="youtube-player-2"></div>
+                <div class="video-responsive-container-vertical" id="youtube-player-container-2" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-2" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-3">
-                    <div id="youtube-player-3"></div>
+                <div class="video-responsive-container-vertical" id="youtube-player-container-3" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-3" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-4">
-                    <div id="youtube-player-4"></div>
+                <div class="video-responsive-container-vertical" id="youtube-player-container-4" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-4" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-5">
-                    <div id="youtube-player-5"></div>
+                <div class="video-responsive-container-vertical" id="youtube-player-container-5" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-5" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-6">
-                    <div id="youtube-player-6"></div>
+                <div class="video-responsive-container-vertical" id="youtube-player-container-6" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-6" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-7">
-                    <div id="youtube-player-7"></div>
+                <div class="video-responsive-container-vertical" id="youtube-player-container-7" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
+                    <div id="youtube-player-7" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
                 </div>
             </div>
+            -->
          </div>
          <button class="nav-arrow-nuevo prev-nuevo" id="presentacionesVideoPrevBtn">❮</button>
          <button class="nav-arrow-nuevo next-nuevo" id="presentacionesVideoNextBtn">❯</button>
@@ -1037,17 +1040,16 @@
         });
     </script>
     <script>
-     // YouTube Iframe API integration for Presentaciones en Vivo Carousel
+     // YouTube Iframe API integration for Presentaciones en Vivo Carousel (Modified for Testing)
+
+     // Comment out original carousel variables and functions
+     /*
      let players = [];
      const videoIDs = [
-        'C5cloj5SRIk', 'vqBAqsXbkQQ', 'N6gPRKkH_5Y', '59unIB7_Q0c', 
+        'C5cloj5SRIk', 'vqBAqsXbkQQ', 'N6gPRKkH_5Y', '59unIB7_Q0c',
         'uaSIGp2c3tU', 'hDxwA1E2fug', '1FFrxvcFpYY', 'zhHt00TgGgc'
      ];
-     let lastPlayedPlayerIndex = -1; // To keep track of the last played video
-
-     function onYouTubeIframeAPIReady() {
-        initPresentacionesCarouselWithYouTubeAPI();
-     }
+     let lastPlayedPlayerIndex = -1;
 
      function initPresentacionesCarouselWithYouTubeAPI() {
          const presentacionesCarousel = document.getElementById('presentacionesVideoCarousel');
@@ -1064,158 +1066,71 @@
              return;
          }
 
-         // Create players
          for (let i = 0; i < videoIDs.length; i++) {
              players[i] = new YT.Player('youtube-player-' + i, {
-                 height: '100%',
-                 width: '100%',
-                 videoId: videoIDs[i],
-                 playerVars: {
-                     'playsinline': 1,
-                     'modestbranding': 1,
-                     'fs': 1,
-                     'rel': 0
-                 },
-                 events: {
-                     'onReady': onPlayerReady,
-                     'onError': onPlayerError
-                 }
+                 // ... player config ...
              });
          }
 
-         let slides = Array.from(track.children);
-         let currentIndex = 0;
-         let slideWidth = 0;
-
-         function updateSlideWidth() {
-            if (slides.length > 0) {
-                slideWidth = presentacionesCarousel.clientWidth;
-            }
-         }
-         
-         function updateCarousel() {
-             if (slides.length === 0 || slideWidth === 0) {
-                 if (loadingIndicator) loadingIndicator.style.display = slides.length > 0 ? 'block' : 'none';
-                 if (slides.length === 0 && loadingIndicator) loadingIndicator.textContent = 'No hay videos para mostrar.';
-                 return;
-             }
-             if (loadingIndicator) loadingIndicator.style.display = 'none';
-             
-             track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-
-             // Attempt to pause the previously playing video
-             if (lastPlayedPlayerIndex !== -1 && players[lastPlayedPlayerIndex] && typeof players[lastPlayedPlayerIndex].pauseVideo === 'function') {
-                 // Check if player is actually playing before pausing (optional, good practice)
-                 // YT.PlayerState.PLAYING is 1
-                 if (typeof players[lastPlayedPlayerIndex].getPlayerState === 'function' && players[lastPlayedPlayerIndex].getPlayerState() === YT.PlayerState.PLAYING) {
-                    players[lastPlayedPlayerIndex].pauseVideo();
-                 }
-             }
-             // The new current video will not autoplay; user needs to click.
-             // Update lastPlayedPlayerIndex to the current video, so it *can* be paused next time.
-             // However, we only set it if the user *actually* plays it. This will be handled by onPlayerStateChange if implemented.
-             // For now, this simplified logic just means the *next* slide change will try to pause the *previous* slide's video.
-         }
-
-         nextButton.addEventListener('click', () => {
-             if (slides.length === 0) return;
-             if (players[currentIndex] && typeof players[currentIndex].pauseVideo === 'function') {
-                // Check if player is actually playing before pausing
-                if (typeof players[currentIndex].getPlayerState === 'function' && players[currentIndex].getPlayerState() === YT.PlayerState.PLAYING) {
-                    players[currentIndex].pauseVideo();
-                }
-             }
-             currentIndex = (currentIndex + 1) % slides.length;
-             updateCarousel();
-         });
-
-         prevButton.addEventListener('click', () => {
-             if (slides.length === 0) return;
-             if (players[currentIndex] && typeof players[currentIndex].pauseVideo === 'function') {
-                // Check if player is actually playing before pausing
-                 if (typeof players[currentIndex].getPlayerState === 'function' && players[currentIndex].getPlayerState() === YT.PlayerState.PLAYING) {
-                    players[currentIndex].pauseVideo();
-                }
-             }
-             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-             updateCarousel();
-         });
-
-         window.addEventListener('resize', () => {
-             if (slides.length > 0) {
-                 updateSlideWidth();
-                 updateCarousel();
-             }
-         });
-        
-         // Initial setup
-         slides = Array.from(track.children); // Ensure slides are correctly identified
-         if (slides.length > 0) {
-             updateSlideWidth();
-             updateCarousel();
-             if (slides.length <= 1) {
-                nextButton.style.display = 'none';
-                prevButton.style.display = 'none';
-             } else {
-                nextButton.style.display = 'block';
-                prevButton.style.display = 'block';
-             }
-         } else {
-             if (loadingIndicator) loadingIndicator.style.display = 'block';
-             nextButton.style.display = 'none';
-             prevButton.style.display = 'none';
-         }
-
-         // The MutationObserver might be redundant if slides are static and players are created by API.
-         // If slides were dynamically added later, it would be useful.
-         // For now, its primary role (initial load detection) is handled by player ready events.
-         // Let's comment it out to simplify, assuming slides are fixed after this setup.
-         /*
-         const observer = new MutationObserver((mutationsList, observer) => {
-             // ... existing observer logic ...
-         });
-         observer.observe(track, { childList: true });
-         */
+         // ... rest of carousel logic (updateSlideWidth, updateCarousel, event listeners for next/prev) ...
+         // This also needs to be commented out or adapted if next/prev buttons are still active
+         // For this test, let's assume next/prev buttons listeners are also effectively disabled
+         // by commenting out the main init function or by them not finding 'slides'.
      }
 
-     function onPlayerReady(event) {
+     function onPlayerReady(event) { // Original onPlayerReady
          console.log('Player ready:', event.target.getVideoData().title);
-         // Potentially hide a general loading indicator or specific slide's loading state here.
-         // For example, if the main loadingIndicator is for the whole carousel:
          const loadingIndicator = document.getElementById('presentacionesVideoLoading');
          if (loadingIndicator) loadingIndicator.style.display = 'none';
-
-         // Ensure carousel arrows are correctly displayed now that players (and implicitly slides) are ready
-         const track = document.getElementById('presentacionesVideoTrack');
-         const nextButton = document.getElementById('presentacionesVideoNextBtn');
-         const prevButton = document.getElementById('presentacionesVideoPrevBtn');
-         if (track && nextButton && prevButton) {
-            const numSlides = Array.from(track.children).length;
-            if (numSlides <= 1) {
-                nextButton.style.display = 'none';
-                prevButton.style.display = 'none';
-            } else {
-                nextButton.style.display = 'block';
-                prevButton.style.display = 'block';
-            }
-         }
+         // ... arrow display logic ...
      }
 
-     function onPlayerError(event) {
+     function onPlayerError(event) { // Original onPlayerError
          console.error('YouTube Player Error:', event.data, 'for video ID:', event.target.getVideoData().video_id);
-         // Optionally display an error message in the player's div
-         const playerDiv = event.target.getIframe().parentNode; // The div where player was attached
+         const playerDiv = event.target.getIframe().parentNode;
          if (playerDiv) {
              playerDiv.innerHTML = `<p style="color:red; text-align:center;">Error al cargar video.</p><p style="color:grey; text-align:center; font-size:0.8em;">ID: ${event.target.getVideoData().video_id}</p>`;
          }
      }
+     */
 
-     // It's good practice to ensure the DOM is loaded before trying to manipulate it,
-     // though onYouTubeIframeAPIReady usually fires after DOM ready.
-     // If initPresentacionesCarouselWithYouTubeAPI relies on DOM elements not created by YT API itself,
-     // ensure they are ready. Here, placeholder divs are in HTML.
-     // The original script used DOMContentLoaded, so this new structure should be fine
-     // as onYouTubeIframeAPIReady will call the init function.
+     // New onYouTubeIframeAPIReady for testing a single player
+     window.onYouTubeIframeAPIReady = function() {
+         console.log('onYouTubeIframeAPIReady called for test player.'); // Debug
+         new YT.Player('test-youtube-player', {
+             height: '360',
+             width: '640',
+             videoId: 'C5cloj5SRIk', // First video ID for testing
+             playerVars: {
+                 'playsinline': 1,
+                 'modestbranding': 1,
+                 'fs': 1,
+                 'rel': 0
+             },
+             events: {
+                 'onReady': function(event) {
+                     console.log('Test Player Ready:', event.target.getVideoData().title);
+                     const testPlayerDiv = document.getElementById('test-youtube-player');
+                     if(testPlayerDiv) testPlayerDiv.style.borderColor = 'green'; // Visual feedback
+                 },
+                 'onError': function(event) {
+                     console.error('Test Player Error. Code:', event.data, 'Video ID:', 'C5cloj5SRIk');
+                     const testPlayerDiv = document.getElementById('test-youtube-player');
+                     if (testPlayerDiv) {
+                         testPlayerDiv.style.borderColor = 'red';
+                         testPlayerDiv.innerHTML = 'Test Player Error. Code: ' + event.data;
+                     }
+                 }
+             }
+         });
+         // Original call to carousel init is now commented out:
+         // initPresentacionesCarouselWithYouTubeAPI();
+     };
+
+     // Ensure event listeners for carousel navigation are also inactive if they could error out.
+     // (Assuming they are part of initPresentacionesCarouselWithYouTubeAPI or won't run meaningfully
+     //  if the carousel track's slides are commented out and `slides` array is empty).
+
      </script>
     <script src="https://www.youtube.com/iframe_api"></script>
 </body>
