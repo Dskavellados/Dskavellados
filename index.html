@@ -528,7 +528,7 @@
 
         /* Botón de WhatsApp dentro del flotante */
         .floating-social .whatsapp-button {
-            display: none; /* Se mostrará con JS si es necesario */
+            display: none; /* Oculto por defecto, como se solicitó */
             background-color: #25D366;
             color: white;
             text-decoration: none;
@@ -752,7 +752,7 @@
 
             .galeria {
                 max-width: 100%;
-                aspect-ratio: 4 / 3; /* Ajuste de aspecto para móvil */
+                aspect-ratio: 4 / 3; /* Ajuste de aspecto para móvil, más vistoso */
             }
 
             .galeria img {
@@ -763,10 +763,11 @@
                 display: block;
                 position: absolute;
                 left: 20px;
+                top: 15px; /* Ajuste para que no quede tan pegado */
             }
 
             header {
-                justify-content: flex-end; /* Alinear elementos a la derecha cuando el menú está oculto */
+                justify-content: space-between; /* Ajustar alineación en móvil */
             }
 
             .nav-menu {
@@ -795,36 +796,29 @@
             .nav-menu li {
                 margin: 10px 0;
             }
+            .nav-menu a {
+                padding: 10px 0; /* Aumentar área de toque para enlaces móviles */
+            }
 
-            /* Flotante en móvil, ajustar posición y tamaño */
+            /* Botones de Redes Sociales flotantes en móvil */
             .floating-social {
-                right: 5px;
+                right: 8px; /* Mantener a la derecha */
                 left: auto;
-                top: 70px; /* Ajustado para no chocar con el header en móvil */
-                transform: translateY(0); /* Resetear transform para móvil */
-                flex-direction: row; /* En fila para pantallas más pequeñas */
-                width: 100%;
-                justify-content: center;
+                top: 50%; /* Centrado verticalmente */
+                transform: translateY(-50%);
+                flex-direction: column; /* Volver a columna en móvil */
+                width: auto; /* Ancho automático */
+                justify-content: flex-start; /* Alinear arriba */
                 align-items: center;
-                gap: 10px;
-                background-color: rgba(0, 0, 0, 0.8);
-                padding: 5px;
-                box-shadow: none; /* Eliminar sombra extra */
-            }
-            .floating-social .social-icon,
-            .floating-social .social-icon-svg {
-                width: 30px; /* Más pequeño */
-                height: 30px;
-            }
-            .floating-social .social-icon-svg svg {
-                width: 70%;
-                height: 70%;
+                gap: 6px;
+                background-color: transparent; /* Fondo transparente */
+                padding: 4px;
+                box-shadow: none; /* Sin sombra de fondo */
             }
             .floating-social .whatsapp-button {
-                font-size: 0.8em;
-                padding: 4px 6px;
-                display: block; /* Asegurarse de que se muestre en móvil si es necesario */
+                display: none; /* Ocultar botón de WhatsApp en móvil si se desea */
             }
+
         }
 
         @media (max-width: 480px) {
@@ -852,10 +846,7 @@
                 width: 65%;
                 height: 65%;
             }
-            .floating-social .whatsapp-button {
-                font-size: 0.7em;
-                padding: 3px 5px;
-            }
+            /* .floating-social .whatsapp-button { display: none; } */ /* Mantenemos oculto */
         }
     </style>
 </head>
@@ -1156,7 +1147,10 @@
 
         function initPresentacionesCarouselWithYouTubeAPI() {
             const presentacionesCarousel = document.getElementById('presentacionesVideoCarousel');
-            if (!presentacionesCarousel) return;
+            if (!presentacionesCarousel) {
+                console.warn("Presentaciones en Vivo carousel container not found.");
+                return;
+            }
 
             const track = document.getElementById('presentacionesVideoTrack');
             const nextButton = document.getElementById('presentacionesVideoNextBtn');
@@ -1176,16 +1170,13 @@
                 return;
             }
 
-
             // Crear reproductores de YouTube
             for (let i = 0; i < youtubeVideoIDs.length; i++) {
                 const playerDivId = 'youtube-player-' + i;
                 const playerContainer = document.getElementById(playerDivId);
 
-                // Comprobar si el contenedor del reproductor existe. Si no, añadir un mensaje de error.
                 if (!playerContainer) {
                     console.error(`Contenedor para el reproductor ${playerDivId} no encontrado.`);
-                    // Crear un div de error si el contenedor no existe
                     const slide = document.getElementById('youtube-player-container-' + i);
                     if (slide) {
                         slide.innerHTML = `<p style="color:red; text-align:center; padding: 20px;">Error: Contenedor '${playerDivId}' no encontrado para video '${youtubeVideoIDs[i]}'.</p>`;
@@ -1233,18 +1224,16 @@
                 track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 
                 // Pausar el video anterior si estaba reproduciéndose
-                if (lastPlayedYouTubePlayerIndex !== -1 && youtubePlayers[lastPlayedYouTubePlayerIndex] && typeof youtubePlayers[lastPlayedYouTubePlayerIndex].pauseVideo === 'function') {
-                    if (typeof youtubePlayers[lastPlayedYouTubePlayerIndex].getPlayerState === 'function' && youtubePlayers[lastPlayedYouTubePlayerIndex].getPlayerState() === YT.PlayerState.PLAYING) {
-                        youtubePlayers[lastPlayedYouTubePlayerIndex].pauseVideo();
-                    }
+                if (lastPlayedYouTubePlayerIndex !== -1 && youtubePlayers[lastPlayedYouTubePlayerIndex] && typeof youtubePlayers[lastPlayedYouTubePlayerIndex].stopVideo === 'function') {
+                    youtubePlayers[lastPlayedYouTubePlayerIndex].stopVideo(); // Stop and reset video
                 }
             }
 
             nextButton.addEventListener('click', () => {
                 if (slides.length === 0) return;
-                // Pausar el video actual antes de cambiar de slide
-                if (youtubePlayers[currentIndex] && typeof youtubePlayers[currentIndex].pauseVideo === 'function') {
-                    youtubePlayers[currentIndex].pauseVideo();
+                // Detener el video actual antes de cambiar de slide
+                if (youtubePlayers[currentIndex] && typeof youtubePlayers[currentIndex].stopVideo === 'function') {
+                    youtubePlayers[currentIndex].stopVideo();
                 }
                 currentIndex = (currentIndex + 1) % slides.length;
                 updateCarousel();
@@ -1252,9 +1241,9 @@
 
             prevButton.addEventListener('click', () => {
                 if (slides.length === 0) return;
-                // Pausar el video actual antes de cambiar de slide
-                if (youtubePlayers[currentIndex] && typeof youtubePlayers[currentIndex].pauseVideo === 'function') {
-                    youtubePlayers[currentIndex].pauseVideo();
+                // Detener el video actual antes de cambiar de slide
+                if (youtubePlayers[currentIndex] && typeof youtubePlayers[currentIndex].stopVideo === 'function') {
+                    youtubePlayers[currentIndex].stopVideo();
                 }
                 currentIndex = (currentIndex - 1 + slides.length) % slides.length;
                 updateCarousel();
@@ -1329,6 +1318,14 @@
                     lastPlayedYouTubePlayerIndex = playerIndex;
                 }
             }
+            // Si un video termina, se podría avanzar automáticamente si se desea
+            // if (event.data === YT.PlayerState.ENDED) {
+            //     const currentCarousel = document.getElementById('presentacionesVideoCarousel');
+            //     const nextButton = document.getElementById('presentacionesVideoNextBtn');
+            //     if (currentCarousel && nextButton) {
+            //         nextButton.click(); // Simula un clic en el botón Siguiente
+            //     }
+            // }
         }
 
         function onYouTubePlayerError(event) {
@@ -1366,24 +1363,24 @@
 
     <section id="acerca" class="section">
         <h2>Acerca de Nosotros</h2>
-        <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas y un estilo inconfundible. Desde nuestra formación en 2024, hemos estado comprometidos en crear música que resuene con la experiencia urbana y la pasión por el cambio. Cada canción es un grito de libertad y un reflejo de nuestras vivencias, buscando siempre conectar con nuestra audiencia a un nivel auténtico y visceral.</p>
+        <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas y un estilo inconfundible. Desde nuestra formación en 2020, hemos estado comprometidos en crear música que resuene con la experiencia urbana y la pasión por el cambio. Cada canción es un grito de libertad y un reflejo de nuestras vivencias, buscando siempre conectar con nuestra audiencia a un nivel auténtico y visceral.</p>
         <div class="band-members">
             <div class="member-card">
-                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg" alt="Andres - Vocalista" style="object-position: 50% 20%;"> <!-- Ajuste de posición para Andrés Vocalista -->
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg" alt="Andres - Vocalista">
                 <div class="member-info">
                     <h3>Andres</h3>
                     <p>Vocalista</p>
                 </div>
             </div>
             <div class="member-card">
-                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg" alt="Andres - Vocalista, Guitarra" style="object-position: 50% 30%;"> <!-- Ajuste de posición para Andrés Vocalista, Guitarra -->
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg" alt="Andres - Vocalista, Guitarra">
                 <div class="member-info">
                     <h3>Andres</h3>
                     <p>Vocalista, Guitarra</p>
                 </div>
             </div>
             <div class="member-card">
-                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Jorge - Trombonista" style="object-position: 50% 30%;">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Jorge - Trombonista">
                 <div class="member-info">
                     <h3>Jorge</h3>
                     <p>Trombonista</p>
@@ -1397,28 +1394,28 @@
                 </div>
             </div>
             <div class="member-card">
-                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Natalia - Trompetista" style="object-position: 50% 30%;">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Natalia - Trompetista">
                 <div class="member-info">
                     <h3>Natalia</h3>
                     <p>Trompetista</p>
                 </div>
             </div>
             <div class="member-card">
-                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg" alt="Jeison - Bajista" style="object-position: 50% 30%;">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg" alt="Jeison - Bajista">
                 <div class="member-info">
                     <h3>Jeison</h3>
                     <p>Bajista</p>
                 </div>
             </div>
             <div class="member-card">
-                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg" alt="Will - Guitarrista Principal" style="object-position: 50% 30%;">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg" alt="Will - Guitarrista Principal">
                 <div class="member-info">
                     <h3>Will</h3>
                     <p>Guitarrista Principal</p>
                 </div>
             </div>
             <div class="member-card">
-                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Santiago - Baterista" style="object-position: 50% 30%;">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Santiago - Baterista">
                 <div class="member-info">
                     <h3>Santiago</h3>
                     <p>Baterista</p>
@@ -1550,10 +1547,8 @@
         </div>
 
         <!-- Video de TikTok -->
-        <h3>Video de TikTok</h3>
-        <!-- Ajustado el contenedor para que el video de TikTok tenga el mismo ancho que el carrusel de Facebook -->
-        <div class="video-responsive-container-vertical" id="tiktok-video-container">
-            <!-- Eliminamos width y height inline para que CSS controle el tamaño. -->
+        <!-- Ocultado temporalmente el video de TikTok como se solicitó -->
+        <div class="video-responsive-container-vertical" id="tiktok-video-container" style="display: none;">
             <iframe src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
     </section>
@@ -1565,52 +1560,52 @@
         <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
             <div class="loading-indicator-nuevo" id="presentacionesVideoLoading">Cargando videos...</div>
             <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
-                <!-- Los divs de los reproductores de YouTube son generados por la API de YouTube -->
-                <!-- ¡IMPORTANTE! Se han eliminado los estilos inline como width, height, etc. de estos divs para que CSS los controle. -->
+                <!-- Los divs de los reproductores de YouTube se configuran para ser responsivos -->
+                <!-- IMPORTANTE: NO añadir estilos inline 'width' o 'height' aquí, los CSS los controlan. -->
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos horizontales -->
+                    <!-- Contenedor para el primer video de YouTube -->
                     <div class="video-responsive-container" id="youtube-player-container-0">
                         <div id="youtube-player-0"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos verticales -->
+                    <!-- Contenedor para el segundo video de YouTube -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-1">
                         <div id="youtube-player-1"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos verticales -->
+                    <!-- Contenedor para el tercer video de YouTube -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-2">
                         <div id="youtube-player-2"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos verticales -->
+                    <!-- Contenedor para el cuarto video de YouTube -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-3">
                         <div id="youtube-player-3"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos verticales -->
+                    <!-- Contenedor para el quinto video de YouTube -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-4">
                         <div id="youtube-player-4"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos verticales -->
+                    <!-- Contenedor para el sexto video de YouTube -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-5">
                         <div id="youtube-player-5"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos horizontales (si aplica) -->
+                    <!-- Contenedor para el séptimo video de YouTube -->
                     <div class="video-responsive-container" id="youtube-player-container-6">
                         <div id="youtube-player-6"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para videos verticales -->
+                    <!-- Contenedor para el octavo video de YouTube -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-7">
                         <div id="youtube-player-7"></div>
                     </div>
@@ -1680,7 +1675,7 @@
 
     <!-- Contenedor de redes sociales flotante -->
     <div class="floating-social">
-        <!-- Botón de WhatsApp -->
+        <!-- Botón de WhatsApp - Oculto por defecto en CSS -->
         <a href="https://wa.me/573024332338" target="_blank" class="whatsapp-button">WhatsApp</a>
         <!-- Icono de Facebook -->
         <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="social-icon"></a>
