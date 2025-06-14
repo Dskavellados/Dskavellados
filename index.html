@@ -154,7 +154,7 @@
         /* Galería - Carrusel (Fade Effect) */
         .galeria {
             width: 80%;
-            max-width: 800px;
+            max-width: 1200px; /* MODIFIED FROM 800px */
             margin: auto;
             overflow: hidden;
             position: relative;
@@ -557,7 +557,8 @@
      /* New Video Carousel Styles for Presentaciones en Vivo */
      .video-carousel-nuevo {
          width: 80%; /* Or max-width like other carousels */
-         max-width: 500px; /* Adjusted for potentially vertical videos, can be tuned */
+         max-width: 1200px; /* MODIFIED FROM 500px */
+         aspect-ratio: 16 / 9; /* ADDED */
          margin: auto;
          overflow: hidden;
          position: relative;
@@ -914,43 +915,43 @@
      <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
          <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
             <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hDxwA1E2fug" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/N6gPRKkH_5Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/1FFrxvcFpYY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/zhHt00TgGgc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/uaSIGp2c3tU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/59unIB7_Q0c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/C5cloj5SRIk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/C5cloj5SRIk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vqBAqsXbkQQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/vqBAqsXbkQQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/N6gPRKkH_5Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/59unIB7_Q0c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/uaSIGp2c3tU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/hDxwA1E2fug" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/1FFrxvcFpYY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-carousel-slide-nuevo">
+                <div class="video-responsive-container-vertical">
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/zhHt00TgGgc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
          </div>
