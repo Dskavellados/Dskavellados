@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSKAVELLADOS</title>
+    <title>DSKAVELLADOS - La Banda Que Revoluciona el Rock</title>
+    <!-- Fuente Poppins para un diseño moderno y legible -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Iconos de Font Awesome para una amplia variedad de iconos -->
     <script src="https://kit.fontawesome.com/6c4ad435c2.js" crossorigin="anonymous"></script>
+    <!-- Favicon de tu sitio web -->
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
     <style>
-        /* Estilos Generales */
+        /* Estilos Generales del Cuerpo */
         body {
             background-color: #1a1a1a; /* Fondo más oscuro que negro puro */
             color: white;
             text-align: center;
-            font-family: 'Poppins', Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif; /* Aplicar fuente Poppins */
             margin: 0;
             padding-top: 60px; /* Espacio para el header fijo */
             overflow-x: hidden; /* Evita el scroll horizontal */
@@ -96,7 +102,7 @@
             text-shadow: 0 0 25px #ffcc00, 0 0 40px #ff0000; /* Brillo más intenso con doble sombra */
         }
 
-        /* Contenedor del Video de Fondo */
+        /* Contenedor del Video de Fondo (Hero) */
         .hero-video-container {
             position: relative;
             width: 100%;
@@ -113,20 +119,20 @@
             align-items: center;
         }
 
-        /* Estilos para el video */
+        /* Estilos para el video de fondo */
         .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* VUELTO A COVER: Cubrir el contenedor, recortando si es necesario */
+            object-fit: cover; /* Cubrir el contenedor, recortando si es necesario */
             z-index: 0;
             border-radius: 15px;
             filter: grayscale(50%) brightness(0.7); /* Desaturar y oscurecer el video */
         }
 
-        /* Separador */
+        /* Separador entre secciones */
         .separador {
             border-top: 8px solid #ff0000; /* Más grueso y prominente */
             margin: 100px auto; /* Más margen */
@@ -141,13 +147,13 @@
             color: #ff0000; /* Color rojo para los títulos */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Sombra para los títulos */
             margin-bottom: 30px;
-            transition: color 0.3s ease, text-shadow 0.3s ease; /* ADDED/MODIFIED: Ensure transition */
+            transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición para efectos hover */
         }
 
-        /* Hover effect for h2 titles */
+        /* Efecto hover para títulos h2 */
         h2:hover {
-            color: #ffcc00; /* Change color on hover - matches nav link hover */
-            text-shadow: 0 0 20px #ffcc00, 0 0 30px #ff0000; /* Glow effect - adjust intensity if needed, aiming for similarity to nav link hover which is '0 0 25px #ffcc00, 0 0 40px #ff0000' */
+            color: #ffcc00; /* Cambia el color al pasar el ratón */
+            text-shadow: 0 0 20px #ffcc00, 0 0 30px #ff0000; /* Efecto de brillo */
         }
 
         p {
@@ -158,16 +164,16 @@
             text-shadow: 0px 0px 2px #ffcc00, 0px 0px 4px #ffd700; /* Contorno amarillo/dorado */
         }
 
-        /* Galería - Carrusel (Fade Effect) */
+        /* Galería de Imágenes - Carrusel (Fade Effect) */
         .galeria {
             width: 80%;
-            max-width: 1200px; /* MODIFIED FROM 800px */
+            max-width: 1200px;
             margin: auto;
             overflow: hidden;
             position: relative;
             border-radius: 15px; /* Más redondeado */
             box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); /* Sombra más intensa */
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 16 / 9; /* Proporción de aspecto para la galería */
             background-color: #222;
             border: 4px solid #ff0000; /* Borde rojo para el carrusel */
             display: flex; /* Para centrar el contenido de carga */
@@ -203,7 +209,7 @@
             z-index: 2; /* Asegura que la imagen activa esté en la parte superior */
         }
 
-        /* Controles de navegación del carrusel */
+        /* Controles de navegación del carrusel de imágenes */
         .galeria .nav-arrow {
             position: absolute;
             top: 50%;
@@ -235,7 +241,7 @@
             right: 15px;
         }
 
-        /* Modal para la galería de imágenes */
+        /* Modal para la galería de imágenes (ventana emergente) */
         .modal {
             display: none;
             position: fixed;
@@ -276,18 +282,18 @@
             color: #ffcc00; /* Amarillo al pasar el ratón */
         }
 
-        /* Styling for the videos container */
+        /* Contenedor de Videos General (para Facebook/TikTok) */
         .videos {
-            max-width: 1000px; /* Or a suitable value */
+            max-width: 1000px; /* Ancho máximo para el contenedor de videos */
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Contenedor responsivo para videos */
+        /* Contenedor responsivo para videos (16:9 - horizontal) */
         .video-responsive-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width = 9 / 16 = 0.5625) */
-            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0; /* Important for padding-bottom to work */
             overflow: hidden;
             max-width: 100%;
             margin: 30px auto; /* Centrar y añadir margen */
@@ -296,6 +302,33 @@
             border: 4px solid #ff0000; /* Borde rojo para los videos */
         }
 
+        /* Contenedor responsivo para videos (9:16 - vertical) */
+        .video-responsive-container-vertical {
+            position: relative;
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio (height / width = 16 / 9 = 1.7777) */
+            height: 0; /* Important for padding-bottom to work */
+            overflow: hidden;
+            width: 80%; /* Ajuste de ancho para TikTok, más estrecho que 100% */
+            max-width: 500px; /* Max-width para video vertical (similar a Facebook) */
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            border: 4px solid #ff0000;
+        }
+
+        /* Ajuste específico para el contenedor del video de TikTok para cortar el contenido inferior */
+        /* La altura se ajusta para que coincida con el carrusel de Facebook */
+        #tiktok-video-container {
+            /* Se ha modificado para usar la misma lógica de aspecto que video-responsive-container-vertical,
+               pero se añade un `max-height` si el iframe de TikTok inyecta elementos adicionales
+               que no se controlan con el padding-bottom intrínseco. */
+            max-height: 710px; /* Ajuste para recortar contenido extra, basada en el aspecto 9:16 de 400px de ancho */
+            /* Este valor (710px) es un cálculo aproximado de 1.7777 * 400px.
+               Puede que necesites ajustarlo si el contenido del iframe varía o si hay barras de desplazamiento no deseadas. */
+            overflow: hidden; /* Asegura que el contenido que excede max-height se recorte */
+        }
+
+        /* Asegura que los iframes dentro de los contenedores responsivos ocupen todo el espacio */
         .video-responsive-container iframe,
         .video-responsive-container-vertical iframe {
             position: absolute;
@@ -304,43 +337,33 @@
             width: 100%;
             height: 100%;
             border: 0;
+            /* object-fit: contain; */ /* Removido para videos, ya que puede causar barras negras si el iframe no llena perfectamente.
+                                     Los embeds de YouTube y TikTok generalmente manejan su propio ajuste. */
         }
 
-        .video-responsive-container-vertical {
-            position: relative;
-            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 400px; /* Max-width for vertical video */
-            margin: 30px auto;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-            border: 4px solid #ff0000;
-        }
-
-        /* Video Carousel Styles */
+        /* Estilos para el carrusel de videos de Facebook/TikTok */
         .video-carousel {
             position: relative;
-            max-width: 400px; /* Should match .video-responsive-container-vertical max-width */
+            max-width: 500px; /* Coincide con max-width de videos verticales para consistencia */
             margin: 30px auto;
-            overflow: hidden; /* Important for slide effect */
-            border-radius: 15px; /* Optional: if you want rounded corners on the carousel viewport */
-            /* Add any other specific styling for the carousel container, like borders from .video-responsive-container-vertical if needed */
-            /* border: 4px solid #0000ff; /* Example: blue border for testing */
+            overflow: hidden;
+            border-radius: 15px;
+            border: 4px solid #ff0000; /* Borde rojo para el carrusel */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
         }
 
         .video-carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            height: 100%; /* Asegura que la pista ocupe toda la altura */
         }
 
         .video-carousel-slide {
-            flex: 0 0 100%; /* Each slide takes full width of the carousel */
+            flex: 0 0 100%; /* Cada slide ocupa el ancho completo del carrusel */
             box-sizing: border-box;
-            /* The .video-responsive-container-vertical within the slide handles the aspect ratio */
         }
 
-        /* Video Navigation Arrows - can reuse/adapt from .galeria .nav-arrow if desired, but ensure distinct or no conflict */
+        /* Flechas de navegación para carruseles de video de Facebook/TikTok */
         .video-carousel .video-nav-arrow {
             position: absolute;
             top: 50%;
@@ -369,6 +392,87 @@
 
         .video-carousel .video-nav-arrow.next {
             right: 10px;
+        }
+
+        /* New Video Carousel Styles for Presentaciones en Vivo (YouTube) */
+        .presentaciones-envivo-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #111;
+            padding: 50px 0;
+            box-sizing: border-box;
+        }
+
+        .video-carousel-nuevo {
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+            background-color: #222;
+            border: 4px solid #ff0000;
+            display: flex; /* Ensure flexbox for sliding */
+            justify-content: center;
+            align-items: center;
+            min-height: 300px; /* Base height, will be adjusted by content */
+        }
+
+        .video-carousel-nuevo .loading-indicator-nuevo {
+            color: gray;
+            font-size: 1.2em;
+            position: absolute;
+            z-index: 5;
+        }
+
+        .video-carousel-track-nuevo {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%; /* Ensure track takes full height */
+        }
+
+        /* Styles for individual slides within the new YouTube carousel */
+        .video-carousel-slide-nuevo {
+            flex: 0 0 100%; /* Each slide takes full width of the carousel */
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px; /* Add some padding around the video */
+            min-height: 100%; /* Ensure slide takes up min height of carousel */
+        }
+
+        /* Navigation arrows for the new YouTube carousel */
+        .video-carousel-nuevo .nav-arrow-nuevo {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 2.5em;
+            border-radius: 8px;
+            z-index: 10;
+            transition: background-color 0.3s ease, color 0.3s, box-shadow 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+        }
+
+        .video-carousel-nuevo .nav-arrow-nuevo:hover {
+            background-color: rgba(0, 0, 0, 1);
+            color: #ffcc00;
+            box-shadow: 0 0 35px #ffcc00;
+        }
+
+        .video-carousel-nuevo .prev-nuevo {
+            left: 15px;
+        }
+
+        .video-carousel-nuevo .next-nuevo {
+            right: 15px;
         }
 
         /* Contenedor de redes sociales flotante en el lateral */
@@ -424,7 +528,7 @@
 
         /* Botón de WhatsApp dentro del flotante */
         .floating-social .whatsapp-button {
-            display: none;
+            display: none; /* Se mostrará con JS si es necesario */
             background-color: #25D366;
             color: white;
             text-decoration: none;
@@ -440,8 +544,192 @@
             box-shadow: 0 0 30px rgba(37, 211, 102, 1);
         }
 
+        /* Estilos para secciones de contenido */
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #0d0d0d;
+            margin-bottom: 20px;
+        }
 
-        /* Responsive adjustments */
+        .section h2 {
+            color: #ff0000;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: #ff0000;
+            left: 20%;
+            bottom: -10px;
+        }
+
+        /* Estilos de tarjetas de miembros de banda */
+        .member-card {
+            display: inline-block;
+            margin: 20px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 250px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .member-card img {
+            width: 100%;
+            height: 250px; /* Altura fija para mantener consistencia */
+            object-fit: cover; /* Recortar imagen para cubrir el área */
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-info h3 {
+            color: #ff0000;
+            margin-bottom: 5px;
+        }
+
+        .member-info p {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+
+        /* Estilos de tarjetas de álbum */
+        .album-card {
+            display: inline-block;
+            margin: 20px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .album-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .album-info {
+            padding: 20px;
+        }
+
+        .album-info h3 {
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+
+        .album-info p {
+            color: #ccc;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .song-list {
+            list-style: none;
+            padding: 0;
+            color: #ccc;
+        }
+
+        .song-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .song-list li i {
+            margin-right: 10px;
+            color: #ff0000;
+        }
+
+        /* Estilos para noticias y merchandising (simplificados para este ejemplo) */
+        .news-item, .merch-item {
+            background-color: #1a1a1a;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 700px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .merch-item img {
+            max-width: 150px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .button {
+            background-color: #ff0000;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #cc0000;
+        }
+
+        /* Estilos del formulario de contacto */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ff0000;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .contact-form button {
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #cc0000;
+        }
+
+        .footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+
+        /* Ajustes Responsivos */
         @media (max-width: 768px) {
             body {
                 padding-top: 60px;
@@ -450,7 +738,7 @@
             .hero-video-container {
                 width: 95%; /* Más ancho en móvil */
                 margin-top: 60px;
-                padding: 0; /* Eliminar padding extra en móvil, ya lo maneja el video */
+                padding: 0;
             }
 
             .separador {
@@ -471,12 +759,14 @@
                 height: 100%;
             }
 
-            /* Los videos se ajustan automáticamente con el contenedor responsivo */
-
             .btn-menu {
                 display: block;
                 position: absolute;
                 left: 20px;
+            }
+
+            header {
+                justify-content: flex-end; /* Alinear elementos a la derecha cuando el menú está oculto */
             }
 
             .nav-menu {
@@ -499,7 +789,7 @@
 
             .nav-menu.active {
                 display: flex;
-                max-height: 350px;
+                max-height: 350px; /* Altura máxima para mostrar todos los ítems */
             }
 
             .nav-menu li {
@@ -510,11 +800,19 @@
             .floating-social {
                 right: 5px;
                 left: auto;
-                gap: 6px;
-                padding: 3px;
+                top: 70px; /* Ajustado para no chocar con el header en móvil */
+                transform: translateY(0); /* Resetear transform para móvil */
+                flex-direction: row; /* En fila para pantallas más pequeñas */
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                background-color: rgba(0, 0, 0, 0.8);
+                padding: 5px;
+                box-shadow: none; /* Eliminar sombra extra */
             }
             .floating-social .social-icon,
-            .floating-social .social-icon-svg { /* Incluir social-icon-svg aquí */
+            .floating-social .social-icon-svg {
                 width: 30px; /* Más pequeño */
                 height: 30px;
             }
@@ -525,6 +823,7 @@
             .floating-social .whatsapp-button {
                 font-size: 0.8em;
                 padding: 4px 6px;
+                display: block; /* Asegurarse de que se muestre en móvil si es necesario */
             }
         }
 
@@ -539,15 +838,13 @@
                 margin: 40px auto;
             }
 
-            /* Videos ya son responsivos */
-
             .floating-social {
                 right: 3px;
                 gap: 4px;
                 padding: 2px;
             }
             .floating-social .social-icon,
-            .floating-social .social-icon-svg { /* Incluir social-icon-svg aquí */
+            .floating-social .social-icon-svg {
                 width: 28px;
                 height: 28px;
             }
@@ -560,80 +857,6 @@
                 padding: 3px 5px;
             }
         }
-
-     /* New Video Carousel Styles for Presentaciones en Vivo */
-     .video-carousel-nuevo {
-         width: 80%; /* Or max-width like other carousels */
-         max-width: 1200px; /* MODIFIED FROM 500px */
-         aspect-ratio: 16 / 9; /* ADDED */
-         margin: auto;
-         overflow: hidden;
-         position: relative;
-         border-radius: 15px;
-         box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-         /* aspect-ratio: 9 / 16; /* Default to vertical, but individual slides will control their aspect ratio */
-         background-color: #222;
-         border: 4px solid #ff0000;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         min-height: 300px; /* Adjust as needed */
-     }
-
-     .video-carousel-nuevo .loading-indicator-nuevo {
-         color: gray;
-         font-size: 1.2em;
-         position: absolute;
-         z-index: 5;
-     }
-
-     .video-carousel-track-nuevo {
-         display: flex;
-         transition: transform 0.5s ease-in-out;
-         height: 100%; /* Ensure track takes full height */
-     }
-
-     /* Styles for individual slides within the new carousel (will contain iframes) */
-     /* .video-carousel-slide-nuevo will be the class for divs added in the next step */
-     .video-carousel-slide-nuevo {
-         flex: 0 0 100%; /* Each slide takes full width of the carousel */
-         box-sizing: border-box;
-         display: flex;        /* Added for centering content */
-         align-items: center;  /* Added for centering content */
-         justify-content: center; /* Added for centering content */
-         min-height: 100%; /* Ensure slide takes up min height of carousel */
-     }
-
-     /* Navigation arrows for the new carousel */
-     .video-carousel-nuevo .nav-arrow-nuevo {
-         position: absolute;
-         top: 50%;
-         transform: translateY(-50%);
-         background-color: rgba(0, 0, 0, 0.9);
-         color: white;
-         border: none;
-         padding: 12px 18px;
-         cursor: pointer;
-         font-size: 2.5em;
-         border-radius: 8px;
-         z-index: 10;
-         transition: background-color 0.3s ease, color 0.3s, box-shadow 0.3s ease;
-         box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
-     }
-
-     .video-carousel-nuevo .nav-arrow-nuevo:hover {
-         background-color: rgba(0, 0, 0, 1);
-         color: #ffcc00;
-         box-shadow: 0 0 35px #ffcc00;
-     }
-
-     .video-carousel-nuevo .prev-nuevo {
-         left: 15px;
-     }
-
-     .video-carousel-nuevo .next-nuevo {
-         right: 15px;
-     }
     </style>
 </head>
 <body>
@@ -670,10 +893,10 @@
                 document.body.style.backgroundImage = `url('${selectedImage}')`;
             }
 
-            setRandomBackground(); // Set background on page load
+            setRandomBackground(); // Establecer el fondo al cargar la página
         });
 
-        // Script para cargar el video de fondo dinámico
+        // Script para cargar el video de fondo dinámico en la sección principal
         document.addEventListener('DOMContentLoaded', () => {
             const heroVideo = document.getElementById('heroVideo');
             const videoSources = [
@@ -699,7 +922,21 @@
 
         // Script para la galería de imágenes (carrusel con fade y auto-transición)
         document.addEventListener('DOMContentLoaded', () => {
-            const galleryImages = document.querySelectorAll('.galeria img');
+            const allGalleryImages = Array.from(document.querySelectorAll('.galeria img'));
+            const memberImageUrls = [ // URLs de imágenes de miembros a excluir
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg", /* Andres Vocalista */
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg", /* Andres Vocalista, Guitarra */
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg", /* Jorge Trombonista */
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg", /* Angela Saxofonista */
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg", /* Natalia Trompetista */
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg", /* Jeison Bajista */
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg", /* Will Guitarrista Principal */
+                "https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" /* Santiago Baterista */
+            ];
+
+            // Filtrar imágenes para el carrusel de la galería, excluyendo las de los miembros
+            const galleryImages = allGalleryImages.filter(img => !memberImageUrls.includes(img.src));
+
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const galleryLoading = document.getElementById('galleryLoading');
@@ -708,7 +945,23 @@
             const closeButton = document.querySelector('.close-button');
 
             let currentIndex = 0;
+            let currentImageOrder = []; // Mantener el orden actual de las imágenes
             let intervalId; // Para almacenar el ID del intervalo y poder reiniciarlo
+
+            // Función para barajar las imágenes
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            // Inicializar el orden aleatorio de las imágenes
+            function initializeGalleryOrder() {
+                currentImageOrder = [...galleryImages]; // Copiar todas las imágenes disponibles
+                shuffleArray(currentImageOrder); // Barajarlas
+                currentIndex = 0; // Reiniciar el índice
+            }
 
             // Función para mostrar una imagen específica
             function showImage(index) {
@@ -717,24 +970,31 @@
                     galleryLoading.style.display = 'none';
                 }
 
-                galleryImages.forEach((img, i) => {
-                    if (i === index) {
-                        img.classList.add('active'); // Muestra la imagen actual
-                    } else {
-                        img.classList.remove('active'); // Oculta las demás
-                    }
+                allGalleryImages.forEach((img) => { // Asegurarse de ocultar todas las imágenes antes de mostrar la activa
+                    img.classList.remove('active');
                 });
+
+                if (currentImageOrder.length > 0) {
+                    const activeImageElement = currentImageOrder[index];
+                    activeImageElement.classList.add('active'); // Muestra la imagen actual
+                }
             }
 
             // Función para avanzar a la siguiente imagen
             function nextImage() {
-                currentIndex = (currentIndex + 1) % galleryImages.length;
+                currentIndex = (currentIndex + 1) % currentImageOrder.length;
                 showImage(currentIndex);
             }
 
             // Función para retroceder a la imagen anterior
             function prevImage() {
-                currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                currentIndex = (currentIndex + 1) % currentImageOrder.length;
+                // Ajustar currentIndex si es 0, para que vaya al final de la lista si está en la primera imagen.
+                // Esta es una implementación simplificada de "anterior" con barajado continuo.
+                // Para un verdadero "anterior" con aleatoriedad, la lógica sería más compleja manteniendo un historial.
+                // Por ahora, lo mantenemos como "siguiente" pero para que siempre avance en el ciclo.
+                // Si realmente se necesita ir "atrás" en un orden aleatorio sin repetición, se necesita un array de historial de imágenes mostradas.
+                currentIndex = (currentIndex - 1 + currentImageOrder.length) % currentImageOrder.length;
                 showImage(currentIndex);
             }
 
@@ -763,12 +1023,17 @@
             }
 
             // Event listeners para abrir el modal al hacer clic en una imagen
-            galleryImages.forEach((img, index) => {
-                img.addEventListener('click', () => {
-                    modalImage.src = img.src;
-                    imageModal.style.display = 'flex'; // Usar flex para centrar el contenido
+            // Ahora se usa currentImageOrder para el modal
+            allGalleryImages.forEach((imgElement) => {
+                imgElement.addEventListener('click', () => {
+                    // Solo abrir modal si la imagen no es de un miembro (es parte de la galería)
+                    if (!memberImageUrls.includes(imgElement.src)) {
+                        modalImage.src = imgElement.src;
+                        imageModal.style.display = 'flex'; // Usar flex para centrar el contenido
+                    }
                 });
             });
+
 
             // Event listener para cerrar el modal
             if (closeButton) {
@@ -786,13 +1051,14 @@
                 });
             }
 
-            // Inicializar la galería: mostrar la primera imagen y empezar el auto-slide
+            // Inicializar la galería: mostrar la primera imagen aleatoria y empezar el auto-slide
             if (galleryImages.length > 0) {
+                initializeGalleryOrder(); // Generar el primer orden aleatorio
                 showImage(currentIndex);
                 startAutoSlide();
             } else {
                 if (galleryLoading) {
-                    galleryLoading.textContent = 'No hay imágenes para mostrar.';
+                    galleryLoading.textContent = 'No hay imágenes para mostrar en la galería (las imágenes de miembros están excluidas).';
                 }
             }
         });
@@ -817,7 +1083,269 @@
                 });
             }
         });
+
+        // Script para el carrusel de videos de Facebook/TikTok
+        document.addEventListener('DOMContentLoaded', () => {
+            const fbVideoCarousel = document.getElementById('facebookVideoCarousel');
+            if (fbVideoCarousel) { // Verificar si el elemento del carrusel existe
+                const track = document.getElementById('facebookVideoTrack');
+                const slides = Array.from(track.children);
+                const nextButton = document.getElementById('fbVideoNextBtn');
+                const prevButton = document.getElementById('fbVideoPrevBtn');
+
+                if (!track || !nextButton || !prevButton || slides.length === 0) {
+                    console.warn('Elementos del carrusel de videos de Facebook no encontrados o no hay slides.');
+                    return;
+                }
+
+                let fbCurrentIndex = 0;
+                let slideWidth = fbVideoCarousel.clientWidth;
+
+                const updateFbCarousel = () => {
+                    track.style.transform = `translateX(-${fbCurrentIndex * slideWidth}px)`;
+                };
+
+                if (slideWidth === 0 && slides.length > 0) {
+                    console.warn("El ancho del slide del carrusel de videos de Facebook es 0 inicialmente. Usando clientWidth del carrusel como respaldo.");
+                }
+
+                nextButton.addEventListener('click', () => {
+                    slideWidth = fbVideoCarousel.clientWidth; // Recalcular en interacción
+                    fbCurrentIndex = (fbCurrentIndex + 1) % slides.length;
+                    updateFbCarousel();
+                });
+
+                prevButton.addEventListener('click', () => {
+                    slideWidth = fbVideoCarousel.clientWidth; // Recalcular en interacción
+                    fbCurrentIndex = (fbCurrentIndex - 1 + slides.length) % slides.length;
+                    updateFbCarousel();
+                });
+
+                window.addEventListener('resize', () => {
+                    if (slides.length > 0) {
+                        slideWidth = fbVideoCarousel.clientWidth; // Usar clientWidth del carrusel para la responsividad
+                        updateFbCarousel();
+                    }
+                });
+            }
+        });
+
+        // YouTube Iframe API integration for Presentaciones en Vivo Carousel
+        // Cargar el script de la API de YouTube
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let youtubePlayers = []; // Renombrado a youtubePlayers para evitar conflicto con 'players' de la galería
+        const youtubeVideoIDs = [
+            'C5cloj5SRIk',   // 1. Horizontal
+            'vqBAqsXbkQQ',   // 2. Vertical
+            'N6gPRKkH_5Y',   // 3. Vertical (Nota: Este ID puede ser de un video horizontal, pero se marcó como vertical)
+            '59unIB7_Q0c',   // 4. Vertical
+            'uaSIGp2c3tU',   // 5. Vertical
+            'hDxwA1E2fug',   // 6. Vertical
+            '1FFrxvcFpYY',   // 7. Vertical
+            'zhHt00TgGgc'    // 8. Vertical
+        ];
+        let lastPlayedYouTubePlayerIndex = -1; // Para llevar un seguimiento del último video de YouTube reproducido
+
+        window.onYouTubeIframeAPIReady = function() {
+            initPresentacionesCarouselWithYouTubeAPI();
+        };
+
+        function initPresentacionesCarouselWithYouTubeAPI() {
+            const presentacionesCarousel = document.getElementById('presentacionesVideoCarousel');
+            if (!presentacionesCarousel) return;
+
+            const track = document.getElementById('presentacionesVideoTrack');
+            const nextButton = document.getElementById('presentacionesVideoNextBtn');
+            const prevButton = document.getElementById('presentacionesVideoPrevBtn');
+            const loadingIndicator = document.getElementById('presentacionesVideoLoading');
+
+            // Asegurarse de que el indicador de carga esté visible inicialmente si es necesario
+            if (loadingIndicator) loadingIndicator.style.display = 'block';
+
+            if (!track || !nextButton || !prevButton) {
+                console.warn('Uno o más elementos para el carrusel de Presentaciones en Vivo no encontrados (botones/track).');
+                if(loadingIndicator) loadingIndicator.textContent = 'Error al cargar carrusel.';
+                return;
+            }
+            if (youtubeVideoIDs.length === 0) {
+                if(loadingIndicator) loadingIndicator.textContent = 'No hay videos de YouTube configurados.';
+                return;
+            }
+
+
+            // Crear reproductores de YouTube
+            for (let i = 0; i < youtubeVideoIDs.length; i++) {
+                const playerDivId = 'youtube-player-' + i;
+                const playerContainer = document.getElementById(playerDivId);
+
+                // Comprobar si el contenedor del reproductor existe. Si no, añadir un mensaje de error.
+                if (!playerContainer) {
+                    console.error(`Contenedor para el reproductor ${playerDivId} no encontrado.`);
+                    // Crear un div de error si el contenedor no existe
+                    const slide = document.getElementById('youtube-player-container-' + i);
+                    if (slide) {
+                        slide.innerHTML = `<p style="color:red; text-align:center; padding: 20px;">Error: Contenedor '${playerDivId}' no encontrado para video '${youtubeVideoIDs[i]}'.</p>`;
+                    }
+                    continue; // Saltar a la siguiente iteración
+                }
+
+                youtubePlayers[i] = new YT.Player(playerDivId, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: youtubeVideoIDs[i],
+                    playerVars: {
+                        'autoplay': 0,
+                        'controls': 1,
+                        'modestbranding': 1,
+                        'fs': 1,
+                        'rel': 0
+                    },
+                    events: {
+                        'onReady': onYouTubePlayerReady,
+                        'onStateChange': onYouTubePlayerStateChange,
+                        'onError': onYouTubePlayerError
+                    }
+                });
+            }
+
+            let slides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo'));
+            let currentIndex = 0;
+            let slideWidth = 0;
+
+            function updateSlideWidth() {
+                if (slides.length > 0) {
+                    slideWidth = presentacionesCarousel.clientWidth;
+                }
+            }
+
+            function updateCarousel() {
+                if (slides.length === 0 || slideWidth === 0) {
+                    if (loadingIndicator) loadingIndicator.style.display = slides.length > 0 ? 'block' : 'none';
+                    if (slides.length === 0 && loadingIndicator) loadingIndicator.textContent = 'No hay videos para mostrar.';
+                    return;
+                }
+                if (loadingIndicator) loadingIndicator.style.display = 'none';
+
+                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+                // Pausar el video anterior si estaba reproduciéndose
+                if (lastPlayedYouTubePlayerIndex !== -1 && youtubePlayers[lastPlayedYouTubePlayerIndex] && typeof youtubePlayers[lastPlayedYouTubePlayerIndex].pauseVideo === 'function') {
+                    if (typeof youtubePlayers[lastPlayedYouTubePlayerIndex].getPlayerState === 'function' && youtubePlayers[lastPlayedYouTubePlayerIndex].getPlayerState() === YT.PlayerState.PLAYING) {
+                        youtubePlayers[lastPlayedYouTubePlayerIndex].pauseVideo();
+                    }
+                }
+            }
+
+            nextButton.addEventListener('click', () => {
+                if (slides.length === 0) return;
+                // Pausar el video actual antes de cambiar de slide
+                if (youtubePlayers[currentIndex] && typeof youtubePlayers[currentIndex].pauseVideo === 'function') {
+                    youtubePlayers[currentIndex].pauseVideo();
+                }
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+            });
+
+            prevButton.addEventListener('click', () => {
+                if (slides.length === 0) return;
+                // Pausar el video actual antes de cambiar de slide
+                if (youtubePlayers[currentIndex] && typeof youtubePlayers[currentIndex].pauseVideo === 'function') {
+                    youtubePlayers[currentIndex].pauseVideo();
+                }
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateCarousel();
+            });
+
+            window.addEventListener('resize', () => {
+                if (slides.length > 0) {
+                    updateSlideWidth();
+                    updateCarousel();
+                }
+            });
+
+            // Actualizar la lista de slides y el estado de los botones al inicio y por mutaciones
+            function refreshCarouselState() {
+                slides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo'));
+                if (slides.length > 0) {
+                    updateSlideWidth();
+                    updateCarousel();
+                    if (slides.length <= 1) {
+                        nextButton.style.display = 'none';
+                        prevButton.style.display = 'none';
+                    } else {
+                        nextButton.style.display = 'block';
+                        prevButton.style.display = 'block';
+                    }
+                } else {
+                    if (loadingIndicator) loadingIndicator.style.display = 'block';
+                    nextButton.style.display = 'none';
+                    prevButton.style.display = 'none';
+                }
+            }
+
+            refreshCarouselState(); // Llamar al inicio
+
+            // Observador de mutaciones para actualizar el carrusel si se añaden/quitan slides dinámicamente
+            const observer = new MutationObserver((mutationsList, observer) => {
+                for(const mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        refreshCarouselState();
+                    }
+                }
+            });
+            observer.observe(track, { childList: true });
+        }
+
+        function onYouTubePlayerReady(event) {
+            console.log('Reproductor de YouTube listo:', event.target.getVideoData().title);
+            const loadingIndicator = document.getElementById('presentacionesVideoLoading');
+            if (loadingIndicator) loadingIndicator.style.display = 'none';
+
+            // Asegurarse de que los botones de navegación se muestren/oculten correctamente
+            const track = document.getElementById('presentacionesVideoTrack');
+            const nextButton = document.getElementById('presentacionesVideoNextBtn');
+            const prevButton = document.getElementById('presentacionesVideoPrevBtn');
+            if (track && nextButton && prevButton) {
+                const numSlides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo')).length;
+                if (numSlides <= 1) {
+                    nextButton.style.display = 'none';
+                    prevButton.style.display = 'none';
+                } else {
+                    nextButton.style.display = 'block';
+                    prevButton.style.display = 'block';
+                }
+            }
+        }
+
+        function onYouTubePlayerStateChange(event) {
+            // Actualizar el índice del último reproductor de YouTube si está reproduciendo
+            if (event.data === YT.PlayerState.PLAYING) {
+                const playerIndex = youtubePlayers.findIndex(p => p === event.target);
+                if (playerIndex !== -1) {
+                    lastPlayedYouTubePlayerIndex = playerIndex;
+                }
+            }
+        }
+
+        function onYouTubePlayerError(event) {
+            console.error('Error del reproductor de YouTube:', event.data, 'para el ID de video:', event.target.getVideoData().video_id);
+            const playerContainer = event.target.getIframe().closest('.video-carousel-slide-nuevo');
+            if (playerContainer) {
+                const playerId = event.target.getIframe().id.replace('player_', '');
+                const placeholder = document.getElementById('youtube-player-' + playerId) || playerContainer.querySelector('div[id^="youtube-player-"]');
+                if (placeholder) {
+                    placeholder.innerHTML = `<p style="color:red; text-align:center; font-size: 0.9em;">Error al cargar video.</p><p style="color:grey; text-align:center; font-size:0.7em;">ID: ${event.target.getVideoData().video_id}, Error: ${event.data}</p>`;
+                } else {
+                    playerContainer.innerHTML = `<p style="color:red; text-align:center;">Error al cargar video (placeholder not found).</p>`;
+                }
+            }
+        }
     </script>
+
     <header>
         <a href="#" class="btn-menu" id="btn-menu"><i class="fas fa-bars"></i></a>
         <nav class="nav-menu" id="nav-menu">
@@ -825,6 +1353,8 @@
             <li><a href="#musica">Música</a></li>
             <li><a href="#galeria">Galería</a></li>
             <li><a href="#presentaciones-en-vivo">En Vivo</a></li>
+            <li><a href="#news">Noticias</a></li>
+            <li><a href="#merch">Merch</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </nav>
     </header>
@@ -834,411 +1364,346 @@
     </div>
     <div class="separador"></div>
 
-    <h2 id="acerca">Acerca de Nosotros</h2>
-    <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas.</p>
+    <section id="acerca" class="section">
+        <h2>Acerca de Nosotros</h2>
+        <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas y un estilo inconfundible. Desde nuestra formación en 2024, hemos estado comprometidos en crear música que resuene con la experiencia urbana y la pasión por el cambio. Cada canción es un grito de libertad y un reflejo de nuestras vivencias, buscando siempre conectar con nuestra audiencia a un nivel auténtico y visceral.</p>
+        <div class="band-members">
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg" alt="Andres - Vocalista" style="object-position: 50% 20%;"> <!-- Ajuste de posición para Andrés Vocalista -->
+                <div class="member-info">
+                    <h3>Andres</h3>
+                    <p>Vocalista</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg" alt="Andres - Vocalista, Guitarra" style="object-position: 50% 30%;"> <!-- Ajuste de posición para Andrés Vocalista, Guitarra -->
+                <div class="member-info">
+                    <h3>Andres</h3>
+                    <p>Vocalista, Guitarra</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Jorge - Trombonista" style="object-position: 50% 30%;">
+                <div class="member-info">
+                    <h3>Jorge</h3>
+                    <p>Trombonista</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg" alt="Angela - Saxofonista" style="object-fit: contain;"> <!-- Ajuste de Angela a 'contain' -->
+                <div class="member-info">
+                    <h3>Angela</h3>
+                    <p>Saxofonista</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Natalia - Trompetista" style="object-position: 50% 30%;">
+                <div class="member-info">
+                    <h3>Natalia</h3>
+                    <p>Trompetista</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg" alt="Jeison - Bajista" style="object-position: 50% 30%;">
+                <div class="member-info">
+                    <h3>Jeison</h3>
+                    <p>Bajista</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg" alt="Will - Guitarrista Principal" style="object-position: 50% 30%;">
+                <div class="member-info">
+                    <h3>Will</h3>
+                    <p>Guitarrista Principal</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Santiago - Baterista" style="object-position: 50% 30%;">
+                <div class="member-info">
+                    <h3>Santiago</h3>
+                    <p>Baterista</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Separador oculto si la sección de Música está oculta -->
+    <div class="separador" style="display: none;"></div>
+
+    <section id="musica" class="section" style="display: none;">
+        <h2>Nuestra Música</h2>
+        <p>Explora nuestros álbumes y sencillos más recientes. ¡Sube el volumen y siente la energía!</p>
+
+        <!-- Spotify Embed -->
+        <div class="video-responsive-container">
+            <iframe src="https://open.spotify.com/embed/artist/5P4g0Z2X1Q0Q0Q0Q0Q0Q?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <div class="album-card">
+            <img src="https://placehold.co/300x300/333333/FFFFFF?text=Album+1" alt="Álbum Despertar">
+            <div class="album-info">
+                <h3>Despertar</h3>
+                <p>Lanzamiento: 2023</p>
+                <ul class="song-list">
+                    <li><i class="fas fa-music"></i> Ecos del Silencio</li>
+                    <li><i class="fas fa-music"></i> Camino Sin Fin</li>
+                    <li><i class="fas fa-music"></i> La Última Luz</li>
+                    <li><i class="fas fa-music"></i> Cenizas y Fuego</li>
+                </ul>
+                <a href="https://open.spotify.com/artist/YOUR_SPOTIFY_ID" target="_blank" class="button">Escuchar en Spotify</a>
+            </div>
+        </div>
+
+        <div class="album-card">
+            <img src="https://placehold.co/300x300/333333/FFFFFF?text=Album+2" alt="Álbum Caos y Redención">
+            <div class="album-info">
+                <h3>Caos y Redención</h3>
+                <p>Lanzamiento: 2022</p>
+                <ul class="song-list">
+                    <li><i class="fas fa-music"></i> Tormenta Interior</li>
+                    <li><i class="fas fa-music"></i> Héroes Caídos</li>
+                    <li><i class="fas fa-music"></i> Bajo la Luna</li>
+                    <li><i class="fas fa-music"></i> Despertar del Alma</li>
+                </ul>
+                <a href="https://open.spotify.com/artist/YOUR_SPOTIFY_ID" target="_blank" class="button">Escuchar en Spotify</a>
+            </div>
+        </div>
+
+        <div class="album-card">
+            <img src="https://placehold.co/300x300/333333/FFFFFF?text=Album+3" alt="Álbum Furia Latente">
+            <div class="album-info">
+                <h3>Furia Latente</h3>
+                <p>Lanzamiento: 2021</p>
+                <ul class="song-list">
+                    <li><i class="fas fa-music"></i> Ruido Blanco</li>
+                    <li><i class="fas fa-music"></i> Cicatrices</li>
+                    <li><i class="fas fa-music"></i> El Grito</li>
+                    <li><i class="fas fa-music"></i> Horizonte Roto</li>
+                </ul>
+                <a href="https://open.spotify.com/artist/YOUR_SPOTIFY_ID" target="_blank" class="button">Escuchar en Spotify</a>
+            </div>
+        </div>
+    </section>
     <div class="separador"></div>
 
-    <h2 id="musica" style="display: none;">Nuestra Música</h2>
-    <div class="video-responsive-container" style="display: none;">
-        <iframe src="https://open.spotify.com/embed/artist/5P4g0Z2X1Q0Q0Q0Q0Q0Q0Q?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
+    <section id="galeria" class="section">
+        <h2>Galería</h2>
+        <p>Momentos capturados de nuestros shows y sesiones.</p>
+        <div class="galeria">
+            <div class="loading-indicator" id="galleryLoading">Cargando galería...</div>
+            <!-- IMÁGENES DE LA GALERÍA (se cargarán dinámicamente y aleatoriamente) -->
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/1.jpg" alt="Dskavellados Imagen 1" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/2.jpg" alt="Dskavellados Imagen 2" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/11.jpg" alt="Dskavellados Imagen 11" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/12.jpg" alt="Dskavellados Imagen 12" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/14.jpg" alt="Dskavellados Imagen 14" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/15.jpg" alt="Dskavellados Imagen 15" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/16.jpg" alt="Dskavellados Imagen 16" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/17.jpg" alt="Dskavellados Imagen 17" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/19.jpg" alt="Dskavellados Imagen 19" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/20.jpg" alt="Dskavellados Imagen 20" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/22.jpg" alt="Dskavellados Imagen 22" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/23.jpg" alt="Dskavellados Imagen 23" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/25.jpg" alt="Dskavellados Imagen 25" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/26.jpg" alt="Dskavellados Imagen 26" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/28.jpg" alt="Dskavellados Imagen 28" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/29.jpg" alt="Dskavellados Imagen 29" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/30.jpg" alt="Dskavellados Imagen 30" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/32.jpg" alt="Dskavellados Imagen 32" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/33.jpg" alt="Dskavellados Imagen 33" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg" alt="Dskavellados Imagen 34" loading="lazy">
+            <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/35.jpg" alt="Dskavellados Imagen 35" loading="lazy">
 
-    <h2 id="galeria">Galería</h2>
-    <div class="galeria">
-        <div class="loading-indicator" id="galleryLoading">Cargando galería...</div>
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/1.jpg" alt="Dskavellados Imagen 1" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/2.jpg" alt="Dskavellados Imagen 2" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/3.jpg" alt="Dskavellados Imagen 3" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/4.jpg" alt="Dskavellados Imagen 4" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/5.jpg" alt="Dskavellados Imagen 5" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/6.jpg" alt="Dskavellados Imagen 6" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/7.jpg" alt="Dskavellados Imagen 7" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/8.jpg" alt="Dskavellados Imagen 8" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/9.jpg" alt="Dskavellados Imagen 9" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/10.jpg" alt="Dskavellados Imagen 10" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/11.jpg" alt="Dskavellados Imagen 11" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/12.jpg" alt="Dskavellados Imagen 12" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/13.jpg" alt="Dskavellados Imagen 13" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/14.jpg" alt="Dskavellados Imagen 14" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/15.jpg" alt="Dskavellados Imagen 15" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/16.jpg" alt="Dskavellados Imagen 16" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/17.jpg" alt="Dskavellados Imagen 17" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/18.jpg" alt="Dskavellados Imagen 18" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/19.jpg" alt="Dskavellados Imagen 19" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/20.jpg" alt="Dskavellados Imagen 20" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/21.jpg" alt="Dskavellados Imagen 21" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/22.jpg" alt="Dskavellados Imagen 22" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/23.jpg" alt="Dskavellados Imagen 23" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/24.jpg" alt="Dskavellados Imagen 24" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/25.jpg" alt="Dskavellados Imagen 25" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/26.jpg" alt="Dskavellados Imagen 26" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/27.jpg" alt="Dskavellados Imagen 27" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/28.jpg" alt="Dskavellados Imagen 28" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/29.jpg" alt="Dskavellados Imagen 29" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/30.jpg" alt="Dskavellados Imagen 30" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/31.jpg" alt="Dskavellados Imagen 31" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/32.jpg" alt="Dskavellados Imagen 32" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/33.jpg" alt="Dskavellados Imagen 33" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/34.jpg" alt="Dskavellados Imagen 34" loading="lazy">
-        <img src="https://raw.githubusercontent.com/Dskavellados/Dskavellados/main/Galeria/assets/img/35.jpg" alt="Dskavellados Imagen 35" loading="lazy">
-        
-        <button class="nav-arrow prev" id="prevBtn">❮</button>
-        <button class="nav-arrow next" id="nextBtn">❯</button>
-    </div>
+            <button class="nav-arrow prev" id="prevBtn">❮</button>
+            <button class="nav-arrow next" id="nextBtn">❯</button>
+        </div>
+    </section>
     <div class="separador"></div>
 
-    <h2 id="videos" style="display: none;">Videos</h2>
-    <div class="videos" style="display: none;">
-        <div class="video-carousel" id="facebookVideoCarousel" style="display: none;">
+    <section id="videos" class="section">
+        <h2>Videos Destacados</h2>
+        <p>Explora nuestras últimas publicaciones en redes sociales y videos exclusivos.</p>
+
+        <!-- Carrusel de Videos de Facebook -->
+        <h3>Videos de Facebook (Reels)</h3>
+        <div class="video-carousel" id="facebookVideoCarousel">
             <div class="video-carousel-track" id="facebookVideoTrack">
-                <!-- Existing Facebook Video 1 -->
                 <div class="video-carousel-slide">
                     <div class="video-responsive-container-vertical">
-                        <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
                     </div>
                 </div>
-                <!-- New Facebook Video 2 -->
                 <div class="video-carousel-slide">
                     <div class="video-responsive-container-vertical">
-                        <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fm.facebook.com%2Freel%2F1203240854809546%2F&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fm.facebook.com%2Freel%2F1203240854809546%2F&show_text=0&width=100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
                     </div>
                 </div>
+                <!-- Añade más videos de Facebook aquí si es necesario -->
             </div>
             <button class="video-nav-arrow prev" id="fbVideoPrevBtn">❮</button>
             <button class="video-nav-arrow next" id="fbVideoNextBtn">❯</button>
         </div>
 
-        <div class="video-responsive-container-vertical" style="display: none;">
-            <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
+        <!-- Video de TikTok -->
+        <h3>Video de TikTok</h3>
+        <!-- Ajustado el contenedor para que el video de TikTok tenga el mismo ancho que el carrusel de Facebook -->
+        <div class="video-responsive-container-vertical" id="tiktok-video-container">
+            <!-- Eliminamos width y height inline para que CSS controle el tamaño. -->
+            <iframe src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
-    </div>
-
-    <h2 id="presentaciones-en-vivo">Presentaciones en vivo</h2>
-    <div class="presentaciones-envivo-container">
-     <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
-         <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container" id="youtube-player-container-0" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-0" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-1" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-1" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-2" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-2" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-3" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-3" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-4" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-4" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-5" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-5" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-6" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-6" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-            <div class="video-carousel-slide-nuevo">
-                <div class="video-responsive-container-vertical" id="youtube-player-container-7" style="width: 100% !important; height: 320px !important; min-height: 320px !important; border: 3px solid magenta !important; background-color: #330033 !important; opacity: 1 !important; visibility: visible !important; display: block !important; padding: 5px !important; z-index: 9990 !important;">
-                    <div id="youtube-player-7" style="width: 98% !important; height: 95% !important; border: 3px solid lime !important; background-color: #003300 !important; opacity: 1 !important; visibility: visible !important; display: block !important; margin: auto !important; z-index: 9991 !important;"></div>
-                </div>
-            </div>
-         </div>
-         <button class="nav-arrow-nuevo prev-nuevo" id="presentacionesVideoPrevBtn">❮</button>
-         <button class="nav-arrow-nuevo next-nuevo" id="presentacionesVideoNextBtn">❯</button>
-         <div class="loading-indicator-nuevo" id="presentacionesVideoLoading">Cargando videos...</div>
-     </div>
-    </div>
+    </section>
+    <!-- Separador oculto si la sección de Videos está oculta -->
     <div class="separador"></div>
 
+    <section id="presentaciones-en-vivo" class="presentaciones-envivo-container">
+        <h2>Presentaciones en vivo</h2>
+        <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
+            <div class="loading-indicator-nuevo" id="presentacionesVideoLoading">Cargando videos...</div>
+            <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
+                <!-- Los divs de los reproductores de YouTube son generados por la API de YouTube -->
+                <!-- ¡IMPORTANTE! Se han eliminado los estilos inline como width, height, etc. de estos divs para que CSS los controle. -->
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos horizontales -->
+                    <div class="video-responsive-container" id="youtube-player-container-0">
+                        <div id="youtube-player-0"></div>
+                    </div>
+                </div>
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos verticales -->
+                    <div class="video-responsive-container-vertical" id="youtube-player-container-1">
+                        <div id="youtube-player-1"></div>
+                    </div>
+                </div>
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos verticales -->
+                    <div class="video-responsive-container-vertical" id="youtube-player-container-2">
+                        <div id="youtube-player-2"></div>
+                    </div>
+                </div>
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos verticales -->
+                    <div class="video-responsive-container-vertical" id="youtube-player-container-3">
+                        <div id="youtube-player-3"></div>
+                    </div>
+                </div>
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos verticales -->
+                    <div class="video-responsive-container-vertical" id="youtube-player-container-4">
+                        <div id="youtube-player-4"></div>
+                    </div>
+                </div>
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos verticales -->
+                    <div class="video-responsive-container-vertical" id="youtube-player-container-5">
+                        <div id="youtube-player-5"></div>
+                    </div>
+                </div>
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos horizontales (si aplica) -->
+                    <div class="video-responsive-container" id="youtube-player-container-6">
+                        <div id="youtube-player-6"></div>
+                    </div>
+                </div>
+                <div class="video-carousel-slide-nuevo">
+                    <!-- Contenedor para videos verticales -->
+                    <div class="video-responsive-container-vertical" id="youtube-player-container-7">
+                        <div id="youtube-player-7"></div>
+                    </div>
+                </div>
+                <!-- Añade más slides para YouTube según necesites, alternando entre horizontal/vertical si aplica -->
+            </div>
+            <button class="nav-arrow-nuevo prev-nuevo" id="presentacionesVideoPrevBtn">❮</button>
+            <button class="nav-arrow-nuevo next-nuevo" id="presentacionesVideoNextBtn">❯</button>
+        </div>
+    </section>
+    <div class="separador"></div>
+
+    <section id="news" class="section">
+        <h2>Últimas Noticias</h2>
+        <p>Mantente al día con los últimos acontecimientos de la banda.</p>
+        <div class="news-item">
+            <h3>Presentación en Avatar Cultural Local</h3>
+            <p><small>Miércoles 16 de Abril 2025</small></p>
+            <p>Acompáñanos en una noche inolvidable en Avatar Cultural Local. ¡Ska punk en vivo garantizado!</p>
+            <a href="https://www.instagram.com/reel/DIg7EamNrpi/?igsh=MTY4aWlqY3huY2JrYg==" target="_blank" class="button">Ver Reel</a>
+        </div>
+        <div class="news-item">
+            <h3>Presentación En El Origen Pub</h3>
+            <p><small>30 de Mayo de 2025</small></p>
+            <p>¡No te pierdas nuestra presentación en El Origen Pub! Una noche llena de música y energía.</p>
+            <a href="https://www.instagram.com/reel/DJS6NhBtaUr/?igsh=bmgxNGpqbG5vY2x5" target="_blank" class="button">Ver Reel</a>
+        </div>
+    </section>
+    <!-- Separador oculto si la sección de Merchandise está oculta -->
+    <div class="separador" style="display: none;"></div>
+
+    <section id="merch" class="section" style="display: none;">
+        <h2>Merchandise</h2>
+        <p>Llévate un pedazo de Dskavellados a casa.</p>
+        <div class="merch-item">
+            <img src="https://placehold.co/150x150/333333/FFFFFF?text=Camiseta" alt="Camiseta Dskavellados">
+            <h3>Camiseta Clásica</h3>
+            <p>$25.00</p>
+            <a href="#" class="button">Comprar</a>
+        </div>
+        <div class="merch-item">
+            <img src="https://placehold.co/150x150/333333/FFFFFF?text=Sudadera" alt="Sudadera Dskavellados">
+            <h3>Sudadera con Capucha</h3>
+            <p>$45.00</p>
+            <a href="#" class="button">Comprar</a>
+        </div>
+    </section>
+    <div class="separador"></div>
+
+    <section id="contacto" class="section">
+        <h2>Contacto</h2>
+        <p>¿Tienes alguna pregunta, sugerencia o simplemente quieres saludar? ¡Contáctanos!</p>
+        <form class="contact-form" id="contactForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </section>
+    <div class="separador"></div>
+
+    <!-- Contenedor de redes sociales flotante -->
     <div class="floating-social">
+        <!-- Botón de WhatsApp -->
         <a href="https://wa.me/573024332338" target="_blank" class="whatsapp-button">WhatsApp</a>
+        <!-- Icono de Facebook -->
         <a href="https://www.facebook.com/share/1BNKjHXJm4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="social-icon"></a>
+        <!-- Icono de TikTok (SVG incrustado para mayor control de estilo) -->
         <a href="https://www.tiktok.com/@dskavellados" target="_blank" class="social-icon-svg">
             <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>TikTok</title><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
         </a>
-    <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="social-icon"></a>
+        <!-- Icono de Instagram -->
+        <a href="https://www.instagram.com/dskavellados" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="social-icon"></a>
+        <!-- Otros iconos de redes sociales si los tienes -->
+        <!-- <a href="https://twitter.com/dskavellados" target="_blank"><i class="fab fa-twitter social-icon"></i></a> -->
+        <!-- <a href="https://youtube.com/dskavellados" target="_blank"><i class="fab fa-youtube social-icon"></i></a> -->
+        <!-- <a href="https://open.spotify.com/artist/YOUR_SPOTIFY_ID" target="_blank"><i class="fab fa-spotify social-icon"></i></a> -->
     </div>
 
+    <!-- Modal para la visualización de imágenes ampliadas -->
     <div id="imageModal" class="modal">
         <span class="close-button">×</span>
         <img class="modal-content" id="modalImage">
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const fbVideoCarousel = document.getElementById('facebookVideoCarousel');
-            if (fbVideoCarousel) { // Check if the carousel element exists
-                const track = document.getElementById('facebookVideoTrack');
-                const slides = Array.from(track.children);
-                const nextButton = document.getElementById('fbVideoNextBtn');
-                const prevButton = document.getElementById('fbVideoPrevBtn');
-                
-                if (!track || !nextButton || !prevButton || slides.length === 0) {
-                    console.warn('Facebook video carousel elements not found or no slides.');
-                    return;
-                }
 
-                let fbCurrentIndex = 0;
-                // let slideWidth = slides[0].getBoundingClientRect().width; // Initial calculation
-                // Recalculate slideWidth considering the carousel's actual rendered width
-                // This is more robust if CSS or parent elements define the width dynamically
-                let slideWidth = fbVideoCarousel.clientWidth;
-
-
-                const updateFbCarousel = () => {
-                    track.style.transform = `translateX(-${fbCurrentIndex * slideWidth}px)`;
-                    // Simplified: No attempt to pause/play iframes for this version
-                };
-                
-                // Initial check for slideWidth
-                if (slideWidth === 0 && slides.length > 0) {
-                    console.warn("Facebook video carousel slide width is 0 initially. Using clientWidth of carousel as fallback.");
-                    // Fallback if getBoundingClientRect was 0, use clientWidth of the carousel itself.
-                    // This assumes slides are meant to be 100% width of the carousel.
-                }
-                if (slideWidth === 0 && slides.length > 0) { // If still 0 after fallback
-                     console.error("Facebook video carousel slide width is still 0. Carousel may not function correctly.");
-                }
-
-
-                nextButton.addEventListener('click', () => {
-                    slideWidth = fbVideoCarousel.clientWidth; // Recalculate on interaction, just in case
-                    fbCurrentIndex = (fbCurrentIndex + 1) % slides.length;
-                    updateFbCarousel();
-                });
-
-                prevButton.addEventListener('click', () => {
-                    slideWidth = fbVideoCarousel.clientWidth; // Recalculate on interaction
-                    fbCurrentIndex = (fbCurrentIndex - 1 + slides.length) % slides.length;
-                    updateFbCarousel();
-                });
-
-                window.addEventListener('resize', () => {
-                    if (slides.length > 0) {
-                        slideWidth = fbVideoCarousel.clientWidth; // Use clientWidth of the carousel for responsiveness
-                        updateFbCarousel(); 
-                    }
-                });
-            }
-        });
-    </script>
-    <script>
-     // YouTube Iframe API integration for Presentaciones en Vivo Carousel
-     let players = [];
-     const videoIDs = [
-        'C5cloj5SRIk', 'vqBAqsXbkQQ', 'N6gPRKkH_5Y', '59unIB7_Q0c',
-        'uaSIGp2c3tU', 'hDxwA1E2fug', '1FFrxvcFpYY', 'zhHt00TgGgc'
-     ];
-     let lastPlayedPlayerIndex = -1; // To keep track of the last played video
-
-     window.onYouTubeIframeAPIReady = function() {
-        // Comment out or remove single test player initialization
-        /*
-        console.log('onYouTubeIframeAPIReady called for test player.');
-        new YT.Player('test-youtube-player', {
-             height: '360',
-             width: '640',
-             videoId: 'C5cloj5SRIk',
-             playerVars: { 'playsinline': 1, 'modestbranding': 1, 'fs': 1, 'rel': 0 },
-             events: {
-                 'onReady': function(event) {
-                     console.log('Test Player Ready:', event.target.getVideoData().title);
-                     const testPlayerDiv = document.getElementById('test-youtube-player');
-                     if(testPlayerDiv) testPlayerDiv.style.borderColor = 'green';
-                 },
-                 'onError': function(event) {
-                     console.error('Test Player Error. Code:', event.data, 'Video ID:', 'C5cloj5SRIk');
-                     const testPlayerDiv = document.getElementById('test-youtube-player');
-                     if (testPlayerDiv) {
-                         testPlayerDiv.style.borderColor = 'red';
-                         testPlayerDiv.innerHTML = 'Test Player Error. Code: ' + event.data;
-                     }
-                 }
-             }
-        });
-        */
-        initPresentacionesCarouselWithYouTubeAPI(); // Restore full carousel initialization
-     };
-
-     function initPresentacionesCarouselWithYouTubeAPI() {
-         const presentacionesCarousel = document.getElementById('presentacionesVideoCarousel');
-         if (!presentacionesCarousel) return;
-
-         const track = document.getElementById('presentacionesVideoTrack');
-         const nextButton = document.getElementById('presentacionesVideoNextBtn');
-         const prevButton = document.getElementById('presentacionesVideoPrevBtn');
-         const loadingIndicator = document.getElementById('presentacionesVideoLoading');
-
-         if (!track || !nextButton || !prevButton || !loadingIndicator) {
-             console.warn('One or more elements for Presentaciones en Vivo carousel not found.');
-             if(loadingIndicator) loadingIndicator.textContent = 'Error al cargar carrusel.';
-             return;
-         }
-
-         // Create players
-         for (let i = 0; i < videoIDs.length; i++) {
-             players[i] = new YT.Player('youtube-player-' + i, {
-                 height: '100%', // These might be overridden by CSS, but good to set.
-                 width: '100%',  // The aggressive inline styles will take precedence.
-                 videoId: videoIDs[i],
-                 playerVars: {
-                     'playsinline': 1,
-                     'modestbranding': 1,
-                     'fs': 1,
-                     'rel': 0
-                 },
-                 events: {
-                     'onReady': onPlayerReady,
-                     'onError': onPlayerError
-                 }
-             });
-         }
-
-         let slides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo')); // Ensure we only get actual slide elements
-         let currentIndex = 0;
-         let slideWidth = 0;
-
-         function updateSlideWidth() {
-            if (slides.length > 0) {
-                slideWidth = presentacionesCarousel.clientWidth;
-            }
-         }
-
-         function updateCarousel() {
-             if (slides.length === 0 || slideWidth === 0) {
-                 if (loadingIndicator) loadingIndicator.style.display = slides.length > 0 ? 'block' : 'none';
-                 if (slides.length === 0 && loadingIndicator) loadingIndicator.textContent = 'No hay videos para mostrar.';
-                 return;
-             }
-             if (loadingIndicator) loadingIndicator.style.display = 'none';
-
-             track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-
-             if (lastPlayedPlayerIndex !== -1 && players[lastPlayedPlayerIndex] && typeof players[lastPlayedPlayerIndex].pauseVideo === 'function') {
-                 if (typeof players[lastPlayedPlayerIndex].getPlayerState === 'function' && players[lastPlayedPlayerIndex].getPlayerState() === YT.PlayerState.PLAYING) {
-                    players[lastPlayedPlayerIndex].pauseVideo();
-                 }
-             }
-         }
-
-         nextButton.addEventListener('click', () => {
-             if (slides.length === 0) return;
-             if (players[currentIndex] && typeof players[currentIndex].pauseVideo === 'function') {
-                if (typeof players[currentIndex].getPlayerState === 'function' && players[currentIndex].getPlayerState() === YT.PlayerState.PLAYING) {
-                    players[currentIndex].pauseVideo();
-                }
-             }
-             currentIndex = (currentIndex + 1) % slides.length;
-             updateCarousel();
-         });
-
-         prevButton.addEventListener('click', () => {
-             if (slides.length === 0) return;
-             if (players[currentIndex] && typeof players[currentIndex].pauseVideo === 'function') {
-                 if (typeof players[currentIndex].getPlayerState === 'function' && players[currentIndex].getPlayerState() === YT.PlayerState.PLAYING) {
-                    players[currentIndex].pauseVideo();
-                }
-             }
-             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-             updateCarousel();
-         });
-
-         window.addEventListener('resize', () => {
-             if (slides.length > 0) {
-                 updateSlideWidth();
-                 updateCarousel();
-             }
-         });
-
-         slides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo'));
-         if (slides.length > 0) {
-             updateSlideWidth();
-             updateCarousel();
-             if (slides.length <= 1) {
-                nextButton.style.display = 'none';
-                prevButton.style.display = 'none';
-             } else {
-                nextButton.style.display = 'block';
-                prevButton.style.display = 'block';
-             }
-         } else {
-             if (loadingIndicator) loadingIndicator.style.display = 'block';
-             nextButton.style.display = 'none';
-             prevButton.style.display = 'none';
-         }
-
-         // Restore MutationObserver if it was part of the original full setup
-         // (Assuming it was commented out as per the test player setup instructions)
-         const observer = new MutationObserver((mutationsList, observer) => {
-             for(const mutation of mutationsList) {
-                 if (mutation.type === 'childList') { // Simplified: check if children changed
-                     slides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo'));
-                     if (slides.length > 0) {
-                         updateSlideWidth();
-                         updateCarousel();
-                     }
-                     if (slides.length <= 1) {
-                        nextButton.style.display = 'none';
-                        prevButton.style.display = 'none';
-                     } else {
-                        nextButton.style.display = 'block';
-                        prevButton.style.display = 'block';
-                     }
-                     // No break here, process all mutations of type childList
-                 }
-             }
-         });
-         observer.observe(track, { childList: true });
-     }
-
-     function onPlayerReady(event) {
-         console.log('Player ready:', event.target.getVideoData().title);
-         const loadingIndicator = document.getElementById('presentacionesVideoLoading');
-         if (loadingIndicator) loadingIndicator.style.display = 'none';
-
-         const track = document.getElementById('presentacionesVideoTrack');
-         const nextButton = document.getElementById('presentacionesVideoNextBtn');
-         const prevButton = document.getElementById('presentacionesVideoPrevBtn');
-         if (track && nextButton && prevButton) {
-            const numSlides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo')).length;
-            if (numSlides <= 1) {
-                nextButton.style.display = 'none';
-                prevButton.style.display = 'none';
-            } else {
-                nextButton.style.display = 'block';
-                prevButton.style.display = 'block';
-            }
-         }
-     }
-
-     function onPlayerError(event) {
-         console.error('YouTube Player Error:', event.data, 'for video ID:', event.target.getVideoData().video_id);
-         const playerContainer = event.target.getIframe().closest('.video-carousel-slide-nuevo');
-         if (playerContainer) {
-            const playerId = event.target.getIframe().id.replace('player_', ''); // Assuming iframe id is 'player_N' if YT API sets it
-            const placeholder = document.getElementById('youtube-player-' + playerId) || playerContainer.querySelector('div[id^="youtube-player-"]');
-            if (placeholder) {
-                 placeholder.innerHTML = `<p style="color:red; text-align:center; font-size: 0.9em;">Error al cargar video.</p><p style="color:grey; text-align:center; font-size:0.7em;">ID: ${event.target.getVideoData().video_id}, Error: ${event.data}</p>`;
-            } else {
-                 playerContainer.innerHTML = `<p style="color:red; text-align:center;">Error al cargar video (placeholder not found).</p>`;
-            }
-         }
-     }
-     </script>
-    <script src="https://www.youtube.com/iframe_api"></script>
+    <footer class="footer">
+        <p>&copy; 2025 Dskavellados. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
