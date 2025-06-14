@@ -141,6 +141,13 @@
             color: #ff0000; /* Color rojo para los títulos */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Sombra para los títulos */
             margin-bottom: 30px;
+            transition: color 0.3s ease, text-shadow 0.3s ease; /* ADDED/MODIFIED: Ensure transition */
+        }
+
+        /* Hover effect for h2 titles */
+        h2:hover {
+            color: #ffcc00; /* Change color on hover - matches nav link hover */
+            text-shadow: 0 0 20px #ffcc00, 0 0 30px #ff0000; /* Glow effect - adjust intensity if needed, aiming for similarity to nav link hover which is '0 0 25px #ffcc00, 0 0 40px #ff0000' */
         }
 
         p {
@@ -825,18 +832,19 @@
     <div class="hero-video-container">
         <video class="hero-video" id="heroVideo" autoplay loop muted playsinline></video>
     </div>
-
+    <!-- SEPARATOR 1: ADDED -->
     <div class="separador"></div>
 
     <h2 id="acerca">Acerca de Nosotros</h2>
     <p>Somos Dskavellados, una banda de Ska Punk que fusiona ritmos energéticos con letras profundas.</p>
-    <div class="separador" style="display: none;"></div>
+    <!-- SEPARATOR 2: ADDED -->
+    <div class="separador"></div>
 
     <h2 id="musica" style="display: none;">Nuestra Música</h2>
     <div class="video-responsive-container" style="display: none;">
         <iframe src="https://open.spotify.com/embed/artist/5P4g0Z2X1Q0Q0Q0Q0Q0Q0Q?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
-    <div class="separador" style="display: none;"></div>
+    <!-- NO SEPARATOR NEEDED HERE -->
 
     <h2 id="galeria">Galería</h2>
     <div class="galeria">
@@ -880,6 +888,7 @@
         <button class="nav-arrow prev" id="prevBtn">❮</button>
         <button class="nav-arrow next" id="nextBtn">❯</button>
     </div>
+    <!-- SEPARATOR 3: ADDED -->
     <div class="separador"></div>
 
     <h2 id="videos" style="display: none;">Videos</h2>
@@ -889,13 +898,13 @@
                 <!-- Existing Facebook Video 1 -->
                 <div class="video-carousel-slide">
                     <div class="video-responsive-container-vertical">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
+                        <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1625085521468533&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
                     </div>
                 </div>
                 <!-- New Facebook Video 2 -->
                 <div class="video-carousel-slide">
                     <div class="video-responsive-container-vertical">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fm.facebook.com%2Freel%2F1203240854809546%2F&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
+                        <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fm.facebook.com%2Freel%2F1203240854809546%2F&show_text=0&width=100%" data-width="100%" data-height="100%" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -904,54 +913,53 @@
         </div>
 
         <div class="video-responsive-container-vertical" style="display: none;">
-            <iframe src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
+            <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
     </div>
-    <div class="separador" style="display: none;"></div>
+    <!-- NO SEPARATOR NEEDED HERE -->
 
-    <div class="separador"></div>
     <h2 id="presentaciones-en-vivo">Presentaciones en vivo</h2>
     <div class="presentaciones-envivo-container">
      <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
          <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/C5cloj5SRIk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/C5cloj5SRIk?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/vqBAqsXbkQQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/vqBAqsXbkQQ?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/N6gPRKkH_5Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/N6gPRKkH_5Y?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/59unIB7_Q0c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/59unIB7_Q0c?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/uaSIGp2c3tU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/uaSIGp2c3tU?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/hDxwA1E2fug" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/hDxwA1E2fug?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/1FFrxvcFpYY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/1FFrxvcFpYY?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
             <div class="video-carousel-slide-nuevo">
                 <div class="video-responsive-container-vertical">
-                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/zhHt00TgGgc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    <iframe style="position: relative; z-index: 1;" width="100%" height="100%" src="https://www.youtube.com/embed/zhHt00TgGgc?enablejsapi=1&origin=https://{YOUR_DOMAIN_HERE}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
          </div>
@@ -960,6 +968,7 @@
          <div class="loading-indicator-nuevo" id="presentacionesVideoLoading">Cargando videos...</div>
      </div>
     </div>
+    <!-- SEPARATOR 4: ADDED -->
     <div class="separador"></div>
 
     <div class="floating-social">
