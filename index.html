@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSKAVELLADOS - Pagina Oficial</title>
+    <title>DSKAVELLADOS - La Banda Que Revoluciona el Rock</title>
     <!-- Fuente Poppins para un diseño moderno y legible -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Iconos de Font Awesome para una amplia variedad de iconos -->
@@ -297,8 +297,8 @@
             max-width: 100%;
             margin: 0 auto; /* Ajustado para eliminar espacio extra */
             border-radius: 15px;
-            border: none; /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
-            box-shadow: none;
+            border: 4px solid #ff0000; /* DEFAULT border outside carousels */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* DEFAULT shadow outside carousels */
         }
 
         /* Contenedor responsivo para videos (9:16 - vertical) */
@@ -311,9 +311,20 @@
             max-width: 500px; /* Se mantiene un max-width razonable si es necesario fuera de carruseles */
             margin: 0 auto; /* Ajustado para eliminar espacio extra y centrar */
             border-radius: 15px;
-            border: none; /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
-            box-shadow: none;
+            border: 4px solid #ff0000; /* DEFAULT border outside carousels */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* DEFAULT shadow outside carruseles */
         }
+        /* Eliminar bordes y sombras cuando son parte de un slide (para evitar doble cuadro) */
+        .video-carousel-slide > .video-responsive-container,
+        .video-carousel-slide > .video-responsive-container-vertical,
+        .video-carousel-slide-nuevo > .video-responsive-container,
+        .video-carousel-slide-nuevo > .video-responsive-container-vertical {
+            margin: 0; /* Eliminar márgenes internos */
+            border: none; /* Eliminar bordes internos */
+            box-shadow: none; /* Eliminar sombras internas */
+            width: 100%; /* Asegurar que ocupe todo el ancho de su slide */
+        }
+
 
         /* Ajuste específico para el contenedor del video de TikTok para cortar el contenido inferior */
         #tiktok-video-container {
@@ -333,6 +344,7 @@
             width: 100%;
             height: 100%;
             border: 0;
+            object-fit: cover; /* Intenta cubrir todo el espacio (efecto similar a zoom/recorte) */
         }
 
 
@@ -434,10 +446,6 @@
         .video-carousel-slide-nuevo {
             flex: 0 0 100%; /* Each slide takes full width of the carousel */
             box-sizing: border-box;
-            /* Eliminamos propiedades flex directas de aquí para evitar conflictos con el dimensionamiento del video */
-            /* display: flex; */
-            /* align-items: center; */
-            /* justify-content: center; */
             padding: 0; /* Aseguramos que no haya padding en el slide */
             height: 100%; /* Asegura que el slide ocupe toda la altura del track */
             overflow: hidden; /* Recorta cualquier contenido que se desborde del slide */
@@ -1063,6 +1071,11 @@
             const navMenu = document.getElementById('nav-menu');
 
             if (btnMenu && navMenu) {
+                // Al cargar en móvil, añade la clase 'active' para que el menú sea visible por defecto
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.add('active');
+                }
+
                 btnMenu.addEventListener('click', () => {
                     navMenu.classList.toggle('active');
                 });
@@ -1074,6 +1087,20 @@
                             navMenu.classList.remove('active');
                         }
                     });
+                });
+                // Manejo de redimensionamiento para desktop
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        navMenu.classList.remove('active'); // Ocultar el menú si se redimensiona a desktop
+                        navMenu.style.maxHeight = ''; // Eliminar cualquier max-height establecido por JS
+                        navMenu.style.overflow = ''; // Restablecer overflow
+                        navMenu.style.display = ''; // Restaurar display por defecto de CSS
+                    } else {
+                        // Opcional: Podrías re-activar si se redimensiona de nuevo a móvil y el menú debe estar abierto
+                        // if (!navMenu.classList.contains('active')) {
+                        //     navMenu.classList.add('active');
+                        // }
+                    }
                 });
             }
         });
