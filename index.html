@@ -10,7 +10,6 @@
     <script src="https://kit.fontawesome.com/6c4ad435c2.js" crossorigin="anonymous"></script>
     <!-- Favicon de tu sitio web -->
     <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
     <style>
         /* Estilos Generales del Cuerpo */
@@ -220,7 +219,7 @@
             padding: 12px 18px; /* Más grandes */
             cursor: pointer;
             font-size: 2.5em; /* Flechas más grandes */
-            border-radius: 8px; /* Más redondeado */
+            border-radius: 8px;
             z-index: 10;
             transition: background-color 0.3s ease, color 0.3s, box-shadow 0.3s ease;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Sombra más visible */
@@ -228,8 +227,8 @@
 
         .galeria .nav-arrow:hover {
             background-color: rgba(0, 0, 0, 1);
-            color: #ffcc00; /* Amarillo al pasar el ratón */
-            box-shadow: 0 0 35px #ffcc00; /* Brillo amarillo intenso */
+            color: #ffcc00;
+            box-shadow: 0 0 35px #ffcc00;
         }
 
         /* Posicionamiento de las flechas */
@@ -298,48 +297,46 @@
             max-width: 100%;
             margin: 30px auto; /* Centrar y añadir margen */
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Sombra para los videos */
-            border: 4px solid #ff0000; /* Borde rojo para los videos */
+            /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
+            border: none;
+            box-shadow: none;
         }
 
         /* Contenedor responsivo para videos (9:16 - vertical) */
         .video-responsive-container-vertical {
             position: relative;
-            padding-bottom: 177.77%; /* 9:16 Aspect Ratio (height / width = 16 / 9 = 1.7777) */
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio (height / width = 1.7777) */
             height: 0; /* Important for padding-bottom to work */
             overflow: hidden;
             width: 80%; /* Ajuste de ancho para TikTok, más estrecho que 100% */
             max-width: 500px; /* Max-width para video vertical (similar a Facebook) */
             margin: 30px auto;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-            border: 4px solid #ff0000;
+            /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
+            border: none;
+            box-shadow: none;
         }
 
         /* Ajuste específico para el contenedor del video de TikTok para cortar el contenido inferior */
-        /* La altura se ajusta para que coincida con el carrusel de Facebook */
         #tiktok-video-container {
-            /* Se ha modificado para usar la misma lógica de aspecto que video-responsive-container-vertical,
-               pero se añade un `max-height` si el iframe de TikTok inyecta elementos adicionales
-               que no se controlan con el padding-bottom intrínseco. */
             max-height: 710px; /* Ajuste para recortar contenido extra, basada en el aspecto 9:16 de 400px de ancho */
-            /* Este valor (710px) es un cálculo aproximado de 1.7777 * 400px.
-               Puede que necesites ajustarlo si el contenido del iframe varía o si hay barras de desplazamiento no deseadas. */
             overflow: hidden; /* Asegura que el contenido que excede max-height se recorte */
         }
 
         /* Asegura que los iframes dentro de los contenedores responsivos ocupen todo el espacio */
         .video-responsive-container iframe,
-        .video-responsive-container-vertical iframe {
+        .video-responsive-container-vertical iframe,
+        /* Incluimos los divs donde YouTube carga los iframes */
+        .video-responsive-container > div[id^="youtube-player-"],
+        .video-responsive-container-vertical > div[id^="youtube-player-"] {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
-            /* object-fit: contain; */ /* Removido para videos, ya que puede causar barras negras si el iframe no llena perfectamente.
-                                     Los embeds de YouTube y TikTok generalmente manejan su propio ajuste. */
         }
+
 
         /* Estilos para el carrusel de videos de Facebook/TikTok */
         .video-carousel {
@@ -368,7 +365,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.9);
             color: white;
             border: none;
             padding: 10px 15px;
@@ -414,10 +411,10 @@
             box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
             background-color: #222;
             border: 4px solid #ff0000;
-            display: flex; /* Ensure flexbox for sliding */
+            display: flex; /* Mantenemos flex para alinear el track */
             justify-content: center;
             align-items: center;
-            min-height: 300px; /* Base height, will be adjusted by content */
+            aspect-ratio: 16 / 9; /* Fuerza una relación de aspecto 16:9 para el contenedor del carrusel */
         }
 
         .video-carousel-nuevo .loading-indicator-nuevo {
@@ -431,18 +428,28 @@
             display: flex;
             transition: transform 0.5s ease-in-out;
             height: 100%; /* Ensure track takes full height */
+            width: 100%; /* Asegura que la pista ocupe el 100% del ancho del carrusel */
         }
 
         /* Styles for individual slides within the new YouTube carousel */
         .video-carousel-slide-nuevo {
             flex: 0 0 100%; /* Each slide takes full width of the carousel */
             box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px; /* Add some padding around the video */
-            min-height: 100%; /* Ensure slide takes up min height of carousel */
+            /* Eliminamos propiedades flex directas de aquí para evitar conflictos con el dimensionamiento del video */
+            /* display: flex; */
+            /* align-items: center; */
+            /* justify-content: center; */
+            padding: 0; /* Aseguramos que no haya padding en el slide */
+            height: 100%; /* Asegura que el slide ocupe toda la altura del track */
+            overflow: hidden; /* Recorta cualquier contenido que se desborde del slide */
         }
+        /* Para centrar el contenido (contenedor de video) dentro de cada slide */
+        .video-carousel-slide-nuevo > .video-responsive-container,
+        .video-carousel-slide-nuevo > .video-responsive-container-vertical {
+            margin: auto; /* Centra el contenedor de video dentro del slide */
+            display: block; /* Asegura que sea un bloque para que margin:auto funcione */
+        }
+
 
         /* Navigation arrows for the new YouTube carousel */
         .video-carousel-nuevo .nav-arrow-nuevo {
@@ -804,16 +811,13 @@
             .floating-social {
                 right: 8px; /* Mantener a la derecha */
                 left: auto;
-                top: 50%; /* Centrado verticalmente */
+                top: 50%;
                 transform: translateY(-50%);
-                flex-direction: column; /* Volver a columna en móvil */
-                width: auto; /* Ancho automático */
-                justify-content: flex-start; /* Alinear arriba */
-                align-items: center;
-                gap: 6px;
-                background-color: transparent; /* Fondo transparente */
-                padding: 4px;
-                box-shadow: none; /* Sin sombra de fondo */
+                display: flex;
+                flex-direction: column;
+                gap: 6px; /* Espacio entre los iconos (reducido aún más) */
+                z-index: 1000;
+                padding: 4px; /* Padding más pequeño */
             }
             .floating-social .whatsapp-button {
                 display: none; /* Ocultar botón de WhatsApp en móvil si se desea */
@@ -851,6 +855,9 @@
     </style>
 </head>
 <body>
+    <!-- h1 para accesibilidad y SEO, visualmente oculto -->
+    <h1 style="position: absolute; left: -9999px; opacity: 0;">DSKAVELLADOS - La Banda Que Revoluciona el Rock</h1>
+
     <script>
         // Script para cargar el fondo dinámico de la página según el dispositivo
         document.addEventListener('DOMContentLoaded', () => {
@@ -979,12 +986,7 @@
 
             // Función para retroceder a la imagen anterior
             function prevImage() {
-                currentIndex = (currentIndex + 1) % currentImageOrder.length;
-                // Ajustar currentIndex si es 0, para que vaya al final de la lista si está en la primera imagen.
-                // Esta es una implementación simplificada de "anterior" con barajado continuo.
-                // Para un verdadero "anterior" con aleatoriedad, la lógica sería más compleja manteniendo un historial.
-                // Por ahora, lo mantenemos como "siguiente" pero para que siempre avance en el ciclo.
-                // Si realmente se necesita ir "atrás" en un orden aleatorio sin repetición, se necesita un array de historial de imágenes mostradas.
+                // Se corrige la lógica para que realmente retroceda
                 currentIndex = (currentIndex - 1 + currentImageOrder.length) % currentImageOrder.length;
                 showImage(currentIndex);
             }
@@ -1014,7 +1016,6 @@
             }
 
             // Event listeners para abrir el modal al hacer clic en una imagen
-            // Ahora se usa currentImageOrder para el modal
             allGalleryImages.forEach((imgElement) => {
                 imgElement.addEventListener('click', () => {
                     // Solo abrir modal si la imagen no es de un miembro (es parte de la galería)
@@ -1024,7 +1025,6 @@
                     }
                 });
             });
-
 
             // Event listener para cerrar el modal
             if (closeButton) {
@@ -1124,20 +1124,20 @@
         // YouTube Iframe API integration for Presentaciones en Vivo Carousel
         // Cargar el script de la API de YouTube
         var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
+        tag.src = "https://www.youtube.com/iframe_api"; // URL CORRECTA DE LA API DE YOUTUBE
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        let youtubePlayers = []; // Renombrado a youtubePlayers para evitar conflicto con 'players' de la galería
+        let youtubePlayers = []; // Para almacenar las instancias de los reproductores de YouTube
         const youtubeVideoIDs = [
-            'C5cloj5SRIk',   // 1. Horizontal
-            'vqBAqsXbkQQ',   // 2. Vertical
-            'N6gPRKkH_5Y',   // 3. Vertical (Nota: Este ID puede ser de un video horizontal, pero se marcó como vertical)
-            '59unIB7_Q0c',   // 4. Vertical
-            'uaSIGp2c3tU',   // 5. Vertical
-            'hDxwA1E2fug',   // 6. Vertical
-            '1FFrxvcFpYY',   // 7. Vertical
-            'zhHt00TgGgc'    // 8. Vertical
+            'C5cloj5SRIk',    // 1. Horizontal
+            'vqBAqsXbkQQ',    // 2. Vertical
+            'N6gPRKkH_5Y',    // 3. Vertical
+            '59unIB7_Q0c',    // 4. Vertical
+            'uaSIGp2c3tU',    // 5. Vertical
+            'hDxwA1E2fug',    // 6. Vertical
+            '1FFrxvcFpYY',    // 7. Vertical
+            'zhHt00TgGgc'     // 8. Vertical
         ];
         let lastPlayedYouTubePlayerIndex = -1; // Para llevar un seguimiento del último video de YouTube reproducido
 
@@ -1148,7 +1148,7 @@
         function initPresentacionesCarouselWithYouTubeAPI() {
             const presentacionesCarousel = document.getElementById('presentacionesVideoCarousel');
             if (!presentacionesCarousel) {
-                console.warn("Presentaciones en Vivo carousel container not found.");
+                console.warn("Contenedor del carrusel de Presentaciones en Vivo no encontrado.");
                 return;
             }
 
@@ -1177,9 +1177,10 @@
 
                 if (!playerContainer) {
                     console.error(`Contenedor para el reproductor ${playerDivId} no encontrado.`);
-                    const slide = document.getElementById('youtube-player-container-' + i);
-                    if (slide) {
-                        slide.innerHTML = `<p style="color:red; text-align:center; padding: 20px;">Error: Contenedor '${playerDivId}' no encontrado para video '${youtubeVideoIDs[i]}'.</p>`;
+                    // Fallback para mostrar un mensaje de error si el div del reproductor no se encuentra
+                    const slideElement = document.getElementById(`youtube-player-container-${i}`);
+                    if (slideElement) {
+                        slideElement.innerHTML = `<p style="color:red; text-align:center; padding: 20px;">Error: Contenedor de reproductor '${playerDivId}' no encontrado.</p>`;
                     }
                     continue; // Saltar a la siguiente iteración
                 }
@@ -1205,27 +1206,17 @@
 
             let slides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo'));
             let currentIndex = 0;
-            let slideWidth = 0;
-
-            function updateSlideWidth() {
-                if (slides.length > 0) {
-                    slideWidth = presentacionesCarousel.clientWidth;
-                }
-            }
 
             function updateCarousel() {
-                if (slides.length === 0 || slideWidth === 0) {
-                    if (loadingIndicator) loadingIndicator.style.display = slides.length > 0 ? 'block' : 'none';
-                    if (slides.length === 0 && loadingIndicator) loadingIndicator.textContent = 'No hay videos para mostrar.';
-                    return;
-                }
-                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                if (slides.length === 0) return; // Prevenir errores si no hay slides
+                if (loadingIndicator) loadingIndicator.style.display = 'none'; // Ocultar indicador una vez que se actualiza el carrusel
 
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                // Usar porcentaje para un movimiento más robusto y responsive
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
                 // Pausar el video anterior si estaba reproduciéndose
                 if (lastPlayedYouTubePlayerIndex !== -1 && youtubePlayers[lastPlayedYouTubePlayerIndex] && typeof youtubePlayers[lastPlayedYouTubePlayerIndex].stopVideo === 'function') {
-                    youtubePlayers[lastPlayedYouTubePlayerIndex].stopVideo(); // Stop and reset video
+                    youtubePlayers[lastPlayedYouTubePlayerIndex].stopVideo();
                 }
             }
 
@@ -1249,18 +1240,17 @@
                 updateCarousel();
             });
 
+            // Ajustar carrusel al redimensionar la ventana (importante para el transform basado en porcentaje)
             window.addEventListener('resize', () => {
                 if (slides.length > 0) {
-                    updateSlideWidth();
                     updateCarousel();
                 }
             });
 
-            // Actualizar la lista de slides y el estado de los botones al inicio y por mutaciones
+            // Actualizar la lista de slides y el estado de los botones al inicio y por mutaciones (ej. si se añaden/quitan slides dinámicamente)
             function refreshCarouselState() {
                 slides = Array.from(track.children).filter(node => node.nodeType === 1 && node.classList.contains('video-carousel-slide-nuevo'));
                 if (slides.length > 0) {
-                    updateSlideWidth();
                     updateCarousel();
                     if (slides.length <= 1) {
                         nextButton.style.display = 'none';
@@ -1275,11 +1265,8 @@
                     prevButton.style.display = 'none';
                 }
             }
-            
+            refreshCarouselState(); // Llamar al inicio para establecer el estado inicial del carrusel y los botones
 
-            refreshCarouselState(); // Llamar al inicio
-
-            // Observador de mutaciones para actualizar el carrusel si se añaden/quitan slides dinámicamente
             const observer = new MutationObserver((mutationsList, observer) => {
                 for(const mutation of mutationsList) {
                     if (mutation.type === 'childList') {
@@ -1312,33 +1299,27 @@
         }
 
         function onYouTubePlayerStateChange(event) {
-            // Actualizar el índice del último reproductor de YouTube si está reproduciendo
+            // Actualizar el índice del último reproductor de YouTube si está reproduciéndose
             if (event.data === YT.PlayerState.PLAYING) {
                 const playerIndex = youtubePlayers.findIndex(p => p === event.target);
                 if (playerIndex !== -1) {
                     lastPlayedYouTubePlayerIndex = playerIndex;
                 }
             }
-            // Si un video termina, se podría avanzar automáticamente si se desea
-            // if (event.data === YT.PlayerState.ENDED) {
-            //     const currentCarousel = document.getElementById('presentacionesVideoCarousel');
-            //     const nextButton = document.getElementById('presentacionesVideoNextBtn');
-            //     if (currentCarousel && nextButton) {
-            //         nextButton.click(); // Simula un clic en el botón Siguiente
-            //     }
-            // }
         }
 
         function onYouTubePlayerError(event) {
             console.error('Error del reproductor de YouTube:', event.data, 'para el ID de video:', event.target.getVideoData().video_id);
             const playerContainer = event.target.getIframe().closest('.video-carousel-slide-nuevo');
             if (playerContainer) {
-                const playerId = event.target.getIframe().id.replace('player_', '');
-                const placeholder = document.getElementById('youtube-player-' + playerId) || playerContainer.querySelector('div[id^="youtube-player-"]');
-                if (placeholder) {
-                    placeholder.innerHTML = `<p style="color:red; text-align:center; font-size: 0.9em;">Error al cargar video.</p><p style="color:grey; text-align:center; font-size:0.7em;">ID: ${event.target.getVideoData().video_id}, Error: ${event.data}</p>`;
+                // El reproductor de YouTube crea directamente el iframe dentro del div con el ID del reproductor.
+                // Si hay un error, el iframe podría no estar creado o podría ser un div vacío.
+                // Se busca el div de youtube-player-X que está dentro de video-carousel-slide-nuevo
+                const youtubePlayerDiv = playerContainer.querySelector(`div[id^="youtube-player-"]`); // Seleccionar cualquier div que empiece con "youtube-player-"
+                if (youtubePlayerDiv) {
+                    youtubePlayerDiv.innerHTML = `<p style="color:red; text-align:center; font-size: 0.9em;">Error al cargar video.</p><p style="color:grey; text-align:center; font-size:0.7em;">ID: ${event.target.getVideoData().video_id}, Error: ${event.data}</p>`;
                 } else {
-                    playerContainer.innerHTML = `<p style="color:red; text-align:center;">Error al cargar video (placeholder not found).</p>`;
+                    playerContainer.innerHTML = `<p style="color:red; text-align:center;">Error al cargar video (contenedor del reproductor no encontrado).</p>`;
                 }
             }
         }
@@ -1553,7 +1534,6 @@
             <iframe src="https://www.tiktok.com/embed/7478555800504519942" scrolling="no" allowfullscreen="" allow="encrypted-media; autoplay; picture-in-picture"></iframe>
         </div>
     </section>
-    <!-- Separador oculto si la sección de Videos está oculta -->
     <div class="separador"></div>
 
     <section id="presentaciones-en-vivo" class="presentaciones-envivo-container">
@@ -1561,57 +1541,56 @@
         <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
             <div class="loading-indicator-nuevo" id="presentacionesVideoLoading">Cargando videos...</div>
             <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
-                <!-- Los divs de los reproductores de YouTube se configuran para ser responsivos -->
-                <!-- IMPORTANTE: NO añadir estilos inline 'width' o 'height' aquí, los CSS los controlan. -->
+                <!-- Se vuelven a envolver los divs de YouTube en sus contenedores responsivos -->
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el primer video de YouTube -->
+                    <!-- Contenedor para el primer video de YouTube - Horizontal -->
                     <div class="video-responsive-container" id="youtube-player-container-0">
                         <div id="youtube-player-0"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el segundo video de YouTube -->
+                    <!-- Contenedor para el segundo video de YouTube - Vertical -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-1">
                         <div id="youtube-player-1"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el tercer video de YouTube -->
+                    <!-- Contenedor para el tercer video de YouTube - Vertical -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-2">
                         <div id="youtube-player-2"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el cuarto video de YouTube -->
+                    <!-- Contenedor para el cuarto video de YouTube - Vertical -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-3">
                         <div id="youtube-player-3"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el quinto video de YouTube -->
+                    <!-- Contenedor para el quinto video de YouTube - Vertical -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-4">
                         <div id="youtube-player-4"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el sexto video de YouTube -->
+                    <!-- Contenedor para el sexto video de YouTube - Vertical -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-5">
                         <div id="youtube-player-5"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el séptimo video de YouTube -->
+                    <!-- Contenedor para el séptimo video de YouTube - Horizontal -->
                     <div class="video-responsive-container" id="youtube-player-container-6">
                         <div id="youtube-player-6"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el octavo video de YouTube -->
+                    <!-- Contenedor para el octavo video de YouTube - Vertical -->
                     <div class="video-responsive-container-vertical" id="youtube-player-container-7">
                         <div id="youtube-player-7"></div>
                     </div>
                 </div>
-                <!-- Añade más slides para YouTube según necesites, alternando entre horizontal/vertical si aplica -->
+                <!-- Añade más slides para YouTube según necesites -->
             </div>
             <button class="nav-arrow-nuevo prev-nuevo" id="presentacionesVideoPrevBtn">❮</button>
             <button class="nav-arrow-nuevo next-nuevo" id="presentacionesVideoNextBtn">❯</button>
