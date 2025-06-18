@@ -55,7 +55,7 @@
             padding: 10px 20px;
             box-sizing: border-box;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Centrar el menú */
             align-items: center;
             z-index: 1000;
             border-bottom: 5px solid #ff0000; /* Borde rojo más grueso */
@@ -63,22 +63,28 @@
         }
 
         .btn-menu {
-            color: white;
-            font-size: 1.8em;
-            cursor: pointer;
-            display: none; /* Oculto por defecto en desktop */
-            position: absolute; /* Posicionamiento absoluto para botón de menú en móvil */
-            left: 20px; /* Posición a la izquierda */
-            z-index: 1001; /* Asegura que esté sobre el header */
+            /* Este botón se ha eliminado para que el menú siempre esté visible como en PC */
+            display: none;
         }
 
         .nav-menu {
             list-style: none;
             margin: 0 auto;
             padding: 0;
-            display: flex;
+            display: flex; /* Siempre flex para mostrar los ítems horizontalmente */
             justify-content: center;
             width: 100%;
+            /* Remover estilos que lo hacían colapsable en móvil */
+            flex-direction: row; /* Siempre en fila como en PC */
+            position: static; /* No flotante en móvil */
+            top: auto;
+            left: auto;
+            background: transparent; /* Fondo transparente o el del header */
+            border-top: none; /* Sin borde extra en móvil */
+            max-height: none; /* Sin límite de altura */
+            overflow: visible; /* Contenido visible */
+            align-items: center;
+            padding-left: 0;
         }
 
         .nav-menu li {
@@ -774,45 +780,33 @@
                 height: 100%;
             }
 
-            .btn-menu {
-                display: block;
-                position: absolute;
-                left: 20px;
-                top: 15px; /* Ajuste para que no quede tan pegado */
+            header {
+                justify-content: center; /* Centrar el menú también en móvil si no hay botón */
             }
 
-            header {
-                justify-content: space-between; /* Ajustar alineación en móvil */
+            .btn-menu {
+                /* Asegurarse de que el botón de menú esté oculto en móvil si no se usa */
+                display: none;
             }
 
             .nav-menu {
-                /* Eliminamos display: none; de la base para que la transición funcione */
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                background: rgba(0, 0, 0, 0.98);
-                border-top: 2px solid red;
-                padding: 15px 0;
-                box-sizing: border-box;
-                transition: max-height 0.3s ease-out;
-                max-height: 0; /* Oculto por defecto con transición */
-                overflow: hidden;
-                align-items: center;
-                padding-left: 0;
+                /* Para que sea "totalmente exacto" al PC en móvil, se eliminan las propiedades de colapsado */
+                flex-direction: row; /* Mantener horizontal como en PC */
+                position: static; /* No flotante en móvil */
+                top: auto;
+                left: auto;
+                background: transparent; /* Fondo transparente o el del header */
+                border-top: none; /* Sin borde extra en móvil */
+                max-height: none; /* Sin límite de altura */
+                overflow: visible; /* Contenido visible */
+                display: flex; /* Siempre visible y flexible */
             }
-
-            .nav-menu.active {
-                display: flex; /* Se hace flex solo cuando está activo */
-                max-height: 350px; /* Altura máxima para mostrar todos los ítems */
-            }
-
             .nav-menu li {
-                margin: 10px 0;
+                margin: 0 8px; /* Ajustar margen para que quepan más ítems */
             }
             .nav-menu a {
-                padding: 10px 0; /* Aumentar área de toque para enlaces móviles */
+                font-size: 0.9em; /* Ligeramente más pequeña para móvil */
+                padding: 5px 0; /* Aumentar área de toque para enlaces móviles */
             }
 
             /* Botones de Redes Sociales flotantes en móvil */
@@ -862,6 +856,12 @@
                 height: 65%;
             }
             /* .floating-social .whatsapp-button { display: none; } */ /* Mantenemos oculto */
+            .nav-menu li {
+                margin: 0 5px; /* Márgenes aún más pequeños para pantallas muy angostas */
+            }
+            .nav-menu a {
+                font-size: 0.8em; /* Fuente aún más pequeña */
+            }
         }
     </style>
 </head>
@@ -1071,11 +1071,6 @@
             const navMenu = document.getElementById('nav-menu');
 
             if (btnMenu && navMenu) {
-                // Al cargar en móvil, añade la clase 'active' para que el menú sea visible por defecto
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.add('active');
-                }
-
                 btnMenu.addEventListener('click', () => {
                     navMenu.classList.toggle('active');
                 });
@@ -1083,24 +1078,14 @@
                 // Cerrar el menú al hacer clic en un enlace (solo en móvil)
                 navMenu.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
-                        if (window.innerWidth <= 768) { // Solo si es una pantalla pequeña
-                            navMenu.classList.remove('active');
+                        // En modo móvil, cerrar el menú al hacer clic en un enlace
+                        if (window.innerWidth <= 768) {
+                            // No eliminar active, la regla CSS para nav-menu en móvil ya no tiene max-height ni overflow
+                            // Simplemente, si se desea un comportamiento de "cerrar", se manejaría con display: none o similares,
+                            // pero para una vista "exacta a PC", el menú siempre está visible.
+                            // navMenu.classList.remove('active'); // Comentado para mantener el menú siempre visible
                         }
                     });
-                });
-                // Manejo de redimensionamiento para desktop
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth > 768) {
-                        navMenu.classList.remove('active'); // Ocultar el menú si se redimensiona a desktop
-                        navMenu.style.maxHeight = ''; // Eliminar cualquier max-height establecido por JS
-                        navMenu.style.overflow = ''; // Restablecer overflow
-                        navMenu.style.display = ''; // Restaurar display por defecto de CSS
-                    } else {
-                        // Opcional: Podrías re-activar si se redimensiona de nuevo a móvil y el menú debe estar abierto
-                        // if (!navMenu.classList.contains('active')) {
-                        //     navMenu.classList.add('active');
-                        // }
-                    }
                 });
             }
         });
