@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSKAVELLADOS - Pagina Oficial</title>
+    <title>DSKAVELLADOS - La Banda Que Revoluciona el Rock</title>
     <!-- Fuente Poppins para un diseño moderno y legible -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Iconos de Font Awesome para una amplia variedad de iconos -->
@@ -1078,13 +1078,9 @@
                 // Cerrar el menú al hacer clic en un enlace (solo en móvil)
                 navMenu.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
-                        // En modo móvil, cerrar el menú al hacer clic en un enlace
-                        if (window.innerWidth <= 768) {
-                            // No eliminar active, la regla CSS para nav-menu en móvil ya no tiene max-height ni overflow
-                            // Simplemente, si se desea un comportamiento de "cerrar", se manejaría con display: none o similares,
-                            // pero para una vista "exacta a PC", el menú siempre está visible.
-                            // navMenu.classList.remove('active'); // Comentado para mantener el menú siempre visible
-                        }
+                        // Si el botón de menú existiera y el menú se colapsara, esta lógica cerraría el menú.
+                        // Sin embargo, para una vista "exacta a PC" en móvil, el menú siempre está visible.
+                        // Esta parte del código se mantiene por si en el futuro se desea cambiar el comportamiento.
                     });
                 });
             }
@@ -1341,7 +1337,7 @@
     </script>
 
     <header>
-        <a href="#" class="btn-menu" id="btn-menu"><i class="fas fa-bars"></i></a>
+        <!-- Eliminado el botón de menú para que el menú siempre esté visible como en PC -->
         <nav class="nav-menu" id="nav-menu">
             <li><a href="#acerca">Acerca</a></li>
             <li><a href="#musica">Música</a></li>
