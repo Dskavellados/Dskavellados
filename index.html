@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSKAVELLADOS - La Banda Que Revoluciona el Rock</title>
+    <title>DSKAVELLADOS - Pagina Oficial</title>
     <!-- Fuente Poppins para un diseño moderno y legible -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Iconos de Font Awesome para una amplia variedad de iconos -->
@@ -295,10 +295,9 @@
             height: 0; /* Important for padding-bottom to work */
             overflow: hidden;
             max-width: 100%;
-            margin: 30px auto; /* Centrar y añadir margen */
+            margin: 0 auto; /* Ajustado para eliminar espacio extra */
             border-radius: 15px;
-            /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
-            border: none;
+            border: none; /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
             box-shadow: none;
         }
 
@@ -308,12 +307,11 @@
             padding-bottom: 177.77%; /* 9:16 Aspect Ratio (height / width = 1.7777) */
             height: 0; /* Important for padding-bottom to work */
             overflow: hidden;
-            width: 80%; /* Ajuste de ancho para TikTok, más estrecho que 100% */
-            max-width: 500px; /* Max-width para video vertical (similar a Facebook) */
-            margin: 30px auto;
+            width: 100%; /* Asegura que ocupe el 100% del ancho disponible en su slide */
+            max-width: 500px; /* Se mantiene un max-width razonable si es necesario fuera de carruseles */
+            margin: 0 auto; /* Ajustado para eliminar espacio extra y centrar */
             border-radius: 15px;
-            /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
-            border: none;
+            border: none; /* Eliminados los bordes y sombras de aquí para evitar el doble cuadro */
             box-shadow: none;
         }
 
@@ -342,7 +340,7 @@
         .video-carousel {
             position: relative;
             max-width: 500px; /* Coincide con max-width de videos verticales para consistencia */
-            margin: 30px auto;
+            margin: 30px auto; /* Mantenemos margen aquí para separar el carrusel en sí */
             overflow: hidden;
             border-radius: 15px;
             border: 4px solid #ff0000; /* Borde rojo para el carrusel */
@@ -358,6 +356,7 @@
         .video-carousel-slide {
             flex: 0 0 100%; /* Cada slide ocupa el ancho completo del carrusel */
             box-sizing: border-box;
+            padding: 0; /* Aseguramos que no haya padding aquí para que el video llene el slide */
         }
 
         /* Flechas de navegación para carruseles de video de Facebook/TikTok */
@@ -448,6 +447,7 @@
         .video-carousel-slide-nuevo > .video-responsive-container-vertical {
             margin: auto; /* Centra el contenedor de video dentro del slide */
             display: block; /* Asegura que sea un bloque para que margin:auto funcione */
+            width: 100%; /* Asegura que el contenedor de video ocupe el 100% del ancho de su slide */
         }
 
 
@@ -778,7 +778,7 @@
             }
 
             .nav-menu {
-                display: none;
+                /* Eliminamos display: none; de la base para que la transición funcione */
                 flex-direction: column;
                 width: 100%;
                 position: absolute;
@@ -789,14 +789,14 @@
                 padding: 15px 0;
                 box-sizing: border-box;
                 transition: max-height 0.3s ease-out;
-                max-height: 0;
+                max-height: 0; /* Oculto por defecto con transición */
                 overflow: hidden;
                 align-items: center;
                 padding-left: 0;
             }
 
             .nav-menu.active {
-                display: flex;
+                display: flex; /* Se hace flex solo cuando está activo */
                 max-height: 350px; /* Altura máxima para mostrar todos los ítems */
             }
 
@@ -813,11 +813,14 @@
                 left: auto;
                 top: 50%;
                 transform: translateY(-50%);
-                display: flex;
-                flex-direction: column;
-                gap: 6px; /* Espacio entre los iconos (reducido aún más) */
-                z-index: 1000;
-                padding: 4px; /* Padding más pequeño */
+                flex-direction: column; /* Volver a columna en móvil */
+                width: auto; /* Ancho automático */
+                justify-content: flex-start; /* Alinear arriba */
+                align-items: center;
+                gap: 6px;
+                background-color: transparent; /* Fondo transparente */
+                padding: 4px;
+                box-shadow: none; /* Sin sombra de fondo */
             }
             .floating-social .whatsapp-button {
                 display: none; /* Ocultar botón de WhatsApp en móvil si se desea */
@@ -1131,13 +1134,13 @@
         let youtubePlayers = []; // Para almacenar las instancias de los reproductores de YouTube
         const youtubeVideoIDs = [
             'C5cloj5SRIk',    // 1. Horizontal
-            'vqBAqsXbkQQ',    // 2. Vertical
-            'N6gPRKkH_5Y',    // 3. Vertical
-            '59unIB7_Q0c',    // 4. Vertical
-            'uaSIGp2c3tU',    // 5. Vertical
-            'hDxwA1E2fug',    // 6. Vertical
-            '1FFrxvcFpYY',    // 7. Vertical
-            'zhHt00TgGgc'     // 8. Vertical
+            'vqBAqsXbkQQ',    // 2. Vertical (Short)
+            'N6gPRKkH_5Y',    // 3. Vertical (Short)
+            '59unIB7_Q0c',    // 4. Vertical (Short)
+            'uaSIGp2c3tU',    // 5. Vertical (Short)
+            'hDxwA1E2fug',    // 6. Vertical (Short)
+            '1FFrxvcFpYY',    // 7. Horizontal
+            'zhHt00TgGgc'     // 8. Vertical (Short)
         ];
         let lastPlayedYouTubePlayerIndex = -1; // Para llevar un seguimiento del último video de YouTube reproducido
 
@@ -1178,9 +1181,9 @@
                 if (!playerContainer) {
                     console.error(`Contenedor para el reproductor ${playerDivId} no encontrado.`);
                     // Fallback para mostrar un mensaje de error si el div del reproductor no se encuentra
-                    const slideElement = document.getElementById(`youtube-player-container-${i}`);
-                    if (slideElement) {
-                        slideElement.innerHTML = `<p style="color:red; text-align:center; padding: 20px;">Error: Contenedor de reproductor '${playerDivId}' no encontrado.</p>`;
+                    const slideElementContainer = document.getElementById(`youtube-player-container-${i}`);
+                    if (slideElementContainer) {
+                        slideElementContainer.innerHTML = `<p style="color:red; text-align:center; padding: 20px;">Error: Contenedor de reproductor '${playerDivId}' no encontrado.</p>`;
                     }
                     continue; // Saltar a la siguiente iteración
                 }
@@ -1541,52 +1544,44 @@
         <div class="video-carousel-nuevo" id="presentacionesVideoCarousel">
             <div class="loading-indicator-nuevo" id="presentacionesVideoLoading">Cargando videos...</div>
             <div class="video-carousel-track-nuevo" id="presentacionesVideoTrack">
-                <!-- Se vuelven a envolver los divs de YouTube en sus contenedores responsivos -->
+                <!-- Todos los videos de YouTube ahora usan el contenedor responsivo horizontal 16:9 -->
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el primer video de YouTube - Horizontal -->
                     <div class="video-responsive-container" id="youtube-player-container-0">
                         <div id="youtube-player-0"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el segundo video de YouTube - Vertical -->
-                    <div class="video-responsive-container-vertical" id="youtube-player-container-1">
+                    <div class="video-responsive-container" id="youtube-player-container-1">
                         <div id="youtube-player-1"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el tercer video de YouTube - Vertical -->
-                    <div class="video-responsive-container-vertical" id="youtube-player-container-2">
+                    <div class="video-responsive-container" id="youtube-player-container-2">
                         <div id="youtube-player-2"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el cuarto video de YouTube - Vertical -->
-                    <div class="video-responsive-container-vertical" id="youtube-player-container-3">
+                    <div class="video-responsive-container" id="youtube-player-container-3">
                         <div id="youtube-player-3"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el quinto video de YouTube - Vertical -->
-                    <div class="video-responsive-container-vertical" id="youtube-player-container-4">
+                    <div class="video-responsive-container" id="youtube-player-container-4">
                         <div id="youtube-player-4"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el sexto video de YouTube - Vertical -->
-                    <div class="video-responsive-container-vertical" id="youtube-player-container-5">
+                    <div class="video-responsive-container" id="youtube-player-container-5">
                         <div id="youtube-player-5"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el séptimo video de YouTube - Horizontal -->
                     <div class="video-responsive-container" id="youtube-player-container-6">
                         <div id="youtube-player-6"></div>
                     </div>
                 </div>
                 <div class="video-carousel-slide-nuevo">
-                    <!-- Contenedor para el octavo video de YouTube - Vertical -->
-                    <div class="video-responsive-container-vertical" id="youtube-player-container-7">
+                    <div class="video-responsive-container" id="youtube-player-container-7">
                         <div id="youtube-player-7"></div>
                     </div>
                 </div>
